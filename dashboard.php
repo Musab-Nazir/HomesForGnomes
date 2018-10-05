@@ -18,7 +18,14 @@ require "header.php";
   <!-- start of main page content -->
 
   <div class="container">
-      <h1>Dashboard</h1>
+      <div class="row">
+            <div class="col"></div>
+            <div class="col-6">
+                <br/>
+                <h2>Dashboard</h2>
+            </div>
+            <div class="col"></div>
+        </div>
   </div>
 
   <!-- end of main page content -->

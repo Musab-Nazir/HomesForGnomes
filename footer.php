@@ -16,7 +16,7 @@
             alt="Valid CSS!"/>
         </a>
 
-        <p class="m-0 text-center text-white">Copyright &copy; Homes for Gnomes 2018</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Homes for Gnomes <?php echo date("Y");?></p>
       </div>
       <!-- /.container -->
     </footer>
