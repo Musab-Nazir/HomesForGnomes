@@ -112,11 +112,6 @@ Date:         	28 September 2018
                   <label>Current Password</label>
                   <input type="password" class="form-control" name="cpass" placeholder="Confirm Password">
               </div>
-              <div class="form-check">
-                  <input type="checkbox" class="form-check-input" name="IsAgent">
-                  <label class="form-check-label">Make an Agent account?</label>
-                  <hr/>
-              </div>
               <div class="form-group">
                   <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Register</button>
                   <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
