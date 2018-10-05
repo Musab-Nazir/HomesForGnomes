@@ -32,3 +32,10 @@ img.rightAligned
 {
     float: right;
 }
+
+#myFooter
+{
+    background-color:#982a4f;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}

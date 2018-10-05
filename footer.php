@@ -1,5 +1,5 @@
 <!-- Footer -->
-    <footer class="py-5 bg-dark" style="background-color:#982a4f;">
+    <footer class="py-5 bg-dark" id="myFooter">
       <div class="container">
         <a href="http://validator.w3.org/check?uri=referer">
     			<img 	class="rightAligned"

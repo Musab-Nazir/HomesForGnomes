@@ -19,24 +19,24 @@ include("header.php"); ?>
     <div class="carousel-inner" role="listbox">
       <!-- Slide One - Set the background image for this slide in the line below -->
       <div class="carousel-item active" style="background-image: url('./images/bannerHouse1.jpg')">
-        <div class="carousel-caption d-none d-md-block">
+        <!-- <div class="carousel-caption d-none d-md-block">
           <h3>House Number 1</h3>
           <p>The guy in the window is creepy</p>
-        </div>
+        </div> -->
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
       <div class="carousel-item" style="background-image: url('./images/welcome.jpg')">
-        <div class="carousel-caption d-none d-md-block">
+        <!-- <div class="carousel-caption d-none d-md-block">
           <h3>House Number 2</h3>
           <p>Too plain</p>
-        </div>
+        </div> -->
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
       <div class="carousel-item" style="background-image: url('./images/bannerHouse3.jpg')">
-        <div class="carousel-caption d-none d-md-block">
+        <!-- <div class="carousel-caption d-none d-md-block">
           <h3>House number 3</h3>
           <p>I like this one a lot</p>
-        </div>
+        </div> -->
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -51,20 +51,20 @@ include("header.php"); ?>
 </header>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container" style="margin-bottom: 25px;">
 
   <h1 class="my-4">Welcome to Homes for Gnomes</h1>
 
   <!-- Marketing Icons Section -->
   <div class="row">
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-8">
       <div class="card h-100">
         <h4 class="card-header">Card Title</h4>
         <div class="card-body">
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-primary">Learn More</a>
+          <a href="#" class="btn btn-outline-success">Learn More</a>
         </div>
       </div>
     </div>
@@ -79,14 +79,14 @@ include("header.php"); ?>
         </div>
       </div>
     </div> -->
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4">
       <div class="card h-100">
-        <h4 class="card-header">Card Title</h4>
+        <h4 class="card-header">Already a fellow Gnome?</h4>
         <div class="card-body">
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+          <p class="card-text">If you already signed up, then you can login here. Lets get you that home!</p>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-primary">Learn More</a>
+          <a href="#" class="btn btn-outline-success">Log In</a>
         </div>
       </div>
     </div>
