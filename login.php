@@ -133,7 +133,11 @@ if(isPost()){
                     <label class="form-check-label">Remember Me</label>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <br />
+=======
+		</br>
+>>>>>>> 3d321eda4ee19a145a19014f4a23c3ec9d5b82e6
 =======
 		</br>
 >>>>>>> 3d321eda4ee19a145a19014f4a23c3ec9d5b82e6
