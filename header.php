@@ -2,8 +2,8 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			Kevin Astilla
-Name:			Nathan Morris
+Name:           Kevin Astilla
+Name:			      Nathan Morris
 Description:  	Header File For Homes For Gnomes webd3201
 Date:         	28 September 2018
 */
@@ -16,27 +16,24 @@ session_start();
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
    		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--The nav bar and the layout of the site is based on a premade bootstrap template -->
 <!--https://startbootstrap.com/template-overviews/modern-business/-->
-  <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
     <title>Homes for Gnomes</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
-    <link href="css/webd3201.css" rel="stylesheet">
+    <link href="css/webd3201.css" rel="stylesheet"/>
 
     <!--  JQuery import-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 
   </head>
 
@@ -45,7 +42,7 @@ session_start();
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:#982a4f;">
       <div class="container">
-          <img src="./images/HomesForGnomes.png" alt="logo" style="width:50px;">
+          <img src="./images/HomesForGnomes.png" alt="logo" style="width:50px;"/>
         <a class="navbar-brand" href="index.php">Homes for Gnomes</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
