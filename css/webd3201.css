@@ -27,3 +27,8 @@ body {
 .portfolio-item {
   margin-bottom: 30px;
 }
+
+img.rightAligned
+{
+    float: right;
+}

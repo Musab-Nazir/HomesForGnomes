@@ -1,4 +1,13 @@
-<?php include("header.php"); ?>
+<?php
+/*
+Name:         	Ramandeep Rathor
+Name:           Musab Nazir
+Name:			Kevin Astilla
+Name:			Nathan Morris
+Description:  	Homepage For Homes For Gnomes
+Date:         	28 September 2018
+*/
+include("header.php"); ?>
 <!--The sliding banner images  -->
 <header>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -59,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 mb-4">
+    <!-- <div class="col-lg-4 mb-4">
       <div class="card h-100">
         <h4 class="card-header">Card Title</h4>
         <div class="card-body">
@@ -69,7 +78,7 @@
           <a href="#" class="btn btn-primary">Learn More</a>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="col-lg-4 mb-4">
       <div class="card h-100">
         <h4 class="card-header">Card Title</h4>

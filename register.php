@@ -18,8 +18,9 @@ require "header.php";
     $login = "";
     $password = "";
     $confirmPass = "";
-    $firstname = "";
-    $lastname = "";
+    // $firstname = "";
+    // $lastname = "";
+    $userType = "";
     $email = "";
     $error = "";
     $output = "";
@@ -30,8 +31,8 @@ require "header.php";
 		$login = trim($_POST["login"]);
 		$password = trim($_POST["pass"]);
         $confirmPass = trim($_POST["cpass"]);
-        $firstname = trim($_POST["first_name"]);
-        $lastname = trim($_POST["last_name"]);
+        // $firstname = trim($_POST["first_name"]);
+        // $lastname = trim($_POST["last_name"]);
         $email = trim($_POST["email_address"]);
 
         //check if everything was entered
@@ -53,28 +54,28 @@ require "header.php";
 			$error .= LengthValidation("pass",$password);
 		}
 		if (strcmp($confirmPass, $password) <> 0) $error .= "<br/>Your two password entries do not match";
-		if ($firstname == "") $error .= "<br/>You did not enter your first name";
-        elseif (is_numeric($firstname))
-        {
-            $error .= "<br/>First name cannot be a number";
-            $firstname = "";
-        }
-        else
-        {
-            $error .= LengthValidation("fname",$firstname);
-			// if length was not validated, reset variable
-			if(LengthValidation("fname",$firstname) <> "") $firstname = "";
-        }
-        if ($lastname == "") $error .= "<br/>You did not enter your last name";
-        elseif (is_numeric($lastname))
-        {
-            $error .= "<br/>Last name cannot be a number";
-            $lastname = "";
-        }
-        else {
-            $error .= LengthValidation("lname",$lastname);
-			if(LengthValidation("lname",$lastname) <> "") $lastname = "";
-        }
+		// if ($firstname == "") $error .= "<br/>You did not enter your first name";
+        // elseif (is_numeric($firstname))
+        // {
+        //     $error .= "<br/>First name cannot be a number";
+        //     $firstname = "";
+        // }
+        // else
+        // {
+        //     $error .= LengthValidation("fname",$firstname);
+		// 	// if length was not validated, reset variable
+		// 	if(LengthValidation("fname",$firstname) <> "") $firstname = "";
+        // }
+        // if ($lastname == "") $error .= "<br/>You did not enter your last name";
+        // elseif (is_numeric($lastname))
+        // {
+        //     $error .= "<br/>Last name cannot be a number";
+        //     $lastname = "";
+        // }
+        // else {
+        //     $error .= LengthValidation("lname",$lastname);
+		// 	if(LengthValidation("lname",$lastname) <> "") $lastname = "";
+        // }
         if ($email == "") $error .= "<br/>You did not enter your email address";
         else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
         {
@@ -92,11 +93,19 @@ require "header.php";
         {
             $today = date("Y-m-d",time());
             $conn = db_connect();
-            $sql = "INSERT INTO users(id, password, first_name, last_name, email_address, enrol_date, last_access)
-            VALUES ('".$login."','".$password."', '".$firstname."', '".$lastname."', '".$email."', '".$today."', '".$today."')";
+            if(isset($_POST["IsAgent"]) == true)
+            {
+                $userType = "a";
+            }
+            else
+            {
+                $userType = "c";
+            }
+            $sql = "INSERT INTO users(user_id, password, user_type, email_address, enrol_date, last_access)
+            VALUES ('".$login."','".$password."','".$userType."','".$email."', '".$today."', '".$today."')";
             $result = pg_query($conn, $sql);
             $output .= "Registration complete";
-            header("Location:welcome.php");
+            header("Location:login.php");
             ob_flush();
         }
     }
@@ -121,17 +130,22 @@ require "header.php";
                 <input type="password" class="form-control" name="cpass" placeholder="Confirm Password">
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput">First Name</label>
+                <!-- <label for="formGroupExampleInput">First Name</label>
                 <input type="text" class="form-control" name="first_name" value="<?php echo $firstname; ?>"
                 placeholder="Enter First Name">
 
                 <label for="formGroupExampleInput">Last Name</label>
                 <input type="text" class="form-control" name="last_name" value="<?php echo $lastname; ?>"
-                placeholder="Enter Last Name">
+                placeholder="Enter Last Name"> -->
 
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="text" class="form-control" name="email_address" value="<?php echo $email; ?>"
                 placeholder="Enter Email Address">
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="IsAgent">
+                <label class="form-check-label" for="exampleCheck1">Make an Agent account?</label>
+                <hr/>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Register</button>

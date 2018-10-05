@@ -15,6 +15,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<!--The nav bar and the layout of the site is based on a premade bootstrap template -->
 <!--https://startbootstrap.com/template-overviews/modern-business/-->
   <head>
 
@@ -23,7 +24,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Homes for Gnomes Header File</title>
+    <title>Homes for Gnomes</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +35,6 @@ session_start();
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <?php $var = "user" ?>
   </head>
 
   <body>
@@ -42,7 +42,7 @@ session_start();
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:#982a4f;">
       <div class="container">
-          <img src="./images/HomesForGnomes.png" href = "index.php" alt="logo" width="50px">
+          <img src="./images/HomesForGnomes.png" alt="logo" style="width:50px;">
         <a class="navbar-brand" href="index.php">Homes for Gnomes</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

@@ -2,8 +2,8 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			      Kevin Astilla
-Name:			      Nathan Morris
+Name:			Kevin Astilla
+Name:			Nathan Morris
 Description:  	Login File For Homes For Gnomes
 Date:         	28 September 2018
 */
@@ -18,8 +18,10 @@ require "header.php";
 <!-- Start of Main Page Content -->
 <?php
 
-if (isset($_SESSION)){
-  session_destroy();
+if (isset($_SESSION))
+{
+    unset($_SESSION);
+    session_destroy();
 }
 ?>
 <div class="container">
