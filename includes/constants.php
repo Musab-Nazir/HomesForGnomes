@@ -18,7 +18,7 @@
     define("DB_NAME","group24_db");
     define("DB_PORT","5432");
     define("DB_PASSWORD","buffetboys48");
-    define("DB_USER","rathorr");
+    define("DB_USER","group24_admin");
     define("COOKIE_LIFESPAN",time() + 60*60*24*7);
 
     //All constants for the ppassword and username
@@ -29,6 +29,8 @@
     define("MAX_FIRST_NAME_LENGTH", 20);
     define("MAX_LAST_NAME_LENGTH", 30);
     define("MAXIMUM_EMAIL_LENGTH", 255);
+
+    define("HASH_STYLE", md5);
 
 
 ?>
