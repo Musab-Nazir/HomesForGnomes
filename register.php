@@ -121,31 +121,31 @@ require "header.php";
 
         <form method="post" action="<?php sticky();?>" >
             <div class="form-group">
-                <label for="formGroupExampleInput">User ID</label>
+                <label>User ID</label>
                 <input type="text" class="form-control" name="login" value="<?php echo $login ?>" placeholder="Enter User ID">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label>Password</label>
                 <input type="password" class="form-control" name="pass" placeholder="Enter Password">
-                <label for="exampleInputPassword1">Confirm Password</label>
+                <label>Confirm Password</label>
                 <input type="password" class="form-control" name="cpass" placeholder="Confirm Password">
             </div>
             <div class="form-group">
-                <!-- <label for="formGroupExampleInput">First Name</label>
+                <!-- <label>First Name</label>
                 <input type="text" class="form-control" name="first_name" value="<?php echo $firstname; ?>"
                 placeholder="Enter First Name">
 
-                <label for="formGroupExampleInput">Last Name</label>
+                <label>Last Name</label>
                 <input type="text" class="form-control" name="last_name" value="<?php echo $lastname; ?>"
                 placeholder="Enter Last Name"> -->
 
-                <label for="exampleInputEmail1">Email address</label>
+                <label>Email address</label>
                 <input type="text" class="form-control" name="email_address" value="<?php echo $email; ?>"
                 placeholder="Enter Email Address">
             </div>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="IsAgent">
-                <label class="form-check-label" for="exampleCheck1">Make an Agent account?</label>
+                <label class="form-check-label">Make an Agent account?</label>
                 <hr/>
             </div>
             <div class="form-group">

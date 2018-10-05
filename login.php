@@ -119,18 +119,18 @@ if(isPost()){
             }?>
             <form method="post" action="<?php sticky();?>" >
                 <div class="form-group">
-                    <label for="formGroupExampleInput">User ID</label>
+                    <label>User ID</label>
                     <input type="text" class="form-control" name="user_id" value="<?php echo $userID; ?>"
                     placeholder="User ID">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
+                    <label>Password</label>
                     <input type="password" class="form-control" name="passwd" value="<?php echo $password; ?>"
                     placeholder="Password">
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" name="remember">
-                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                    <label class="form-check-label">Remember Me</label>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Login</button>

@@ -13,11 +13,14 @@ require("./includes/db.php");
 ob_flush();
 session_start();
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <!--The nav bar and the layout of the site is based on a premade bootstrap template -->
 <!--https://startbootstrap.com/template-overviews/modern-business/-->
   <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -94,8 +97,8 @@ session_start();
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
                 <a class="dropdown-item" href="change-password.php">Change Password</a>
                 <a class="dropdown-item" href="portfolio-2-col.html">Update</a>
-              </div> -->
-            </li>
+              </div>
+            </li>-->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Listings
