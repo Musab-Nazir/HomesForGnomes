@@ -57,7 +57,10 @@ session_start();
                 <!-- <a class="nav-link" href="register.php">Register</a> -->
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="login.php">Login</a>
+                <?php if(!isset($_SESSION['userID']))
+                {
+                    echo "<a class=\"nav-link\" href=\"login.php\">Login</a>";
+                } ?>
             </li>
 
               <?php if( isset($_SESSION['userID']) && $_SESSION['userType'] == CLIENT)
