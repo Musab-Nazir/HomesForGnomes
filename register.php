@@ -91,6 +91,7 @@ require "header.php";
         //if no errors
         if($error === "")
         {
+            $password = md5($password);
             $today = date("Y-m-d",time());
             $conn = db_connect();
             if(isset($_POST["IsAgent"]) == true)
