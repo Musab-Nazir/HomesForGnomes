@@ -105,6 +105,8 @@ require "header.php";
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" class="form-control" name="pass" placeholder="Enter Password">
+            </div>
+            <div class="form-group">
                 <label>Confirm Password</label>
                 <input type="password" class="form-control" name="cpass" placeholder="Confirm Password">
             </div>
