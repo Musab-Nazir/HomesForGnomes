@@ -16,12 +16,10 @@ Date:         	28 September 2018
   require "header.php";
       //declare all variables
       $login = "";
-      $password = "";
-      $confirmPass = "";
-      // $firstname = "";
-      // $lastname = "";
-      $userType = "";
       $email = "";
+      $current_password = "";
+      $new_password = "";
+      $confirm_new_password = "";
       $error = "";
       $output = "";
 
@@ -103,15 +101,16 @@ Date:         	28 September 2018
                   <input type="text" class="form-control" name="login" value="<?php echo $login ?>" placeholder="Enter User ID">
               </div>
               <div class="form-group">
-                  <label>Password</label>
-                  <input type="password" class="form-control" name="pass" placeholder="Enter Password">
-                  <label>Confirm Password</label>
-                  <input type="password" class="form-control" name="cpass" placeholder="Confirm Password">
+                  <label>Email</label>
+                  <input type="text" class="form-control" name="email" value="<?php echo $email ?>" placeholder="Enter Email Address">
               </div>
               <div class="form-group">
-                  <label>Email address</label>
-                  <input type="text" class="form-control" name="email_address" value="<?php echo $email; ?>"
-                  placeholder="Enter Email Address">
+                  <label>Password</label>
+                  <input type="password" class="form-control" name="pass" placeholder="Enter Current Password">
+              </div>
+              <div class="form-group">
+                  <label>Current Password</label>
+                  <input type="password" class="form-control" name="cpass" placeholder="Confirm Password">
               </div>
               <div class="form-check">
                   <input type="checkbox" class="form-check-input" name="IsAgent">
