@@ -11,8 +11,17 @@ include "constants.php";
 
     function db_connect()
     {
+<<<<<<< HEAD
         //return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
         return pg_connect("host=".DB_HOST." dbname=".DB_NAME." user=".DB_USER." password=".DB_PASSWORD."" );
+=======
+<<<<<<< HEAD
+        //return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
+        return pg_connect("host=".DB_HOST." dbname=".DB_NAME." user=".DB_USER." password=".DB_PASSWORD."" );
+=======
+        return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
+>>>>>>> 2984bbce3c1f252110b016965d90945587fd9ce3
+>>>>>>> b3c113598e19a57d7fd3653a8c75c179f203e251
     }
 
     function updateLastAccess($conn)
