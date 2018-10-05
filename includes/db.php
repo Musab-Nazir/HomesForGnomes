@@ -21,21 +21,26 @@
 
     function login($login, $password)
     {
+        // $conn = db_connect();
+        // //make the query
+        // $sql = "SELECT user_type, email_address, enrol_date, last_access
+        // FROM users WHERE user_id = '".$login."' AND password= '".md5($password)."'";
+        // $result = pg_query($conn, $sql);
+        // return $result;
+        // //return true is match found ,else return false
+        // // if(pg_num_rows($result) > 0)
+        // // {
+        // //     return True;
+        // // }
+        // // else
+        // // {
+        // //     return False;
+        // // }
         $conn = db_connect();
-        //make the query
-        $sql = "SELECT user_type, email_address, enrol_date, last_access
-        FROM users WHERE user_id = '".$login."' AND password= '".md5($password)."'";
-        $result = pg_query($conn, $sql);
+        $result = pg_prepare($conn, "my_query", 'SELECT * FROM users WHERE user_id = $1 AND password= $2');
+        $result = pg_execute($conn, "my_query", array($login,hash("md5",$password)));
+
         return $result;
-        //return true is match found ,else return false
-        // if(pg_num_rows($result) > 0)
-        // {
-        //     return True;
-        // }
-        // else
-        // {
-        //     return False;
-        // }
     }
 
     function userExists($login)
