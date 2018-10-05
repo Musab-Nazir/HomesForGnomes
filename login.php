@@ -132,15 +132,7 @@ if(isPost()){
                     <input type="checkbox" class="form-check-input" name="remember">
                     <label class="form-check-label">Remember Me</label>
                 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
                   <br />
-=======
-		</br>
->>>>>>> 3d321eda4ee19a145a19014f4a23c3ec9d5b82e6
-=======
-		</br>
->>>>>>> 3d321eda4ee19a145a19014f4a23c3ec9d5b82e6
                 <div class="form-group">
                     <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Login</button>
                     <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>

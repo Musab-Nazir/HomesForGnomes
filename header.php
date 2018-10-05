@@ -31,8 +31,8 @@ session_start();
     <link href="css/webd3201.css" rel="stylesheet"/>
 
     <!--  JQuery import-->
-    <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </head>
 
