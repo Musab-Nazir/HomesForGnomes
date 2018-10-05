@@ -7,10 +7,12 @@
     Description:    databse functions for Homes for Gnomes
     Date:
     */
+include "constants.php";
 
     function db_connect()
     {
-        return pg_connect("host=127.0.0.1 dbname=nazirm_db user=nazirm password=Iamaboy1" );
+        //return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
+        return pg_connect("host=".DB_HOST." dbname=".DB_NAME." user=".DB_USER." password=".DB_PASSWORD."" );
     }
 
     function updateLastAccess($conn)

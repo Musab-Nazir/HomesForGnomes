@@ -4,7 +4,7 @@ Name:         	Ramandeep Rathor
 Name:           Musab Nizar
 Name:			      Kevin Astilla
 Name:			      Nathan Morris
-Description:  	Header File For Homes For Gnomes
+Description:  	Template File For Homes For Gnomes
 Date:         	28 September 2018
 */
   $title = "WEBD2201 - Web Development";
