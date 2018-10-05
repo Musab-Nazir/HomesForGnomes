@@ -1,4 +1,12 @@
-<!-- Footer -->
+<!-- /*
+Name:         	Ramandeep Rathor
+Name:           Musab Nazir
+Name:			      Kevin Astilla
+Name:			      Nathan Morris
+Description:  	Footer for Homes for Gnomes
+Date:         	28 September 2018
+*/ -->
+<!-- Start of Footer -->
     <footer class="py-5 bg-dark" id="myFooter">
       <div class="container">
         <a href="http://validator.w3.org/check?uri=referer">
@@ -24,3 +32,4 @@
     </body>
 
 </html>
+<!-- End of Page -->
