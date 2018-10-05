@@ -59,11 +59,11 @@ include("header.php"); ?>
   <div class="row">
     <div class="col-lg-8">
       <div class="card h-100">
-        <h4 class="card-header">Connect closer to Nature</h4>
+        <h4 class="card-header">Connect Closer to Nature</h4>
         <div class="card-body">
           <p class="card-text">Gnomes are wonderful creatures attach to nature. Free spirited, joyful, detached to stressful realities in life.
               embrace the Gnome in you and experience a stress free environment by clicking the button bellow.
-              Because remember, every Gnome needs a home.
+              Because remember, <b>every Gnome needs a home</b>.
           </p>
         </div>
         <div class="card-footer">
@@ -84,7 +84,7 @@ include("header.php"); ?>
     </div> -->
     <div class="col-lg-4">
       <div class="card h-100">
-        <h4 class="card-header">Already a fellow Gnome?</h4>
+        <h4 class="card-header">Already a Fellow Gnome?</h4>
         <div class="card-body">
           <p class="card-text">If you already signed up, then you can login her. Lets get you that home!</p>
         </div>
