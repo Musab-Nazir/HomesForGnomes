@@ -113,7 +113,7 @@ Date:         	28 September 2018
                   <input type="password" class="form-control" name="cpass" placeholder="Confirm Password">
               </div>
               <div class="form-group">
-                  <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Register</button>
+                  <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Submit</button>
                   <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
               </div>
           </form>
