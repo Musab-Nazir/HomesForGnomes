@@ -14,6 +14,7 @@ Date:         	28 September 2018
   $description = "This page will be a log in page for the website and a new functions.php file will contain some shared functions for use throughout the website.";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   require "header.php";
       //declare all variables
       $login = "";
@@ -28,10 +29,16 @@ require "header.php";
 ?>
   <!-- start of main page content -->
 >>>>>>> parent of 3882551... ignore
+=======
+require "header.php";
+?>
+  <!-- start of main page content -->
+>>>>>>> parent of 3882551... ignore
 
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
           <form method="post" action="<?php sticky();?>" >
               <div class="form-group">
@@ -60,6 +67,8 @@ require "header.php";
       <div class="col"></div>
     </div>
   </div>
+=======
+>>>>>>> parent of 3882551... ignore
 =======
 >>>>>>> parent of 3882551... ignore
 
