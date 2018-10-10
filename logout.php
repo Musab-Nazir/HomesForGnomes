@@ -2,9 +2,9 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			      Kevin Astilla
-Name:			      Nathan Morris
-Description:  	Logout Page For Homes For Gnomes
+Name:			Kevin Astilla
+Name:			Nathan Morris
+Description:  	Login File For Homes For Gnomes
 Date:         	28 September 2018
 */
 $title = "WEBD2201 - Web Development - Intermediate";

@@ -54,6 +54,28 @@ require "header.php";
 			$error .= LengthValidation("pass",$password);
 		}
 		if (strcmp($confirmPass, $password) <> 0) $error .= "<br/>Your two password entries do not match";
+		// if ($firstname == "") $error .= "<br/>You did not enter your first name";
+        // elseif (is_numeric($firstname))
+        // {
+        //     $error .= "<br/>First name cannot be a number";
+        //     $firstname = "";
+        // }
+        // else
+        // {
+        //     $error .= LengthValidation("fname",$firstname);
+		// 	// if length was not validated, reset variable
+		// 	if(LengthValidation("fname",$firstname) <> "") $firstname = "";
+        // }
+        // if ($lastname == "") $error .= "<br/>You did not enter your last name";
+        // elseif (is_numeric($lastname))
+        // {
+        //     $error .= "<br/>Last name cannot be a number";
+        //     $lastname = "";
+        // }
+        // else {
+        //     $error .= LengthValidation("lname",$lastname);
+		// 	if(LengthValidation("lname",$lastname) <> "") $lastname = "";
+        // }
         if ($email == "") $error .= "<br/>You did not enter your email address";
         else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
         {
@@ -111,6 +133,14 @@ require "header.php";
                 <input type="password" class="form-control" name="cpass" placeholder="Confirm Password">
             </div>
             <div class="form-group">
+                <!-- <label>First Name</label>
+                <input type="text" class="form-control" name="first_name" value="<?php echo $firstname; ?>"
+                placeholder="Enter First Name">
+
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="last_name" value="<?php echo $lastname; ?>"
+                placeholder="Enter Last Name"> -->
+
                 <label>Email address</label>
                 <input type="text" class="form-control" name="email_address" value="<?php echo $email; ?>"
                 placeholder="Enter Email Address">

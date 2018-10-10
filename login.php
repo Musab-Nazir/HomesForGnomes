@@ -2,9 +2,9 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			      Kevin Astilla
-Name:			      Nathan Morris
-Description:  	Login Page For Homes For Gnomes
+Name:			Kevin Astilla
+Name:			Nathan Morris
+Description:  	Login File For Homes For Gnomes
 Date:         	28 September 2018
 */
   $title = "WEBD2201 - Web Development - Intermediate";
@@ -132,7 +132,6 @@ if(isPost()){
                     <input type="checkbox" class="form-check-input" name="remember">
                     <label class="form-check-label">Remember Me</label>
                 </div>
-                  <br />
                 <div class="form-group">
                     <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Login</button>
                     <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
