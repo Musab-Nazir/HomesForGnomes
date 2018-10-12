@@ -23,6 +23,9 @@ session_start();
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
+	<!-- favicon -->
+	<link rel="icon" href="./images/HomesForGnomesTransparent.png">
+
     <title>Homes for Gnomes</title>
 
     <!-- Bootstrap core CSS -->
