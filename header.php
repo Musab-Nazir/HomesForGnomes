@@ -24,7 +24,7 @@ session_start();
     <meta name="author" content=""/>
 
 	<!-- favicon -->
-	<link rel="icon" href="./images/HomesForGnomesTransparent.png">
+	<link rel="icon" href="./images/favicon.png">
 
     <title>Homes for Gnomes</title>
 
