@@ -73,6 +73,8 @@ if(isPost()){
                 $sql = "UPDATE users SET last_access = '". date("Y-m-d", time()) . "' WHERE user_id = '".$login."'";
 				$update = pg_query($conn, $sql);
                 $_SESSION['userType'] = $userInfo["user_type"];
+                $_SESSION['user_ID'] = $userInfo["user_id"];
+                $_SESSION['last_Access'] = $userInfo["last_access"];
 
                 // if user selected to remember credentials then create cookies
                 if(isset($_POST["remember"]) == true)
