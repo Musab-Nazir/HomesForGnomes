@@ -14,6 +14,9 @@ Date:         	28 September 2018
   $description = "This page will be a log in page for the website and a new functions.php file will contain some shared functions for use throughout the website.";
 
 require "header.php";
+// If someone is logged in, redirect to update page
+if(isset($_SESSION['userType'])){header("Location:update.php");}
+
     //declare all variables
     $login = "";
     $password = "";
