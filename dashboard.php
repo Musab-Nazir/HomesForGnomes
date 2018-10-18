@@ -23,6 +23,7 @@ require "header.php";
             <div class="col-6">
                 <br/>
                 <h2>Dashboard</h2>
+                <p>Welcome back <?php echo $_SESSION['user_ID']; ?> you last logged in on <?php echo $_SESSION['last_Access']; ?></p>
             </div>
             <div class="col"></div>
         </div>
