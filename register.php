@@ -54,7 +54,7 @@ if(isset($_SESSION['userType'])){header("Location:update.php");}
         $province = trim($_POST["provinces"]);
         $postalCode = trim($_POST["postal_code"]);
         $primaryPhone = cleanPhoneNumber(trim($_POST["primary_phone"]));
-        $secondaryPhone = cleanPhoneNumbner(trim($_POST["secondary_phone"]));
+        $secondaryPhone = cleanPhoneNumber(trim($_POST["secondary_phone"]));
         $faxNumber = cleanPhoneNumber(trim($_POST["fax_number"]));
         $contactMethod = trim($_POST["preferred_contact_method"]);
         //check if everything was entered
