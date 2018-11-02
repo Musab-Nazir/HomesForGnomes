@@ -121,10 +121,10 @@ if(isPost()){
 ?>
 <!-- Start of Main Page Content -->
 
-<div class="container" style="height:100vh">
+<div class="container">
     <div class="row" style="margin-top:75px">
         <div class="col"></div>
-        <div class="col-6">
+        <div class="col-8">
             <?php echo $error;
             if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
             {
@@ -135,32 +135,38 @@ if(isPost()){
                 $userID ="";
                 $password="";
             }?>
-            <form method="post" action="<?php sticky();?>" >
-                <div class="form-group">
-                    <label>User ID</label>
-                    <input type="text" class="form-control" name="user_id" value="<?php echo $userID; ?>"
-                    placeholder="User ID">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Login Information</h5>
+                    <hr/>
+                    <form method="post" action="<?php sticky();?>" >
+                        <div class="form-group">
+                            <label>User ID</label>
+                            <input type="text" class="form-control" name="user_id" value="<?php echo $userID; ?>"
+                            placeholder="User ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="passwd" value="<?php echo $password; ?>"
+                            placeholder="Password">
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="remember">
+                            <label class="form-check-label">Remember Me</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Login</button>
+                            <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
+                        </div>
+                        <!-- End of Form -->
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="passwd" value="<?php echo $password; ?>"
-                    placeholder="Password">
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="remember">
-                    <label class="form-check-label">Remember Me</label>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Login</button>
-                    <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
-                </div>
-            </form>
+            </div>
+            <br/>
         </div>
-        <div class="col"></div>
+    <div class="col"></div>
     </div>
 </div>
-<!-- End of Form -->
-
 <!-- end of main page content -->
 
 <!-- Footer Start -->

@@ -39,3 +39,17 @@ img.rightAligned
     padding-top: 2em;
     padding-bottom: 2em;
 }
+
+#halfBoxL
+{
+    display: inline;
+    width: 45%;
+    margin-inline-end: 9%;
+    margin-bottom: 1em;
+}
+#halfBoxR
+{
+    display: inline;
+    width: 45%;
+    margin-bottom: 1em;
+}
