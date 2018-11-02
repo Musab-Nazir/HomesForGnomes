@@ -147,7 +147,7 @@ if(isset($_SESSION['userType'])){header("Location:update.php");}
     }
 ?>
   <!-- start of main page content -->
-  <div class="container">
+<div class="container">
   <div class="row" style="margin-top:75px">
     <div class="col"></div>
     <div class="col-8">
@@ -181,8 +181,6 @@ if(isset($_SESSION['userType'])){header("Location:update.php");}
 
                         <!-- <label>Last Name</label> -->
                         <input type="text" class="form-control" name="last_name" value="<?php echo $lastname; ?>" placeholder="Enter Last Name" id="halfBoxR">
-                        <!-- <label>Email address</label> -->
-                        <input type="text" class="form-control" name="email_address" value="<?php echo $email; ?>" placeholder="Enter Email Address">
                         <br/>
                         <!--Ins Address -->
                         <label>Address Information</label>
@@ -192,6 +190,7 @@ if(isset($_SESSION['userType'])){header("Location:update.php");}
                         <br/>
                         <label>City</label>
                         <?php echo (build_dropdown("city","$city"));?>
+                        <div style="width:200px; display:inline-block;"></div>
                         <label>Province</label>
                         <?php echo (build_simple_dropdown("provinces","$province"));?>
                         <br/>
@@ -217,7 +216,7 @@ if(isset($_SESSION['userType'])){header("Location:update.php");}
             </div>
         </div>
 
-        <hr/>
+        <br/>
     </div>
     <div class="col"></div>
   </div>

@@ -75,7 +75,7 @@ if(isPost()){
                 updateLastAccess($conn);
                 //$sql = "UPDATE users SET last_access = '". date("Y-m-d", time()) . "' WHERE user_id = '".$login."'";
 
-				$update = pg_query($conn, $sql);
+				//$update = pg_query($conn, $sql);
                 $_SESSION['userType'] = $accountInfo["user_type"];
                 $_SESSION['emailAddress'] = $accountInfo["email_address"];
                 $_SESSION['last_access'] = $accountInfo["last_access"];

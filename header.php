@@ -67,19 +67,19 @@ require("./includes/db.php");
                 } ?>
             </li>
 
-              <?php if( isset($_SESSION['userID']) && $_SESSION['userType'] == CLIENT)
+              <?php if(isset($_SESSION['userType']) && $_SESSION['userType'] == CLIENT)
               {
                   echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"welcome.php\">Welcome</a></li>";
               }
-              else if ( isset($_SESSION['userID']) && $_SESSION['userType'] == AGENT)
+              else if (isset($_SESSION['userType']) && $_SESSION['userType'] == AGENT)
               {
                   echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"dashboard.php\">Dashboard</a></li>";
               }
-              else if( isset($_SESSION['userID']) && $_SESSION['userType'] == ADMIN)
+              else if(isset($_SESSION['userType']) && $_SESSION['userType'] == ADMIN)
               {
                   echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"admin.php\">Admin</a></li>";
               }
-              if( isset($_SESSION['userID']))
+              if( isset($_SESSION['userType']))
               {
                   echo "<li class=\"nav-item dropdown\">
                     <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownPortfolio\"

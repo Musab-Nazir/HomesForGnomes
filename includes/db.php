@@ -60,7 +60,7 @@
         $conn = db_connect();
         $sql = "SELECT value, property FROM ".$table;
         $results = pg_query($conn, $sql);
-        $dropdown = '<select name="'.$table.'">';
+        $dropdown = '<select style="border-radius: .25em; width:100px; margin-left:2em; border: 1px solid #ced4da;" name="'.$table.'">';
         $dropdown .='\n\t <option value =""></option>';
         For($rows = 0; $rows < pg_num_rows($results); $rows++)
         {
@@ -85,7 +85,7 @@
             exit;
         }
 
-        $dropdown = '<select name="'.$table.'">';
+        $dropdown = '<select style="border-radius: .25em; width:100px;margin-left:2em; border: 1px solid #ced4da;" name="'.$table.'">';
         $dropdown .='\n\t <option value =""></option>';
         For($rows = 0; $rows < pg_num_rows($results); $rows++)
         {
