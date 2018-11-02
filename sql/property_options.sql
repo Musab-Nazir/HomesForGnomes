@@ -9,12 +9,13 @@
 
 DROP TABLE IF EXISTS property_options;
 
-CREATE TABLE property_option(
+CREATE TABLE property_options(
 value INT PRIMARY KEY,
 property VARCHAR(30) NOT NULL
 );
 
-ALTER TABLE property_options OWNER TO group24-- Author: Group 24
+ALTER TABLE property_options OWNER TO group24;
+-- Author: Group 24
 --  Kevin Astilla
 --  Musab Nazir
 --  Ramandeep Rathor
