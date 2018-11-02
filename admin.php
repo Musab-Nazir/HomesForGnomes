@@ -15,7 +15,7 @@ Date:         	28 September 2018
 
 require "header.php";
 // If the session was never set with a user id
-if($_SESSION['userType'] != s){header("Location:login.php");}
+if($_SESSION['userType'] != 's'){header("Location:login.php");}
 ?>
   <!-- start of main page content -->
 
@@ -25,7 +25,7 @@ if($_SESSION['userType'] != s){header("Location:login.php");}
             <div class="col-6">
                 <br/>
                 <h2>Admin</h2>
-                <p>Welcome back <?php echo $_SESSION['user_ID']; ?> you last logged in on <?php echo $_SESSION['last_Access']; ?></p>
+                <p>Welcome back <?php echo $_SESSION['userID']; ?> you last logged in on <?php echo $_SESSION['last_access']; ?></p>
             </div>
             <div class="col"></div>
         </div>

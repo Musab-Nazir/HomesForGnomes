@@ -69,16 +69,17 @@ if(isPost()){
             if (pg_num_rows(login($login,$pass)) > 0)       // match found
             {
                 $accountInfo = pg_fetch_assoc(login($login,$pass));
-                $personalInfo = pg_fetch_assoc(personalInformation($login));
-                $userInfo = array_merge($accountInfo,$personalInfo);
+                //$personalInfo = pg_fetch_assoc(personalInformation($login));
+                //$userInfo = array_merge($accountInfo,$personalInfo);
 
-                // updateLastAccess($conn);
-                $sql = "UPDATE users SET last_access = '". date("Y-m-d", time()) . "' WHERE user_id = '".$login."'";
+                updateLastAccess($conn);
+                //$sql = "UPDATE users SET last_access = '". date("Y-m-d", time()) . "' WHERE user_id = '".$login."'";
 
 				$update = pg_query($conn, $sql);
-                $_SESSION['userType'] = $userInfo["user_type"];
-                $_SESSION['emailAddress'] = $userInfo["email_address"];
-                $_SESSION['salutation'] = $userInfo["salutation"];
+                $_SESSION['userType'] = $accountInfo["user_type"];
+                $_SESSION['emailAddress'] = $accountInfo["email_address"];
+                $_SESSION['last_access'] = $accountInfo["last_access"];
+                /*$_SESSION['salutation'] = $userInfo["salutation"];
                 $_SESSION['firstName'] = $userInfo["first_name"];
                 $_SESSION['lastName'] = $userInfo["last_name"];
                 $_SESSION['streetAddress1'] = $userInfo["street_address1"];
@@ -89,7 +90,7 @@ if(isPost()){
                 $_SESSION['primaryPhoneNumber'] = $userInfo["primary_phone_number"];
                 $_SESSION['secondaryPhoneNumber'] = $userInfo["secondary_phone_number"];
                 $_SESSION['faxNumber'] = $userInfo["fax_number"];
-                $_SESSION['preferredContactMethod'] = $userInfo["preferred_contact_method"];
+                $_SESSION['preferredContactMethod'] = $userInfo["preferred_contact_method"];*/
 
                 // if user selected to remember credentials then create cookies
                 if(isset($_POST["remember"]) == true)

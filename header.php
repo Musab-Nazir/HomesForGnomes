@@ -54,14 +54,14 @@ require("./includes/db.php");
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <?php if(!isset($_SESSION['userID']))
+                <?php if(!isset($_SESSION['userType']))
                 {
                     echo "<a class=\"nav-link\" href=\"register.php\">Register</a>";
                 } ?>
                 <!-- <a class="nav-link" href="register.php">Register</a> -->
             </li>
             <li class="nav-item">
-                <?php if(!isset($_SESSION['userID']))
+                <?php if(!isset($_SESSION['userType']))
                 {
                     echo "<a class=\"nav-link\" href=\"login.php\">Login</a>";
                 } ?>
@@ -113,7 +113,7 @@ require("./includes/db.php");
                 } ?>
               </div>
             </li>
-            <?php if( isset($_SESSION['firstName']))
+            <?php if( isset($_SESSION['userType']))
             {
                 echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"logout.php\">Logout</a></li>";;
             }?>
