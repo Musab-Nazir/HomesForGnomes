@@ -42,7 +42,9 @@
     define("HIDDEN","h");
     //regex for the canadian postal code
     //reference :https://gist.github.com/james2doyle/c310e6ceeb3bad437621
-    define("CANADIAN_POSTAL_CODE","/^([a-zA-Z]\d[a-zA-Z])\ {0,1}(\d[a-zA-Z]\d)$/")
+    define("CANADIAN_POSTAL_CODE","/^([a-zA-Z]\d[a-zA-Z])\ {0,1}(\d[a-zA-Z]\d)$/");
+
+    define("PRICE_FILTER", ("/^(?:0|[1-9]\d*)(?:\.\d{2})?$/");
 
 
 ?>

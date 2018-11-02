@@ -30,6 +30,14 @@ require "header.php";
     $province = "";
     $listingStatus =  "";
 
+    $property_type = "";
+    $flooring = "";
+    $parking = "";
+    $building_type = "";
+    $basement_type = "";
+    $interior_type = "";
+
+
     $error = "";
     $output = "";
 
@@ -45,6 +53,14 @@ require "header.php";
         $city = trim($_POST["city"]);
         $province = trim($_POST["provinces"]);
         $listingStatus = trim($_POST["listing_status"]);
+
+        $property_type = trim($_POST["property_type"]);
+        $flooring = trim($_POST["property_flooring"]);
+        $parking = trim($_POST["property_parking"]);
+        $building_type = trim($_POST["property_building_type"]);
+        $basement_type = trim($_POST["property_basement_type"]);
+        $interior_type = trim($_POST["property_interior_type"]);
+
         $error = "";
         $output = "";
         //trim the user input
@@ -74,12 +90,8 @@ require "header.php";
             $error .= "<br/>First name cannot be a number";
             $firstname = "";
         }
-        if ($price == "") $error .= "<br/>No price was entered";
-        else
-        {
-            //$error .= LengthValidation("pass",$password);
-        }
-        
+        if (preg_match(PRICE_FILTER, $price) == '0') $error .= "<br/>No price was entered";
+
 
         //if no errors
         if($error === "")
@@ -87,10 +99,10 @@ require "header.php";
 
             $conn = db_connect();
 
-            $sql = "INSERT INTO listings(user_id, status, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms)
-            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."', '".$city."','".$propertyOptions."','".$bedrooms."', '".$bathrooms."')";
-            $result = pg_query($conn, $sql);
+            $sql = "INSERT INTO listings(user_id, status, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
+            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."', '".$city."','".$propertyOptions."','".$bedrooms."', '".$bathrooms."', '".$property_type."', '".$flooring."', '".$parking."', '".$building_type."', '".$basement_type."', '".$interior_type."')";
 
+            $result = pg_query($conn, $sql);
             $output .= "Registration for listing complete complete";
             header("Location:listing-display.php");
             ob_flush();
@@ -108,29 +120,51 @@ require "header.php";
         <form method="post" action="<?php sticky();?>" >
             <div class="form-group">
                 <label>Headline</label>
-                <input type="text" class="form-control" name="login" value="<?php echo $headline ?>">
-            </div>
-            <div class="form-group">
+                <input type="text" class="form-control" name="headline" value="<?php echo $headline ?>">
+                <br/>
                 <label>Description</label>
-                <textarea class="form-control" maxlength="1000" rows="5" id="description"></textarea>
-            </div>
-            <label>City</label>
-            <?php echo (build_dropdown("city","$city"));?>
-            <div class="form-group">
+                <textarea class="form-control" name="description" maxlength="1000" rows="5" id="description"></textarea>
+                <br/>
+                <label>City</label>
+                <?php echo (build_dropdown("city","$city"));?>
+                <label>Provinces</label>
+                <?php echo (build_simple_dropdown("provinces","$provinces")); ?>
+                <br/>
                 <label>Postal Code</label>
-                <input type="text" id="halfBoxR" class="form-control" name="login" value="<?php echo $postalCode ?>" placeholder="A1A1A1">
-            </div>
-            <div class="form-group">
-                <label>Bedroom</label>
-                <input type="text" id="halfBoxR" class="form-control" name="login" value="<?php echo $bedroom ?>" placeholder="">
-            </div>
-            
-            <div class="form-group">
-                <label>Price</label>
-                <input type="text" id="halfBoxR" class="form-control" name="login" value="<?php echo $price ?>" placeholder="">
+                <input type="text" id="halfBoxR" class="form-control" name="postal_code" value="<?php echo $postalCode ?>">
+                <br/>
+                <label>Bedroom count</label>
+                <input type="text" id="halfBoxR" class="form-control" name="bedroom" value="<?php echo $bedroom ?>">
+                <label>Bathroom count</label>
+                <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bedroom ?>">
+                <br/>
+                <label>Property Type</label>
+                <?php echo (build_dropdown("property_type","$city"));?>
+                <br/>
+                <label>Property Flooring</label>
+                <?php echo (build_dropdown("property_flooring","$flooring"));?>
+                <br/>
+                <label>Property Parking</label>
+                <?php echo (build_dropdown("property_parking","$parking"));?>
+                <br/>
+                <label>Property Building Type</label>
+                <?php echo (build_dropdown("property_building_type","$building_type"));?>
+                <br/>
+                <label>Property Basement Type</label>
+                <?php echo (build_dropdown("property_basement_type","$"));?>
+                <br/>
+                <label>Property Interior Type</label>
+                <?php echo (build_dropdown("property_interior_type","$city"));?>
+                <br/>     
+                <label>Price
+                <input type="text" id="halfBoxR" class="form-control" name="price" value="<?php echo $price ?>" placeholder=""></label>
+                <br/>
+                <?php echo (build_radio("listing_status","$listingStatus"));?>
+                <br/>
+
             </div>
             <!--personal information section-->
-            <?php echo (build_radio("listing_status","$listingStatus"));?>
+            
             <div class="form-group">
                 <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Register</button>
                 <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
