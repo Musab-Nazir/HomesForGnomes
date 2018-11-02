@@ -49,7 +49,7 @@ if(isPost())
     else if(strlen($confirm_new_password) > MAXIMUM_PASSWORD_LENGTH){
         $error .= "<br/>The password you entered must be less than or equal to 15."; //set error
     }
-    elseif ($new_password != $confirm_new_password) {
+    elseif (if (strcmp($confirmPass, $password) <> 0){
         $error .= "<br/>New passwords don't match";
     }
 

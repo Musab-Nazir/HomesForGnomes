@@ -9,13 +9,16 @@ Date:           28 September 2018
 */
   $title = "WEBD2201 - Web Development - Fundamentals";
   $date = "12 April 2018";
-  $file = "template.php";
-  $banner = "Lab 9: Database/PHP Lab - User Login";
-  $description = "This page will be a log in page for the website and a new functions.php file will contain some shared functions for use throughout the website.";
+  $file = "listing-create.php";
+  $banner = "";
+  $description = "";
 
 require "header.php";
-//if(!isset($_SESSION['userType']) or $_SESSION['userType'] != a)
-  //  {header("Location:login.php");}
+if($_SESSION['userType'] != a)
+{
+    $_SESSION['RedirectError'] = "You were not logged in as an Agent<br/>";
+    header("Location:login.php");
+}
     //declare all variables
 
     $login = ""; //$_SESSION["userID"]
@@ -25,7 +28,7 @@ require "header.php";
     $price = "";
     $bedroom = "";
     $bathroom = "";
-    $userType = ""; 
+    $userType = "";
     $city = "";
     $province = "";
     $listingStatus =  "";
@@ -50,7 +53,7 @@ require "header.php";
         $postalCode = trim($_POST["postal_code"]);
         $price = trim($_POST["price"]);
         $bedroom = trim($_POST["bedroom"]);
-        $bathroom = trim($_POST["bathroom"]); 
+        $bathroom = trim($_POST["bathroom"]);
         $city = trim($_POST["city"]);
         $province = trim($_POST["provinces"]);
 
@@ -98,7 +101,7 @@ require "header.php";
 
             $result = pg_query($conn, $sql);
             $output .= "Registration for listing complete complete";
-            header("Location:welcome.php"); 
+            header("Location:welcome.php");
             ob_flush();
         }
     }
@@ -152,7 +155,7 @@ require "header.php";
                 <br/>
                 <label>Property Interior Type</label>
                 <?php echo (build_dropdown("property_interior_type","$interiorType"));?>
-                <br/>     
+                <br/>
                 <label>Price
                 <input type="text" id="halfBoxR" class="form-control" name="price" value="<?php echo $price ?>" placeholder=""></label>
                 <br/>
@@ -161,7 +164,7 @@ require "header.php";
 
             </div>
             <!--personal information section-->
-            
+
             <div class="form-group">
                 <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Create</button>
                 <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
