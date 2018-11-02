@@ -147,7 +147,7 @@ if(isset($_SESSION['userType'])){header("Location:update.php");}
     }
 ?>
   <!-- start of main page content -->
-  <div class="container" style="height:100vh">
+  <div class="container">
   <div class="row" style="margin-top:75px">
     <div class="col"></div>
     <div class="col-6">
@@ -176,7 +176,7 @@ if(isset($_SESSION['userType'])){header("Location:update.php");}
                 <input type="text" class="form-control" name="first_name" value="<?php echo $firstname; ?>" placeholder="Enter First Name">
 
                 <label>Last Name</label>
-                <input type="text" class="form-control" name="last_name" value="<?php echo $lastname; ?>" placeholder="Enter Last Name"> 
+                <input type="text" class="form-control" name="last_name" value="<?php echo $lastname; ?>" placeholder="Enter Last Name">
 
                 <label>Email address</label>
                 <input type="text" class="form-control" name="email_address" value="<?php echo $email; ?>" placeholder="Enter Email Address">

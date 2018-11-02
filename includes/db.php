@@ -10,7 +10,7 @@
 
     function db_connect()
     {
-        return pg_connect("host=127.0.0.1 dbname=astillak_db user=astillak password=100396393" );
+        return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
     }
 
     function updateLastAccess($conn)
@@ -73,7 +73,7 @@
     function build_dropdown($table, $selected)
     {
         $conn = db_connect();
-        $sql = "SELECT value, property FROM ".$table; 
+        $sql = "SELECT value, property FROM ".$table;
         $results = pg_query($conn, $sql);
         $dropdown = '<select name="'.$table.'">';
 
@@ -85,7 +85,7 @@
             if($selected == $value)
                 {$select =  'selected =\"selected\"';}
             $dropdown .='\n\t <option value ="'.$value.'" '.$select.' >'.$property.'</option>';
-        }    
+        }
         $dropdown  .= '\n\t</select>';
         return $dropdown;
     }
@@ -94,14 +94,14 @@
         $conn = db_connect();
         $sql = "SELECT value FROM ".$table;
         $results = pg_query($conn, $sql);
-        if (!$results) 
+        if (!$results)
         {
             echo "An error occurred.\n";
             exit;
         }
 
         $dropdown = '<select name="'.$table.'">';
-        
+
         For($rows = 0; $rows < pg_num_rows($results); $rows++)
         {
             $select = "";
@@ -109,7 +109,7 @@
             if($selected == trim($value))
                 {$select =  'selected ="selected"';}
             $dropdown .='\n\t <option value ="'.trim($value).'" '.$select.' >'.$value.'</option>';
-        }    
+        }
         $dropdown  .= '\n\t</select>';
         return $dropdown;
     }
@@ -117,7 +117,7 @@
     {
         $conn = db_connect();
         $sql = "SELECT * FROM ".$table;
-        
+
         $results = pg_query($conn, $sql);
         $radio = "";
 
