@@ -9,13 +9,13 @@ value INT PRIMARY KEY,
 property VARCHAR(30) NOT NULL
 );
 
---ALTER TABLE property_options OWNER TO group24-- Author: Group 24
+ALTER TABLE property_basement_type OWNER TO astillak;-- Author: Group 24
 
 
-INSERT INTO property_options (value, property) VALUES (1, 'Finished');
+INSERT INTO property_basement_type (value, property) VALUES (1, 'Finished');
 
-INSERT INTO property_options (value, property) VALUES (2, 'Part-finished');
+INSERT INTO property_basement_type (value, property) VALUES (2, 'Part-finished');
 
-INSERT INTO property_options (value, property) VALUES (4, 'Walkout');
+INSERT INTO property_basement_type (value, property) VALUES (4, 'Walkout');
 
-INSERT INTO property_options (value, property) VALUES (8, 'Walk-up');
+INSERT INTO property_basement_type (value, property) VALUES (8, 'Walk-up');
