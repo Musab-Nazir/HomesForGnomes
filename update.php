@@ -22,6 +22,7 @@ $salutation = $_SESSION['salutation'];
 $firstname = $_SESSION['firstName'];
 $lastname = $_SESSION['lastName'];
 $userType = $_SESSION['userType'];
+$salutation = $_POST['salutation'];
 $email = $_SESSION['emailAddress'];
 $streetAddress1 = $_SESSION['streetAddress1'];
 $streetAddress2 = $_SESSION['streetAddress2'];
