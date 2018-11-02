@@ -71,11 +71,9 @@ if(isPost()){
                 $accountInfo = pg_fetch_assoc(login($login,$pass));
                 $personalInfo = pg_fetch_assoc(personalInformation($login));
                 $userInfo = array_merge($accountInfo,$personalInfo);
-
-                updateLastAccess($conn);
-                //$sql = "UPDATE users SET last_access = '". date("Y-m-d", time()) . "' WHERE user_id = '".$login."'";
-
-				//$update = pg_query($conn, $sql);
+                updateLastAccess($login);
+                // $sql = "UPDATE users SET last_access = '". date("Y-m-d", time()) . "' WHERE user_id = '".$login."'";
+	              // $update = pg_query($conn, $sql);
                 $_SESSION['userType'] = $accountInfo["user_type"];
                 $_SESSION['emailAddress'] = $accountInfo["email_address"];
                 $_SESSION['last_access'] = $accountInfo["last_access"];

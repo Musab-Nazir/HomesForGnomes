@@ -13,10 +13,12 @@
         return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
     }
 
-    function updateLastAccess($conn)
+    function updateLastAccess($login)
     {
+        $conn = db_connect();
         $sql = "UPDATE users SET last_access = '". date("Y-m-d", time()) . "' WHERE user_id = '".$login."'";
-        return pg_query($conn, $sql);
+        pg_query($conn, $sql);
+        return;
     }
 
     function login($login, $password)
