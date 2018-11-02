@@ -1,4 +1,4 @@
-<?php
+    <?php
     /*
     Name:         	Ramandeep Rathor
     Name:           Musab Nazir
@@ -29,6 +29,20 @@
     define("MAX_FIRST_NAME_LENGTH", 20);
     define("MAX_LAST_NAME_LENGTH", 30);
     define("MAXIMUM_EMAIL_LENGTH", 255);
+    define("MINIMUM_PHONE_NUMBER_LENGTH", 10);
+    define("MAXIMUM_PHONE_NUMBER_LENGTH", 15);
+    define("MINIMUM_PHONE_RANGE", 200);
+    define("MAXIMUM_PHONE_RANGE", 999);
+
+    //constants for listing status
+
+    define("OPEN","o");
+    define("CLOSED","c");
+    define("SOLD","s");
+    define("HIDDEN","h");
+    //regex for the canadian postal code
+    //reference :https://gist.github.com/james2doyle/c310e6ceeb3bad437621
+    define("CANADIAN_POSTAL_CODE","/^([a-zA-Z]\d[a-zA-Z])\ {0,1}(\d[a-zA-Z]\d)$/")
 
 
 ?>

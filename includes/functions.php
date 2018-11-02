@@ -102,8 +102,55 @@
 	    {
 	        if(strlen($input) > MAX_LAST_NAME_LENGTH) $error .= "Last name must be less than ". MAX_LAST_NAME_LENGTH . " characters long<br/>";
 	    }
+	    if($type === "phone")
+	    {
+	    	if(strlen($input) > MINIMUM_PHONE_NUMBER_LENGTH) $error .= "phone number must be greater than ". MINIMUM_PHONE_NUMBER_LENGTH . " digits long<br/>";
+	        else if(strlen($input) > MAXIMUM_PHONE_NUMBER_LENGTH) $error .= "phone number must be less than ". MAXIMUM_PHONE_NUMBER_LENGTH . " digits long<br/>";
+	    }
 	    return $error;
 	}
+	function isValidPhoneNumber($phoneNumber)
+	{
+		
+		if(!isset($phoneNumber) || $phoneNumber == "")
+		{
+			$valid = false;
+		}
+		else if(!is_numeric($phoneNumber))
+		{
+			$valid = false;
+		}
+		else if(strlen($phoneNumber) < MINIMUM_PHONE_NUMBER_LENGTH)
+		{
+			$valid = false;
+		}
+		else
+		{
+			$valid = true;
+		}
+		return $valid;
+
+	}
+	/*
+	function displayPhoneNumber($phoneNumber)
+	{
+
+		if (isValidPhoneNumber($phoneNumber))
+		{
+		}
+
+	}*/
+	function cleanPhoneNumber($phoneNumber)
+	{
+		return str_replace("/[^0-9.]/","", $phoneNumber);
+
+	}
+	function isValidPostalCode($postalCode)
+	{
+		$cleanedPostalCode = str_replace(' ', '', $postalCode);
+		return (bool)preg_match(CANADIAN_POSTAL_CODE, $cleanedPostalCode);
+	}
+
 
 	function dump($arg)
 	{
