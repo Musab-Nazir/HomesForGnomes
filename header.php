@@ -88,7 +88,7 @@ require("./includes/db.php");
                     </a>
                     <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownPortfolio\">
                       <a class=\"dropdown-item\" href=\"change-password.php\">Change Password</a>
-                      <a class=\"dropdown-item\" href=\"portfolio-2-col.html\">Update</a>
+                      <a class=\"dropdown-item\" href=\"update.php\">Update</a>
                     </div>";
               }?>
             <!-- <li class="nav-item dropdown">
@@ -115,8 +115,7 @@ require("./includes/db.php");
             </li>
             <?php if( isset($_SESSION['firstName']))
             {
-                echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"logout.php\">Logout</a></li>";
-                echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"update.php\">Update</a></li>";
+                echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"logout.php\">Logout</a></li>";;
             }?>
           </ul>
         </div>

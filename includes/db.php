@@ -76,7 +76,7 @@
         $sql = "SELECT value, property FROM ".$table; 
         $results = pg_query($conn, $sql);
         $dropdown = '<select name="'.$table.'">';
-
+        $dropdown .='\n\t <option value =""></option>';
         For($rows = 0; $rows < pg_num_rows($results); $rows++)
         {
             $select ="";
@@ -101,7 +101,7 @@
         }
 
         $dropdown = '<select name="'.$table.'">';
-        
+        $dropdown .='\n\t <option value =""></option>';
         For($rows = 0; $rows < pg_num_rows($results); $rows++)
         {
             $select = "";
