@@ -29,13 +29,14 @@ require "header.php";
     $city = "";
     $province = "";
     $listingStatus =  "";
-
-    $property_type = "";
+    $images = "";
+    $propertyType = "";
     $flooring = "";
     $parking = "";
-    $building_type = "";
-    $basement_type = "";
-    $interior_type = "";
+    $buildingType = "";
+    $basementType = "";
+    $interiorType = "";
+    $propertyOptions = "";
 
 
     $error = "";
@@ -52,14 +53,16 @@ require "header.php";
         $bathroom = trim($_POST["bathroom"]); 
         $city = trim($_POST["city"]);
         $province = trim($_POST["provinces"]);
-        $listingStatus = trim($_POST["listing_status"]);
 
-        $property_type = trim($_POST["property_type"]);
+        (isset($_POST["listing_status"]))? $listingStatus = trim($_POST["listing_status"]):"";
+        $propertyOptions = trim($_POST["property_options"]);
+
+        $propertyType = trim($_POST["property_type"]);
         $flooring = trim($_POST["property_flooring"]);
         $parking = trim($_POST["property_parking"]);
-        $building_type = trim($_POST["property_building_type"]);
-        $basement_type = trim($_POST["property_basement_type"]);
-        $interior_type = trim($_POST["property_interior_type"]);
+        $buildingType = trim($_POST["property_building_type"]);
+        $basementType = trim($_POST["property_basement_type"]);
+        $interiorType = trim($_POST["property_interior_type"]);
 
         $error = "";
         $output = "";
@@ -70,14 +73,9 @@ require "header.php";
         elseif (is_numeric($headline))
         {
             $error .= "<br/>headline cannot be a number";
-            $firstname = "";
+            $headline = "";
         }
         //if an existing record has the same id
-        else
-        {
-            $error .= LengthValidation("id",$login);
-            if(LengthValidation("id",$login) <> "") $login = "";
-        }
         if ($description == "") $error .= "<br/>No description was entered";
         else
         {
@@ -85,11 +83,7 @@ require "header.php";
         }
 
         if ($postalCode == "") $error .= "<br/>You did not enter a postal code";
-        elseif (is_numeric($firstname))
-        {
-            $error .= "<br/>First name cannot be a number";
-            $firstname = "";
-        }
+
         if (preg_match(PRICE_FILTER, $price) == '0') $error .= "<br/>No price was entered";
 
 
@@ -100,11 +94,11 @@ require "header.php";
             $conn = db_connect();
 
             $sql = "INSERT INTO listings(user_id, status, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
-            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."', '".$city."','".$propertyOptions."','".$bedrooms."', '".$bathrooms."', '".$property_type."', '".$flooring."', '".$parking."', '".$building_type."', '".$basement_type."', '".$interior_type."')";
+            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."', '".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."', '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
 
             $result = pg_query($conn, $sql);
             $output .= "Registration for listing complete complete";
-            header("Location:listing-display.php");
+            header("Location:welcome.php"); 
             ob_flush();
         }
     }
@@ -128,7 +122,7 @@ require "header.php";
                 <label>City</label>
                 <?php echo (build_dropdown("city","$city"));?>
                 <label>Provinces</label>
-                <?php echo (build_simple_dropdown("provinces","$provinces")); ?>
+                <?php echo (build_simple_dropdown("provinces","$province")); ?>
                 <br/>
                 <label>Postal Code</label>
                 <input type="text" id="halfBoxR" class="form-control" name="postal_code" value="<?php echo $postalCode ?>">
@@ -138,8 +132,11 @@ require "header.php";
                 <label>Bathroom count</label>
                 <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bedroom ?>">
                 <br/>
+                <label>Property Options</label>
+                <?php echo (build_dropdown("property_options","$propertyOptions"));?>
+                <br/>
                 <label>Property Type</label>
-                <?php echo (build_dropdown("property_type","$city"));?>
+                <?php echo (build_dropdown("property_type","$propertyType"));?>
                 <br/>
                 <label>Property Flooring</label>
                 <?php echo (build_dropdown("property_flooring","$flooring"));?>
@@ -148,13 +145,13 @@ require "header.php";
                 <?php echo (build_dropdown("property_parking","$parking"));?>
                 <br/>
                 <label>Property Building Type</label>
-                <?php echo (build_dropdown("property_building_type","$building_type"));?>
+                <?php echo (build_dropdown("property_building_type","$buildingType"));?>
                 <br/>
                 <label>Property Basement Type</label>
-                <?php echo (build_dropdown("property_basement_type","$"));?>
+                <?php echo (build_dropdown("property_basement_type","$basementType"));?>
                 <br/>
                 <label>Property Interior Type</label>
-                <?php echo (build_dropdown("property_interior_type","$city"));?>
+                <?php echo (build_dropdown("property_interior_type","$interiorType"));?>
                 <br/>     
                 <label>Price
                 <input type="text" id="halfBoxR" class="form-control" name="price" value="<?php echo $price ?>" placeholder=""></label>
@@ -166,7 +163,7 @@ require "header.php";
             <!--personal information section-->
             
             <div class="form-group">
-                <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Register</button>
+                <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Create</button>
                 <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
             </div>
         </form>
