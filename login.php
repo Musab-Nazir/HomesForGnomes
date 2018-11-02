@@ -7,7 +7,7 @@ Name:			Nathan Morris
 Description:  	Login File For Homes For Gnomes
 Date:         	28 September 2018
 */
-  $title = "WEBD2201 - Web Development - Intermediate";
+  $title = "WEBD3201 - Web Development - Intermediate";
   $date = "02 October 2018";
   $file = "login.php";
   $banner = "Login Page";
@@ -22,7 +22,7 @@ $conn = "";
 $login = "";
 $pass = "";
 
-
+if(isGet()){}
 
 if(isPost()){
 //the page got here from submitting the forms
@@ -113,6 +113,7 @@ if(isPost()){
         <div class="col"></div>
         <div class="col-6">
             <?php echo $error;
+            echo $_SESSION['RedirectError'];
             if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
             {
                 $userID = $_COOKIE['username'];

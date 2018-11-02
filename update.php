@@ -11,36 +11,41 @@ Date:         	28 September 2018
   $date = "12 April 2018";
   $file = "template.php";
   $banner = "Update Page";
-  $description = "This page will be a log in page for the website and a new functions.php file will contain some shared functions for use throughout the website.";
+  $description = "This page will update user info";
 
 require "header.php";
-if(!isset($_SESSION['userType'])){header("Location:register.php");}
+if(!isset($_SESSION['userType']))
+{
+    $_SESSION['RedirectError'] = "You were not logged in<br/>";
+    header("Location:login.php");
+}
 
-$login = $_SESSION['userID'];
-$password = $_SESSION['password'];
-$salutation = $_SESSION['salutation'];
-$firstname = $_SESSION['firstName'];
-$lastname = $_SESSION['lastName'];
-$userType = $_SESSION['userType'];
-$salutation = $_SESSION['salutation'];
-$email = $_SESSION['emailAddress'];
-$streetAddress1 = $_SESSION['streetAddress1'];
-$streetAddress2 = $_SESSION['streetAddress2'];
-$city = $_SESSION['city'];
-$province = $_SESSION['province'];
-$postalCode = $_SESSION['postalCode'];
-$primaryPhone = $_SESSION['primaryPhoneNumber'];
-$secondaryPhone = $_SESSION['secondaryPhoneNumber'];
-$faxNumber = $_SESSION['faxNumber'];
-$contactMethod = $_SESSION['preferredContactMethod'];
-$error = "";
-$output = "";
+    $login = $_SESSION['userID'];
+    $password = $_SESSION['password'];
+    $salutation = $_SESSION['salutation'];
+    $firstname = $_SESSION['firstName'];
+    $lastname = $_SESSION['lastName'];
+    $userType = $_SESSION['userType'];
+    $email = $_SESSION['emailAddress'];
+    $streetAddress1 = $_SESSION['streetAddress1'];
+    $streetAddress2 = $_SESSION['streetAddress2'];
+    $city = $_SESSION['city'];
+    $province = $_SESSION['province'];
+    $postalCode = $_SESSION['postalCode'];
+    $primaryPhone = $_SESSION['primaryPhoneNumber'];
+    $secondaryPhone = $_SESSION['secondaryPhoneNumber'];
+    $faxNumber = $_SESSION['faxNumber'];
+    $contactMethod = $_SESSION['preferredContactMethod'];
+    $error = "";
+    $output = "";
+
     if(isPost())
     {
         //trim the user input
         $firstname = trim($_POST["first_name"]);
         $lastname = trim($_POST["last_name"]);
         $email = trim($_POST["email_address"]);
+        $salutation = $_POST['salutation'];
         $streetAddress1 = trim($_POST["street_address1"]);
         $streetAddress2 = trim($_POST["street_address2"]);
         $city = trim($_POST["city"]);
@@ -132,7 +137,8 @@ $output = "";
       <div class="col"></div>
       <div class="col-8">
           <br/>
-          <?php echo $error; ?>
+          <?php echo $error;
+                echo $_SESSION['RedirectError'];?>
           <div class="card">
               <div class="card-body">
                   <h5 class="card-title">User information for <?php echo $login ?></h5>

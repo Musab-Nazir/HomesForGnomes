@@ -15,7 +15,11 @@ Date:         	28 September 2018
 
 require "header.php";
 // If the session was never set with a user id
-if($_SESSION['userType'] != 's'){header("Location:login.php");}
+if($_SESSION['userType'] != 's')
+{
+    $_SESSION['RedirectError'] = "You were not logged in as an Admin<br/>";
+    header("Location:login.php");
+}
 ?>
   <!-- start of main page content -->
 
