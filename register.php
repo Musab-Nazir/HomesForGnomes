@@ -16,27 +16,25 @@ Date:         	28 September 2018
 require "header.php";
 
 if(isset($_SESSION['userType'])){header("Location:update.php");}
-    //declare all variables
-    $login = "";
-    $password = "";
-    $confirmPass = "";
-    $salutation = "";
-    $firstname = "";
-    $lastname = "";
-    $userType = "";
-    $email = "";
-    $streetAddress1 = "";
-    $streetAddress2 = "";
-    $city = "";
-    $province = "";
-    $postalCode = "";
-    $primaryPhone = "";
-    $secondaryPhone = "";
-    $faxNumber = "";
-    $contactMethod = "";
-    $error = "";
-    $output = "";
-
+$login = "";
+$password = "";
+$confirmPass = "";
+$salutation = "";
+$firstname = "";
+$lastname = "";
+$userType = "";
+$email = "";
+$streetAddress1 = "";
+$streetAddress2 = "";
+$city = "";
+$province = "";
+$postalCode = "";
+$primaryPhone = "";
+$secondaryPhone = "";
+$faxNumber = "";
+$contactMethod = "";
+$error = "";
+$output = ""; 
 
     if(isPost())
     {

@@ -13,12 +13,10 @@
         return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
     }
 
-    function updateLastAccess($login)
+    function updateLastAccess($conn)
     {
-        $conn = db_connect();
         $sql = "UPDATE users SET last_access = '". date("Y-m-d", time()) . "' WHERE user_id = '".$login."'";
-        pg_query($conn, $sql);
-        return;
+        return pg_query($conn, $sql);
     }
 
     function login($login, $password)
@@ -116,7 +114,7 @@
 
             if($selected == trim($value))
                {$select =  'checked="checked"';}
-            $radio .= '<input type ="radio" name="'.$table.'" value="'.$value.'" '.$select.'/>'.$property.'<br/>';
+            $radio .= '<input type ="radio" style="margin-right:1em;" name="'.$table.'" value="'.$value.'" '.$select.'/>'.$property.'<br/>';
         }
         return $radio;
     }
@@ -125,6 +123,29 @@
         $conn = db_connect();
         $sql = "SELECT property FROM ".$table." WHERE value = '".$value."'";
         return pg_query($conn, $sql);
+    }
+
+    function LoadSession($userInfo)
+    {
+        $_SESSION['userID'] = $userInfo["user_id"];
+        $_SESSION['password'] = $userInfo["password"];
+        $_SESSION['userType'] = $userInfo["user_type"];
+        $_SESSION['emailAddress'] = $userInfo["email_address"];
+        $_SESSION['last_access'] = $userInfo["last_access"];
+        $_SESSION['salutation'] = $userInfo["salutation"];
+        $_SESSION['firstName'] = $userInfo["first_name"];
+        $_SESSION['lastName'] = $userInfo["last_name"];
+        $_SESSION['streetAddress1'] = $userInfo["street_address1"];
+        $_SESSION['streetAddress2'] = $userInfo["street_address2"];
+        $_SESSION['city'] = $userInfo["city"];
+        $_SESSION['province'] = $userInfo["province"];
+        $_SESSION['postalCode'] = $userInfo["postal_code"];
+        $_SESSION['primaryPhoneNumber'] = $userInfo["primary_phone_number"];
+        $_SESSION['secondaryPhoneNumber'] = $userInfo["secondary_phone_number"];
+        $_SESSION['faxNumber'] = $userInfo["fax_number"];
+        $_SESSION['preferredContactMethod'] = $userInfo["preferred_contact_method"];
+
+        return;
     }
 
 ?>

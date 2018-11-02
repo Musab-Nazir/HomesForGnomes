@@ -42,7 +42,6 @@ require("./includes/db.php");
   </head>
 
   <body>
-
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:#982a4f;">
       <div class="container">
