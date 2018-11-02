@@ -14,7 +14,7 @@ value CHAR(1) PRIMARY KEY,
 property VARCHAR(30) NOT NULL
 );
 
---ALTER TABLE preferred_contact_method OWNER TO group24_admin;
+ALTER TABLE preferred_contact_method OWNER TO group24_admin;
 
 INSERT INTO preferred_contact_method(value, property) VALUES ('e', 'E-mail');
 

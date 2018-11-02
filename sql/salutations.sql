@@ -14,6 +14,9 @@ DROP TABLE IF EXISTS salutations;
 CREATE TABLE salutations(
   value CHAR(5)
 );
+
+ALTER TABLE salutations OWNER TO group24_admin;
+
 INSERT INTO salutations VALUES('');
 INSERT INTO salutations VALUES('Mr.');
 INSERT INTO salutations VALUES('Ms.');

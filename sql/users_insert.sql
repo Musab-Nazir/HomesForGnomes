@@ -994,7 +994,14 @@ insert into users (user_id, password, user_type, email_address, enrol_date, last
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('kbrocktonrl', 'gr8My05zZfI', 'a', 'alanglandsrl@umn.edu', '2005-01-29', '2018-01-03');
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('owarbeyrm', 'tIDr3571GWAG', 'a', 'lhaggartyrm@ucsd.edu', '2017-10-08', '2018-09-18');
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('dhiddersleyrn', '1F1uGZkuDN', 'a', 'hgrabertrn@state.gov', '2004-07-16', '2018-02-01');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('nmorris', 'qY5jZOULzZlB', 's', 'nmorris@gmail.com', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('rrathor', 'qY5jZOULzZlB', 's', 'rrathor@gmail.com', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('mnazir', 'qY5jZOULzZlB', 's', 'mnazir@gmail.com', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('kastilla', 'qY5jZOULzZlB', 's', 'kastilla@gmail.com', '2006-04-08', '2018-04-08');
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('kwarnro', 'rQOuUpctV', 'a', 'fharburtsonro@discovery.com', '2018-04-01', '2018-09-06');
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('rminillorp', 'xnxpgEl1', 'a', 'awingrp@topsy.com', '2006-12-19', '2018-07-05');
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('mjenkynrq', 'tqByax', 'a', 'pmacarirq@hostgator.com', '2006-07-17', '2018-05-20');
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('bregisrr', 'qY5jZOULzZlB', 'a', 'nlarringtonrr@senate.gov', '2006-04-08', '2018-04-08');
+
+UPDATE users
+  SET password=md5('password');

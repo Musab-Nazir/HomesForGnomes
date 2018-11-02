@@ -14,7 +14,7 @@ value CHAR(1) PRIMARY KEY,
 property VARCHAR(30) NOT NULL
 );
 
---ALTER TABLE listing_status OWNER TO groupXX_admin;
+ALTER TABLE listing_status OWNER TO groupXX_admin;
 
 INSERT INTO listing_status(value, property) VALUES ('o', 'Open');
 
