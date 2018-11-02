@@ -1,4 +1,4 @@
-﻿/*
+/*
   Deliverable2_persons.sql
   WEBD3201
   10-28-2018
@@ -22,5 +22,3 @@ CREATE TABLE persons(
   fax_number VARCHAR(15),
   preferred_contact_method CHAR(1) NOT NULL
 );
-
-ALTER TABLE persons OWNER TO group24_admin;
