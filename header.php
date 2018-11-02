@@ -106,7 +106,7 @@ require("./includes/db.php");
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="listing-display.php">Display Listings</a>
                 <a class="dropdown-item" href="listing-search.php">Search Listings</a>
-                <?php if ( isset($_SESSION['userType'] == ADMIN) && $_SESSION['userType'] == AGENT)
+                <?php if ($_SESSION['userType'] == ADMIN || $_SESSION['userType'] == AGENT)
                 {
                     echo "<a class=\"dropdown-item\" href=\"listing-create.php\">Create Listings</a>";
                 } ?>
