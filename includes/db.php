@@ -10,7 +10,7 @@
 
     function db_connect()
     {
-        return pg_connect("host=127.0.0.1 dbname=nazirm_db user=nazirm password=Iamaboy1" );
+        return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
     }
 
     function updateLastAccess($conn)
