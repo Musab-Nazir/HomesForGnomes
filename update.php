@@ -155,27 +155,19 @@ if(!isset($_SESSION['userType'])){header("Location:register.php");}
           <?php echo $error; ?>
           <div class="card">
               <div class="card-body">
-                  <h5 class="card-title">Login Information</h5>
+                  <h5 class="card-title">User information for <?php echo $login ?></h5>
                   <hr/>
                   <form method="post" action="<?php sticky();?>" >
 
-                      <div class="form-group">
-                          <input type="text" class="form-control" name="login" value="<?php echo $login ?>" placeholder="Enter User ID">
-                          <br/>
-                          <input type="password" class="form-control" name="pass" placeholder="Enter Password" id="halfBoxL">
-                          <input type="password" class="form-control" name="cpass" placeholder="Confirm Password" id="halfBoxR">
-                          <br/>
-                          <input type="text" class="form-control" name="email_address" value="<?php echo $email; ?>" placeholder="Enter Email Address">
-                      </div>
                       <!--personal information section-->
-                      <h5 class="card-title">Personal Information</h5>
-                      <hr/>
                       <div class="form-group">
-
+                          <label> Email </label>
+                          <input type="text" class="form-control" name="email_address" value="<?php echo $email; ?>" placeholder="Enter Email Address">
                           <!--Insert Salutation -->
+                          <br/>
                           <label>Salutation:</label>
                           <?php echo (build_simple_dropdown("salutations","$salutation"));?>
-                          <br/><br/>
+                          <br/>
                           <!-- <label>First Name</label> -->
                           <input type="text" class="form-control" name="first_name" value="<?php echo $firstname; ?>" placeholder="Enter First Name" id="halfBoxL">
 
