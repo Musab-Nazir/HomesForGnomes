@@ -96,12 +96,13 @@ if($_SESSION['userType'] != a)
 
             $conn = db_connect();
 
-            $sql = "INSERT INTO listings(user_id, status, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
-            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."', '".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."', '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
+            $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
+            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."', '".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
+                 '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
 
             $result = pg_query($conn, $sql);
-            $output .= "Registration for listing complete complete";
-            header("Location:welcome.php");
+            $output .= "Listing successfully created";
+            header("Location:Dashboard.php");
             ob_flush();
         }
     }
@@ -132,6 +133,7 @@ if($_SESSION['userType'] != a)
                 <br/>
                 <label>Bedroom count</label>
                 <input type="text" id="halfBoxR" class="form-control" name="bedroom" value="<?php echo $bedroom ?>">
+                <br/>
                 <label>Bathroom count</label>
                 <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bedroom ?>">
                 <br/>
