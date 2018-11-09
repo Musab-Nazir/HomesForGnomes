@@ -31,8 +31,8 @@ $email = "";
 $streetAddress1 = "";
 $streetAddress2 = "";
 $city = "";
-$province = "";
 $postalCode = "";
+$province = "";
 $primaryPhone = "";
 $secondaryPhone = "";
 $faxNumber = "";
@@ -55,9 +55,9 @@ $output = "";
         $city = trim($_POST["city"]);
         $province = trim($_POST["provinces"]);
         $postalCode = trim($_POST["postal_code"]);
-        $primaryPhone = cleanPhoneNumber(trim($_POST["primary_phone"]));
-        $secondaryPhone = cleanPhoneNumber(trim($_POST["secondary_phone"]));
-        $faxNumber = cleanPhoneNumber(trim($_POST["fax_number"]));
+        $primaryPhone = CleanPhoneNumber(trim($_POST["primary_phone"]));
+        $secondaryPhone = CleanPhoneNumber(trim($_POST["secondary_phone"]));
+        $faxNumber = CleanPhoneNumber(trim($_POST["fax_number"]));
         $contactMethod = trim($_POST["preferred_contact_method"]);
         //check if everything was entered
 		if ($login == "") $error .= "<br/>No user ID entered";
@@ -112,12 +112,20 @@ $output = "";
 			$error .= LengthValidation("email",$email);
 			if(LengthValidation("email",$email) <> "") $email = "";
 		}
-        if  ($primaryPhone == "") $error .= "<br/>You did not enter your primary phone number";
-        else
+        if(isset($postalCode) && !isValidPostalCode($postalCode))
         {
-            $error .= LengthValidation("phone",$primaryPhone);
-            if(LengthValidation("phone",$primaryPhone) <> "") $primaryPhone = "";
+            $error .= "<br/>Invalid Postal Code";
         }
+        if  ($primaryPhone == "") $error .= "<br/>You did not enter your primary phone number";
+        else if(!isValidPhoneNumber($primaryPhone))
+        {
+            $error .= "<br/>Phone number is in invalid format. Please retry";
+            $error .= $primaryPhone;
+        }
+        // else {
+        //     $error .= LengthValidation("phone",$primaryPhone);
+        //     if(LengthValidation("phone",$primaryPhone) <> "") $primaryPhone = "";
+        // }
 
         //if no errors
         if($error === "")
@@ -139,8 +147,8 @@ $output = "";
             $result = pg_query($conn, $sql);
 
             $personsSql = "INSERT INTO persons(user_id, salutation, first_name, last_name , street_address1, street_address2, city, province, postal_code, primary_phone_number, secondary_phone_number, fax_number, preferred_contact_method)
-            VALUES ('".$login."','".$salutation."','".$firstname."','".$lastname."','".$streetAddress1."','".$streetAddress2."','".$city."','".$province."','".$postalCode."','".$primaryPhone."','".$secondaryPhone."','".$faxNumberx."','".$contactMethod."')";
-            $perosonsResult = pg_query($conn,$personsSql);
+            VALUES ('".$login."','".$salutation."','".$firstname."','".$lastname."','".$streetAddress1."','".$streetAddress2."','".$city."','".$province."','".$postalCode."','".$primaryPhone."','".$secondaryPhone."','".$faxNumber."','".$contactMethod."')";
+            $personsResult = pg_query($conn,$personsSql);
 
             $output .= "Registration complete";
             header("Location:login.php");

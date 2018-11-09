@@ -111,7 +111,7 @@
 	}
 	function isValidPhoneNumber($phoneNumber)
 	{
-		
+
 		if(!isset($phoneNumber) || $phoneNumber == "")
 		{
 			$valid = false;
@@ -121,6 +121,10 @@
 			$valid = false;
 		}
 		else if(strlen($phoneNumber) < MINIMUM_PHONE_NUMBER_LENGTH)
+		{
+			$valid = false;
+		}
+		else if (!regexCheck($phoneNumber))
 		{
 			$valid = false;
 		}
@@ -140,10 +144,16 @@
 		}
 
 	}*/
-	function cleanPhoneNumber($phoneNumber)
+	function CleanPhoneNumber($phoneNumber)
 	{
-		return str_replace("/[^0-9.]/","", $phoneNumber);
+		$cleanedNumber = preg_replace('/[^0-9]/','', $phoneNumber);
+		return $cleanedNumber;
+	}
+	function regexCheck($phoneNumber)
+	{
+		$pattern = "/^[2-9]\d{2}\d{3}\d{4}/";
 
+		return (bool)preg_match($pattern, $phoneNumber);
 	}
 	function isValidPostalCode($postalCode)
 	{
