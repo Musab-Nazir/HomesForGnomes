@@ -30,7 +30,6 @@ if($_SESSION['userType'] != a)
     $bathroom = "";
     $userType = "";
     $city = "";
-    $province = "";
     $listingStatus =  "";
     $images = "";
     $propertyType = "";
@@ -40,6 +39,7 @@ if($_SESSION['userType'] != a)
     $basementType = "";
     $interiorType = "";
     $propertyOptions = "";
+    $images = "";
 
 
     $error = "";
@@ -67,29 +67,75 @@ if($_SESSION['userType'] != a)
         $basementType = trim($_POST["property_basement_type"]);
         $interiorType = trim($_POST["property_interior_type"]);
 
+        $images = 
+
         $error = "";
         $output = "";
         //trim the user input
 
-        //check if everything was entered
+        //validate headline
         if ($headline == "") $error .= "<br/>No headline was entered";
         elseif (is_numeric($headline))
         {
             $error .= "<br/>headline cannot be a number";
             $headline = "";
         }
-        //if an existing record has the same id
+        //validate description
         if ($description == "") $error .= "<br/>No description was entered";
-        else
+        elseif (is_numeric($headline))
         {
-            //$error .= LengthValidation("pass",$password);
+            $error .= "<br/>headline cannot be a number";
+            $headline = "";
         }
-
+        //validate postal code
         if ($postalCode == "") $error .= "<br/>You did not enter a postal code";
+        else if (!isValidPostalCode($postalCode)) $error .= "<br/>your postal code format is invalid";
 
+        //in case the user adds the dollar sign or commas
         if (preg_match(PRICE_FILTER, $price) == '0') $error .= "<br/>No price was entered";
 
+        if(!isset($bedroom) || $bedroom == ""){
+        //means the user did not enter 
+        $error .= "<br/>You did not enter bedroom count."; //set error
+        $login = "";
+        }
+        else if($bedroom == '0') $error .= "<br\>Please specify number of bedrooms";
 
+
+        if(!isset($bathroom) || $bathroom == ""){
+        //means the user did not enter 
+        $error .= "<br/>You did not enter bathroom count."; //set error
+        $login = "";
+        }
+        else if($bathroom== '0') $error .= "<br/>Please specify number of bedrooms";
+
+        if($city == '0') $error .= "<br/> Please select a city ";
+        if($propertyType == '0') $error .= "<br/> Please select a property type";
+        if($flooring == '0') $error .= "<br/> Please select the type of flooring";
+        if($parking == '0') $error .= "<br/> Please select a please indicate type of parking";
+        if($buildingType == '0') $error .= "<br/> Please select the type oif building";
+        if($basementType == '0') $error .= "<br/> Please select the basement\'s current state";
+        if($interiorType == '0') $error .= "<br/> Please select the interior design type ";
+
+
+        //validating the image
+        if($_FILES['uploadfile']['error'] != 0)
+        {
+            $error .= "<br/>Problem uploading your file";
+        }
+        else if($_FILES['uploadfile']['size'] > MAXIMUM_IMAGE_SIZE) //size in bytes
+        {
+            $error .= "<br/>File selected is too big";
+        }
+        else if($_FILES['uploadfile']['type'] != "image/jpeg" && $_FILES['uploadfile']['type'] != "image/pjpeg")
+        {
+            $error .= "<br/>Your profile pictures must be of type JPEG";
+        }
+        else//no problem happened
+        {
+            //this is where i stoped
+            //$image = //make it a small int??
+        }
         //if no errors
         if($error === "")
         {
@@ -102,7 +148,7 @@ if($_SESSION['userType'] != a)
 
             $result = pg_query($conn, $sql);
             $output .= "Listing successfully created";
-            header("Location:Dashboard.php");
+            //header("Location:Dashboard.php");
             ob_flush();
         }
     }
@@ -125,8 +171,6 @@ if($_SESSION['userType'] != a)
                 <br/>
                 <label>City</label>
                 <?php echo (build_dropdown("city","$city"));?>
-                <label>Provinces</label>
-                <?php echo (build_simple_dropdown("provinces","$province")); ?>
                 <br/>
                 <label>Postal Code</label>
                 <input type="text" id="halfBoxR" class="form-control" name="postal_code" value="<?php echo $postalCode ?>">
@@ -160,6 +204,8 @@ if($_SESSION['userType'] != a)
                 <br/>
                 <label>Price
                 <input type="text" id="halfBoxR" class="form-control" name="price" value="<?php echo $price ?>" placeholder=""></label>
+                <br>
+                <input type="file" name="myFile"><br><br>
                 <br/>
                 <?php echo (build_radio("listing_status","$listingStatus"));?>
                 <br/>

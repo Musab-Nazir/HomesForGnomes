@@ -33,6 +33,7 @@
     define("MAXIMUM_PHONE_NUMBER_LENGTH", 15);
     define("MINIMUM_PHONE_RANGE", 200);
     define("MAXIMUM_PHONE_RANGE", 999);
+    define("MAXIMUM_IMAGE_SIZE",3000000);
 
     //constants for listing status
 
