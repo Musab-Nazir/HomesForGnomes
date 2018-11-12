@@ -14,7 +14,7 @@ Date:         	28 September 2018
 
   require "header.php";
       //declare all variables
-      $login = "";
+      $login = $_SESSION['userID'];
       $email = "";
       $current_password = "";
       $new_password = "";
@@ -49,7 +49,7 @@ if(isPost())
     else if(strlen($confirm_new_password) > MAXIMUM_PASSWORD_LENGTH){
         $error .= "<br/>The password you entered must be less than or equal to 15."; //set error
     }
-    elseif (if (strcmp($confirmPass, $password) <> 0){
+    elseif (strcmp($confirmPass, $password) <> 0){
         $error .= "<br/>New passwords don't match";
     }
 
@@ -76,25 +76,29 @@ if(!isset($_SESSION['userType'])){header("Location:login.php");}
         <div class="col"></div>
         <div class="col-6">
             <?php echo $error; echo $output;?>
-            <form method="post" action="<?php sticky();?>" >
-                <div class="form-group">
-                    <label>Current Password</label>
-                    <input type="password" class="form-control" name="pass" placeholder="Enter Current Password">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Change Password for <?php echo $login ?></h5>
+                    <form method="post" action="<?php sticky();?>" >
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" class="form-control" name="pass" placeholder="Enter Current Password">
+                        </div>
+                        <div class="form-group">
+                            <label> New Password</label>
+                            <input type="password" class="form-control" name="newPass" placeholder="Enter New Password">
+                        </div>
+                        <div class="form-group">
+                            <label> Confirm New Password</label>
+                            <input type="password" class="form-control" name="cNewPass" placeholder="Confirm New Password">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Submit</button>
+                            <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label> New Password</label>
-                    <input type="password" class="form-control" name="newPass" placeholder="Enter New Password">
-                </div>
-                <div class="form-group">
-                    <label> Confirm New Password</label>
-                    <input type="password" class="form-control" name="cNewPass" placeholder="Confirm New Password">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Submit</button>
-                    <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
-                </div>
-            </form>
-            <hr/>
+            </div>
       </div>
       <div class="col"></div>
     </div>
