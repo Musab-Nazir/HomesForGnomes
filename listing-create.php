@@ -67,7 +67,7 @@ if($_SESSION['userType'] != a)
         $basementType = trim($_POST["property_basement_type"]);
         $interiorType = trim($_POST["property_interior_type"]);
 
-        $images = 
+        $images =
 
         $error = "";
         $output = "";
@@ -95,7 +95,7 @@ if($_SESSION['userType'] != a)
         if (preg_match(PRICE_FILTER, $price) == '0') $error .= "<br/>No price was entered";
 
         if(!isset($bedroom) || $bedroom == ""){
-        //means the user did not enter 
+        //means the user did not enter
         $error .= "<br/>You did not enter bedroom count."; //set error
         $login = "";
         }
@@ -103,7 +103,7 @@ if($_SESSION['userType'] != a)
 
 
         if(!isset($bathroom) || $bathroom == ""){
-        //means the user did not enter 
+        //means the user did not enter
         $error .= "<br/>You did not enter bathroom count."; //set error
         $login = "";
         }
@@ -160,65 +160,76 @@ if($_SESSION['userType'] != a)
     <div class="col-6">
         <br/>
         <?php echo $error; ?>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Please fill out the details about the Listing</h5>
+                <form method="post" action="<?php sticky();?>" >
+                    <div class="form-group">
+                        <label>Headline</label>
+                        <input type="text" class="form-control" name="headline" value="<?php echo $headline ?>">
+                        <br/>
+                        <label>Description</label>
+                        <textarea class="form-control" name="description" maxlength="1000" rows="5" id="description"></textarea>
+                        <br/>
+                        <label>City</label>
+                        <?php echo (build_dropdown("city","$city"));?>
+                        <input type="text" id="halfBoxR" class="form-control" name="postal_code" value="Postal Code" style="width:8em; margin-left:150px;">
+                        <br/>
+                        <label>Bedroom Count</label>
+                        <input type="text" id="halfBoxL" class="form-control" name="bedroom" value="" style="width:3em;">
+                        <label style="margin-left:100px;">Bathroom Count</label>
+                        <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="" style="width:3em;">
+                        <br/>
+                        <table style="width:100%">
+                            <tr>
+                                <td><label>Property Options</label></td>
+                                <td><?php echo (build_dropdown("property_options","$propertyOptions"));?></td>
+                            </tr>
+                            <tr>
+                                <td><label>Property Type</label></td>
+                                <td><?php echo (build_dropdown("property_type","$propertyType"));?></td>
+                            </tr>
+                            <tr>
+                                <td><label>Property Flooring</label></td>
+                                <td><?php echo (build_dropdown("property_flooring","$flooring"));?></td>
+                            </tr>
+                            <tr>
+                                <td><label>Property Parking</label></td>
+                                <td><?php echo (build_dropdown("property_parking","$parking"));?></td>
+                            </tr>
+                            <tr>
+                                <td><label>Property Building Type</label></td>
+                                <td><?php echo (build_dropdown("property_building_type","$buildingType"));?></td>
+                            </tr>
+                            <tr>
+                                <td><label>Property Basement Type</label></td>
+                                <td><?php echo (build_dropdown("property_basement_type","$basementType"));?></td>
+                            </tr>
+                            <tr>
+                                <td><label>Property Interior Type</label></td>
+                                <td><?php echo (build_dropdown("property_interior_type","$interiorType"));?></td>
+                            </tr>
+                        </table>
 
-        <form method="post" action="<?php sticky();?>" >
-            <div class="form-group">
-                <label>Headline</label>
-                <input type="text" class="form-control" name="headline" value="<?php echo $headline ?>">
-                <br/>
-                <label>Description</label>
-                <textarea class="form-control" name="description" maxlength="1000" rows="5" id="description"></textarea>
-                <br/>
-                <label>City</label>
-                <?php echo (build_dropdown("city","$city"));?>
-                <br/>
-                <label>Postal Code</label>
-                <input type="text" id="halfBoxR" class="form-control" name="postal_code" value="<?php echo $postalCode ?>">
-                <br/>
-                <label>Bedroom count</label>
-                <input type="text" id="halfBoxR" class="form-control" name="bedroom" value="<?php echo $bedroom ?>">
-                <br/>
-                <label>Bathroom count</label>
-                <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bedroom ?>">
-                <br/>
-                <label>Property Options</label>
-                <?php echo (build_dropdown("property_options","$propertyOptions"));?>
-                <br/>
-                <label>Property Type</label>
-                <?php echo (build_dropdown("property_type","$propertyType"));?>
-                <br/>
-                <label>Property Flooring</label>
-                <?php echo (build_dropdown("property_flooring","$flooring"));?>
-                <br/>
-                <label>Property Parking</label>
-                <?php echo (build_dropdown("property_parking","$parking"));?>
-                <br/>
-                <label>Property Building Type</label>
-                <?php echo (build_dropdown("property_building_type","$buildingType"));?>
-                <br/>
-                <label>Property Basement Type</label>
-                <?php echo (build_dropdown("property_basement_type","$basementType"));?>
-                <br/>
-                <label>Property Interior Type</label>
-                <?php echo (build_dropdown("property_interior_type","$interiorType"));?>
-                <br/>
-                <label>Price
-                <input type="text" id="halfBoxR" class="form-control" name="price" value="<?php echo $price ?>" placeholder=""></label>
-                <br>
-                <input type="file" name="myFile"><br><br>
-                <br/>
-                <?php echo (build_radio("listing_status","$listingStatus"));?>
-                <br/>
+                        <label>Price
+                        <input type="text" id="halfBoxR" class="form-control" name="price" value="<?php echo $price ?>" placeholder=""></label>
+                        <br>
+                        <input type="file" name="myFile"><br><br>
+                        <br/>
+                        <?php echo (build_radio("listing_status","$listingStatus"));?>
+                        <br/>
 
+                    </div>
+                    <!--personal information section-->
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Create</button>
+                        <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
+                    </div>
+                </form>
             </div>
-            <!--personal information section-->
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Create</button>
-                <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
-            </div>
-        </form>
-        <hr/>
+        </div>
+        <br/>
     </div>
     <div class="col"></div>
   </div>
