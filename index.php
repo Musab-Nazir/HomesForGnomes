@@ -18,21 +18,21 @@ include("header.php"); ?>
     </ol>
     <div class="carousel-inner" role="listbox">
       <!-- Slide One - Set the background image for this slide in the line below -->
-      <div class="carousel-item active" style="background-image: url('./images/bannerHouse1.jpg')">
+      <div class="carousel-item active" style="background-image: url('./images/bannerHouse4.jpg')">
         <!-- <div class="carousel-caption d-none d-md-block">
           <h3>House Number 1</h3>
           <p>The guy in the window is creepy</p>
         </div> -->
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('./images/welcome.jpg')">
+      <div class="carousel-item" style="background-image: url('./images/welcome1.png')">
         <!-- <div class="carousel-caption d-none d-md-block">
           <h3>House Number 2</h3>
           <p>Too plain</p>
         </div> -->
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('./images/bannerHouse3.jpg')">
+      <div class="carousel-item" style="background-image: url('./images/bannerHouse.jpg')">
         <!-- <div class="carousel-caption d-none d-md-block">
           <h3>House number 3</h3>
           <p>I like this one a lot</p>
