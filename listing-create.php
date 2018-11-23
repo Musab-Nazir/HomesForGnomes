@@ -127,10 +127,10 @@ if($_SESSION['userType'] != a)
         {
             $error .= "<br/>File selected is too big";
         }
-        else if($_FILES['uploadfile']['type'] != "image/jpeg" && $_FILES['uploadfile']['type'] != "image/pjpeg")
-        {
-            $error .= "<br/>Your profile pictures must be of type JPEG";
-        }
+        // else if($_FILES['uploadfile']['type'] != "image/jpeg" && $_FILES['uploadfile']['type'] != "image/jpeg")
+        // {
+        //     $error .= "<br/>Your pictures must be of type JPEG";
+        // }
         else//no problem happened
         {
             //this is where i stoped
@@ -143,12 +143,12 @@ if($_SESSION['userType'] != a)
             $conn = db_connect();
 
             $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
-            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."', '".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
+            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".'NULL'."','".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
                  '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
 
             $result = pg_query($conn, $sql);
             $output .= "Listing successfully created";
-            //header("Location:Dashboard.php");
+            header("Location:Admin.php");
             ob_flush();
         }
     }
@@ -162,18 +162,25 @@ if($_SESSION['userType'] != a)
         <?php echo $error; ?>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Please fill out the details about the Listing</h5>
+                <h5 class="card-title">Please Fill Out Details About The Listing</h5>
                 <form method="post" action="<?php sticky();?>" >
                     <div class="form-group">
                         <label>Headline</label>
                         <input type="text" class="form-control" name="headline" value="<?php echo $headline ?>">
                         <br/>
                         <label>Description</label>
-                        <textarea class="form-control" name="description" maxlength="1000" rows="5" id="description"></textarea>
+                        <textarea class="form-control" name="description" maxlength="1000" rows="5" id="description" value="<?php echo $description ?>"></textarea>
                         <br/>
-                        <label>City</label>
-                        <?php echo (build_dropdown("city","$city"));?>
-                        <input type="text" id="halfBoxR" class="form-control" name="postal_code" value="Postal Code" style="width:8em; margin-left:150px;">
+                        <div class="row">
+                          <div class="col">
+                            <label>City</label>
+                            <?php echo (build_dropdown("city","$city"));?>
+                          </div>
+                          <div class="col">
+                          <label>Postal Code</label>
+                          <input type="text" id="halfBoxR" class="form-control" name="postal_code" placeholder="A1B 2C3" style="width:8em;">
+                          </div>
+                        </div>
                         <br/>
                         <label>Bedroom Count</label>
                         <input type="text" id="halfBoxL" class="form-control" name="bedroom" value="" style="width:3em;">
@@ -183,7 +190,7 @@ if($_SESSION['userType'] != a)
                         <table style="width:100%">
                             <tr>
                                 <td><label>Property Options</label></td>
-                                <td><?php echo (build_dropdown("property_options","$propertyOptions"));?></td>
+                                <td class="row" ><?php echo (build_checkbox("property_options","$propertyOptions"));?></td>
                             </tr>
                             <tr>
                                 <td><label>Property Type</label></td>
@@ -216,7 +223,10 @@ if($_SESSION['userType'] != a)
                         <br>
                         <input type="file" name="myFile"><br><br>
                         <br/>
-                        <?php echo (build_radio("listing_status","$listingStatus"));?>
+                        <label>Status</label>
+                        <div class="row">
+                          <?php echo (build_radio("listing_status","$listingStatus"));?>
+                        </div>
                         <br/>
 
                     </div>
