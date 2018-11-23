@@ -21,7 +21,7 @@ if($_SESSION['userType'] != a)
 }
     //declare all variables
 
-    $login = ""; //$_SESSION["userID"]
+    $login = $_SESSION["userID"];
     $headline = "";
     $description = "";
     $postalCode = "";
@@ -39,7 +39,7 @@ if($_SESSION['userType'] != a)
     $basementType = "";
     $interiorType = "";
     $propertyOptions = "";
-    $images = "";
+    $images = "0";
 
 
     $error = "";
@@ -58,7 +58,10 @@ if($_SESSION['userType'] != a)
         $province = trim($_POST["provinces"]);
 
         (isset($_POST["listing_status"]))? $listingStatus = trim($_POST["listing_status"]):"";
-        $propertyOptions = trim($_POST["property_options"]);
+
+        //$propertyOptions = trim($_POST["property_options"]);
+
+        $propertyOptions = sum_check_box($_POST["property_options"]);
 
         $propertyType = trim($_POST["property_type"]);
         $flooring = trim($_POST["property_flooring"]);
@@ -66,8 +69,6 @@ if($_SESSION['userType'] != a)
         $buildingType = trim($_POST["property_building_type"]);
         $basementType = trim($_POST["property_basement_type"]);
         $interiorType = trim($_POST["property_interior_type"]);
-
-        $images =
 
         $error = "";
         $output = "";
@@ -119,36 +120,41 @@ if($_SESSION['userType'] != a)
 
 
         //validating the image
-        if($_FILES['uploadfile']['error'] != 0)
-        {
-            $error .= "<br/>Problem uploading your file";
-        }
-        else if($_FILES['uploadfile']['size'] > MAXIMUM_IMAGE_SIZE) //size in bytes
-        {
-            $error .= "<br/>File selected is too big";
-        }
+        // if($_FILES['uploadfile']['error'] != 0)
+        // {
+        //     $error .= "<br/>Problem uploading your file";
+        // }
+        // else if($_FILES['uploadfile']['size'] > MAXIMUM_IMAGE_SIZE) //size in bytes
+        // {
+        //     $error .= "<br/>File selected is too big";
+        // }
         // else if($_FILES['uploadfile']['type'] != "image/jpeg" && $_FILES['uploadfile']['type'] != "image/jpeg")
         // {
         //     $error .= "<br/>Your pictures must be of type JPEG";
         // }
-        else//no problem happened
-        {
-            //this is where i stoped
-            //$image = //make it a small int??
-        }
+        // else//no problem happened
+        // {
+        //     //this is where i stoped
+        //     //$image = //make it a small int??
+        // }
         //if no errors
-        if($error === "")
+        if($error == "")
         {
+          //$output .= "NO ERROR";
+          // $conn = db_Connect();
+          // $query = "listing_create_query";
+          // $result = db_prepare($conn, $query, 'INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
+          //                      VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17 )');
+          // $result =  pg_execute($conn, $query, array( $login, $listingStatus, $price, $headline, $description, $postalCode, $images, $city, $propertyOptions, $bedroom, $bathroom, $propertyType, $flooring, $parking, $buildingType, $basementType, $interiorType ));
 
             $conn = db_connect();
-
-            $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
-            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".'NULL'."','".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
+            $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_option, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
+            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."','".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
                  '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
 
             $result = pg_query($conn, $sql);
             $output .= "Listing successfully created";
-            header("Location:Admin.php");
+            header("Location:admin.php");
             ob_flush();
         }
     }
@@ -159,7 +165,10 @@ if($_SESSION['userType'] != a)
     <div class="col"></div>
     <div class="col-6">
         <br/>
-        <?php echo $error; ?>
+        <?php
+          $error.=$output;
+          echo $error;
+        ?>
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Please Fill Out Details About The Listing</h5>
