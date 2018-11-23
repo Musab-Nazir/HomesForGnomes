@@ -1,9 +1,9 @@
 <?php
 /*
 Name:         	Ramandeep Rathor
-Name:           Musab Nizar
-Name:			      Kevin Astilla
-Name:			      Nathan Morris
+Name:           Musab Nazir
+Name:			Kevin Astilla
+Name:			Nathan Morris
 Description:  	Header File For Homes For Gnomes
 Date:         	28 September 2018
 */

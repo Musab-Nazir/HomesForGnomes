@@ -46,6 +46,7 @@
     define("CANADIAN_POSTAL_CODE","/^([a-zA-Z]\d[a-zA-Z])\ {0,1}(\d[a-zA-Z]\d)$/");
 
     define("PRICE_FILTER", "/^(?:0|[1-9]\d*)(?:\.\d{2})?$/");
+    define("PREVIEW_LINE_LIMIT",3);
 
 
 ?>

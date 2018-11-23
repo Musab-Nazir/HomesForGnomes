@@ -1,7 +1,7 @@
 <?php
 /*
 Name:         	Ramandeep Rathor
-Name:           Musab Nizar
+Name:           Musab Nazir
 Name:			Kevin Astilla
 Name:			Nathan Morris
 Description:  	Search Listings File For Homes For Gnomes
@@ -40,8 +40,6 @@ if(!isset($city))
     $_SESSION['RedirectError'] = "Please select a city<br/>";
     header("Location:listing-city-select.php");
 }
-
-//variable declaration
 
 
 //validation
@@ -92,7 +90,8 @@ if(isPost())
 
             $conn = db_connect();
 
-            $sql = "SELECT * FROM listings WHERE bedrooms = '".$bedroomCount."' AND bathrooms = '".$bathroomCount."' AND city = '".$city."'AND status = 'o' AND price BETWEEN '".$minPrice."' AND '".$maxPrice."' ORDER BY listing_id DESC LIMIT 200";
+            $sql = "SELECT * FROM listings WHERE bedrooms = '".$bedroomCount."' AND bathrooms = '".$bathroomCount."' AND city = '".$city."' AND status = 'o'
+            AND price BETWEEN '".$minPrice."' AND '".$maxPrice."' ORDER BY listing_id DESC LIMIT 200";
 
             $result = pg_query($conn, $sql);
 
