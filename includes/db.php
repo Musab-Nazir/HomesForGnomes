@@ -10,10 +10,9 @@
 
     function db_connect()
     {
-        return pg_connect("host=127.0.0.1 dbname=astillak_db user=astillak password=100396393" );
-        //return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
+        //return pg_connect("host=127.0.0.1 dbname=astillak_db user=astillak password=100396393" );
+        return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
         //return pg_connect("host=127.0.0.1 dbname=nazirm_db user=nazirm password=Iamaboy1" );
-
     }
 
     function updateLastAccess($conn)
@@ -150,7 +149,7 @@
 
         return;
     }
-    function build_multiselect_dropdown($table, $selected)
+        function build_multiselect_dropdown($table, $selected)
     {
         //gather information here
         $conn = db_connect();
@@ -190,6 +189,31 @@
 
         return $result;
 
+    }
+    function build_checkbox($table, $selected)
+    {
+        $conn = db_connect();
+        $sql = "SELECT value, property FROM ".$table;
+        $results = pg_query($conn, $sql);
+        $checkBox = "";
+
+        For($rows = pg_num_rows($results) -1; $rows >= 0 ; $rows--)
+        {
+            $value = pg_fetch_result($results,$rows, "value");
+            $property = pg_fetch_result($results,$rows, "property");
+            if(($selected - $value) >= 0)
+            {
+                $select = 'selected =\"selected\"';
+                $selected -= $value;
+            }
+            else
+            {
+                $select = '';
+            }
+
+            $checkBox ='<input type="checkbox" name="'.$table.'[]" value="'.$value.'" '.$selected.' >'.$property.'<br/>'.$checkBox;
+        }
+                return $checkBox;
     }
 
 ?>

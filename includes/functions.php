@@ -169,4 +169,26 @@
 	    echo "</pre>";
 	}
 
+    function decimal_to_binary_array($value)
+    {
+        //transform the value into binary value then reverse
+        //after reversal, split into array and then its ready for a loop
+        $binary = strrev(decbin($value));
+        $binaryArray = str_split($binary);
+
+        return $binaryArray;
+    }
+    
+    function sum_check_box($array)
+    {
+        $num_checks = count($array); 
+        $sum = 0;
+        for ($i = 0; $i < $num_checks; $i++)
+        {
+          $sum += $array[$i]; 
+        }
+        return $sum;
+    }
+
+
 ?>
