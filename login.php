@@ -22,8 +22,6 @@ $conn = "";
 $login = "";
 $pass = "";
 
-if(isGet()){}
-
 if(isPost()){
 //the page got here from submitting the forms
     $login = trim($_POST["user_id"]);
@@ -113,7 +111,10 @@ if(isPost()){
         <div class="col"></div>
         <div class="col-6">
             <?php echo $error;
-            echo $_SESSION['RedirectError'];
+            if(isset($_SESSION['RedirectError']))
+            {
+                echo $_SESSION['RedirectError'];
+            }
             if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
             {
                 $userID = $_COOKIE['username'];

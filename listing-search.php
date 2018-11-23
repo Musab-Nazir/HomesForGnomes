@@ -2,32 +2,16 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nizar
-Name:			      Kevin Astilla
-Name:			      Nathan Morris
+Name:			Kevin Astilla
+Name:			Nathan Morris
 Description:  	Search Listings File For Homes For Gnomes
 Date:         	28 September 2018
 */
-  $title = "WEBD2201 - Web Development - Fundamentals";
-  $date = "12 April 2018";
-  $file = "template.php";
-  $banner = "Lab 9: Database/PHP Lab - User Login";
-  $description = "This page will be a log in page for the website and a new functions.php file will contain some shared functions for use throughout the website.";
+
 
 require "header.php";
-/*if(!isset($_SESSION['userType']))
-{
-    $_SESSION['RedirectError'] = "You were not logged in<br/>";
-    header("Location:login.php");
-}
-if(!isset($_SESSION['citySelected']))
-{
-    $_SESSION['RedirectError'] = "Please select a city<br/>";
-    header("Location:listing-city-select.php");
-}*/
 
-
-//variable declaration
-$city = "";//$_SESSION['citySelected'];
+$city = "";
 $minPrice = "";
 $maxPrice = "";
 $bedroomCount = "";
@@ -37,15 +21,38 @@ $bathroomCount = "";
 $error = "";
 $output = "";
 
+if(isset($_GET["city"]))
+{
+    $city = $_GET["city"];
+    setcookie('city',$city,COOKIE_LIFESPAN);
+    $_SESSION['city'] = $city;
+}
+else if (isset($_COOKIE['city']))
+{
+    $city = $_COOKIE['city'];
+    $_SESSION['city'] = $city;
+}
+
+if(!isset($city))
+{
+    $_SESSION['RedirectError'] = "Please select a city<br/>";
+    header("Location:listing-city-select.php");
+}
+
+//variable declaration
+
 
 //validation
 if(isPost())
     {
-        $city = trim($_POST["city"]);
         $minPrice = trim($_POST["minPrice"]);
+        $output .=$_POST["minPrice"];
         $maxPrice = trim($_POST["maxPrice"]);
+        $output .=$_POST["maxPrice"];
         $bedroomCount = trim($_POST["bedroom"]);
+        $output .=$_POST["bedroom"];
         $bathroomCount = trim($_POST["bathroom"]);
+        $output .=$_POST["bathroom"];
 
         $error = "";
         $output = "";
@@ -66,14 +73,14 @@ if(isPost())
 
         if(!isset($bedroomCount) || $bedroomCount == ""){
         //means the user did not enter
-        $error .= "<br/>You did not enter bedroom count."; 
+        $error .= "<br/>You did not enter bedroom count.";
         }
         else if($bedroomCount == '0') $error .= "<br\>Please specify number of bedrooms";
 
 
         if(!isset($bathroomCount) || $bathroomCount == ""){
         //means the user did not enter
-        $error .= "<br/>You did not enter bathroom count."; 
+        $error .= "<br/>You did not enter bathroom count.";
         }
         else if($bathroomCount== '0') $error .= "<br/>Please specify number of bedrooms";
 
@@ -102,34 +109,38 @@ if(isPost())
 ?>
   <!-- start of main page content -->
   <div class="container">
+      <?php echo $error; ?>
+      <?php echo $output;?>
   <div class="row" style="margin-top:75px">
     <div class="col"></div>
-        <?php echo $error; ?>
-        <?php echo $output;?>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Please fill out the details about the Listing</h5>
+                <h5 class="card-title">Please fill out more details about listings in <?php echo GetProperty($city, 'city') ?></h5>
+                <br/>
                 <form method="post" action="<?php sticky();?>" >
                     <div class="form-group">
-                        
-                        <table style="width:100%">
-                            <tr>
-                                <td><label>City</label>
-                                    <?php echo (build_dropdown("city","$city"));?></td>
-                                <td><label>Min Price</label>
-                        <input type="text" id="halfBoxR" class="form-control" name="minPrice" value="<?php echo $minPrice ?>" placeholder="MIN Price">
-                                </td>
-                                <td><label>Max Price</label>
-                        <input type="text" id="halfBoxR" class="form-control" name="maxPrice" value="<?php echo $maxPrice ?>" placeholder="MAX Price">
-                                </td>
-                                <td><label>Bedroom</label>
-                        <input type="text" id="halfBoxL" class="form-control" name="bedroom" value="<?php echo $bedroomCount ?>" >
-                                </td>
-                                <td><label>Bathroom</label>
-                        <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bathroomCount ?>">
-                                </td>
-                            </tr>
-                        </table>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Min Price</label>
+                                <input type="text" class="form-control" name="minPrice" value="<?php echo $minPrice ?>" placeholder="MIN Price">
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <label>Max Price</label>
+                                <input type="text" class="form-control" name="maxPrice" value="<?php echo $maxPrice ?>" placeholder="MAX Price">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Bedroom</label>
+                                <input type="text" class="form-control" name="bedroom" value="<?php echo $bedroomCount ?>" >
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <label>Bathroom</label>
+                                <input type="text" class="form-control" name="bathroom" value="<?php echo $bathroomCount ?>">
+                            </div>
+                        </div>
                         <br/>
 
                         <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Search</button>
@@ -140,6 +151,7 @@ if(isPost())
         </div>
     <div class="col"></div>
   </div>
+  <br/>
 </div>
 
 

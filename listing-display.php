@@ -53,13 +53,11 @@ require "header.php";
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item">
-              <a class="page-link" href="#">Next</a>
+                <a class="page-link" href="#">Next</a>
             </li>
         </ul>
     </nav>
 </div>
-
-
 
   <!-- end of main page content -->
 

@@ -1,27 +1,27 @@
-drop sequence if exists listing_id_seq;
+﻿drop sequence if exists listing_id_seq;
 
 create sequence listing_id_seq;
 select setval('listing_id_seq', 10000);
 
 create table listings (
   listing_id INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('listing_id_seq'),
-  user_id VARCHAR(20) NOT NULL REFERENCES users(id),
+  user_id VARCHAR(20) NOT NULL REFERENCES users(user_id),
   status VARCHAR(1) NOT NULL,
   price NUMERIC NOT NULL,
   headline VARCHAR(100),
   description VARCHAR(1000) NOT NULL,
   postal_code CHAR(6) NOT NULL,
   images SMALLINT NOT NULL,
-  city INTEGER NOT NULL FOREIGN KEY,
-  property_options INTEGER NOT NULL,
+  city INTEGER NOT NULL,
+  property_option INTEGER NOT NULL,
   bedrooms INTEGER NOT NULL,
   bathrooms INTEGER NOT NULL,
-  property_type INTEGER NOT NULL FOREIGN KEY,
-  flooring INTEGER NOT NULL FOREIGN KEY,
-  parking INTEGER NOT NULL FOREIGN KEY,
-  building_type INTEGER NOT NULL FOREIGN KEY,
-  basement_type INTEGER NOT NULL FOREIGN KEY,
-  interior_type INTEGER NOT NULL FOREIGN KEY
+  property_type INTEGER NOT NULL,
+  flooring INTEGER NOT NULL,
+  parking INTEGER NOT NULL,
+  building_type INTEGER NOT NULL,
+  basement_type INTEGER NOT NULL,
+  interior_type INTEGER NOT NULL
 );
 insert into listings (user_id, status, price, headline, description, postal_code, images, city, property_option, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type) values ('lrubinowitchop', 'c', '748009.48', ' Best Value', 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.
 

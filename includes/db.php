@@ -10,8 +10,8 @@
 
     function db_connect()
     {
-        //return pg_connect("host=127.0.0.1 dbname=astillak_db user=astillak password=100396393" );
-        return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
+        return pg_connect("host=127.0.0.1 dbname=astillak_db user=astillak password=100396393" );
+        //return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
         //return pg_connect("host=127.0.0.1 dbname=nazirm_db user=nazirm password=Iamaboy1" );
     }
 
@@ -75,6 +75,14 @@
         }
         $dropdown  .= '\n\t</select>';
         return $dropdown;
+    }
+    function GetProperty($value, $table)
+    {
+        $conn = db_connect();
+        $sql = "SELECT value, property FROM $table WHERE value = '".$value."'";
+        $results = pg_query($conn, $sql);
+
+        return pg_fetch_result($results, "property");
     }
     function build_simple_dropdown($table, $selected)
     {
@@ -157,7 +165,7 @@
         $results = pg_query($conn, $sql);
         $dropdown  = '\n\t</select>';
         //process information here
-        
+
         For($rows = pg_num_rows($results) -1; $rows >= 0 ; $rows--)
         {
             $value = pg_fetch_result($results,$rows, "value");
@@ -177,7 +185,7 @@
         }
         $dropdown ='\n\t <option value =""></option>'.$dropdown;
         $dropdown = '<select style="border-radius: .25em; width:100px; margin-left:2em; border: 1px solid #ced4da;" name="'.$table.'[]" multiple>' .$dropdown;
-        
+
         return $dropdown;
     }
 
