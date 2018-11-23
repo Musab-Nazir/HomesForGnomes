@@ -198,6 +198,15 @@
         return $result;
 
     }
+    function get_listing_information_only($listing_id)
+    {
+        $conn = db_connect();
+        $result = pg_prepare($conn, "my_query_get_listing", 'SELECT * FROM listings WHERE listing_id = $1');
+        $result = pg_execute($conn, "my_query_get_listing", array($listing_id));
+
+        return $result;
+
+    }
     function build_checkbox($table, $selected)
     {
         $conn = db_connect();
@@ -227,11 +236,11 @@
     function build_listing_card(&$listing)
     {
         $output = '<h5 class="card-title">'.$listing["headline"].'</h5>';
-        $output .= '<img src="./images/Hobbiton-Waikato-IanBrodie-800x600.jpg" width="300px">';   //change this into the file path
+        $output .= '<img src="./images/Hobbiton-Waikato-IanBrodie-800x600.jpg" width="300px">';
         $output .= '<br/><p>Bathrooms: '.$listing["bathrooms"].'</p>';
         $output .= '<br/><p>Bedrooms: '.$listing["bedrooms"].'</p>';
         $output .= '<br/><p>Price: $'.$listing["price"].'</p>';
-        $output .= '<a href="login.php" class="btn btn-outline-success">View Listing</a>';
+        $output .= '<a href="listing-display.php?listingID='.$listing["listing_id"].'" class="btn btn-outline-success">View Listing</a>';
         return $output;
     }
 
