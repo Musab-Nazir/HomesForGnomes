@@ -998,3 +998,12 @@ insert into users (user_id, password, user_type, email_address, enrol_date, last
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('rminillorp', 'xnxpgEl1', 'a', 'awingrp@topsy.com', '2006-12-19', '2018-07-05');
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('mjenkynrq', 'tqByax', 'a', 'pmacarirq@hostgator.com', '2006-07-17', '2018-05-20');
 insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('bregisrr', 'qY5jZOULzZlB', 'a', 'nlarringtonrr@senate.gov', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('rathorr', 'password', 's', 'ramandeep.rathor@dcmail.ca', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('nazirm', 'password', 's', 'musab.nazir@dcmail.ca', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('morrisn', 'password', 's', 'nathan.morris@dcmail.ca', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('astillak', 'password', 's', 'kevin.astilla@dcmail.ca', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('farhans', 'password', 'a', 'soban.farhan@dcmail.ca', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('testinguy', 'password', 's', 'no@email.com', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('spoony', 'password', 's', 'spoon@email.com', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('SpoonyMcSpoons', 'password', 's', 'spoon@email.com', '2006-04-08', '2018-04-08');
+insert into users (user_id, password, user_type, email_address, enrol_date, last_access) values ('agentMan', 'password', 's', 'spoon@email.com', '2006-04-08', '2018-04-08');
