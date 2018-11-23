@@ -10,8 +10,10 @@
 
     function db_connect()
     {
-        return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
+        return pg_connect("host=127.0.0.1 dbname=astillak_db user=astillak password=100396393" );
+        //return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
         //return pg_connect("host=127.0.0.1 dbname=nazirm_db user=nazirm password=Iamaboy1" );
+
     }
 
     function updateLastAccess($conn)
@@ -147,6 +149,47 @@
         $_SESSION['preferredContactMethod'] = $userInfo["preferred_contact_method"];
 
         return;
+    }
+    function build_multiselect_dropdown($table, $selected)
+    {
+        //gather information here
+        $conn = db_connect();
+        $sql = "SELECT value, property FROM ".$table;
+        $results = pg_query($conn, $sql);
+        $dropdown  = '\n\t</select>';
+        //process information here
+        
+        For($rows = pg_num_rows($results) -1; $rows >= 0 ; $rows--)
+        {
+            $value = pg_fetch_result($results,$rows, "value");
+            $property = pg_fetch_result($results,$rows, "property");
+
+            if(($selected - $value) >= 0)
+            {
+                $select = 'selected =\"selected\"';
+                $selected -= $value;
+            }
+            else
+            {
+                $select = '';
+            }
+
+            $dropdown ='\n\t <option value ="'.$value.'" '.$select.' >'.$property.'</option>' .$dropdown;
+        }
+        $dropdown ='\n\t <option value =""></option>'.$dropdown;
+        $dropdown = '<select style="border-radius: .25em; width:100px; margin-left:2em; border: 1px solid #ced4da;" name="'.$table.'[]" multiple>' .$dropdown;
+        
+        return $dropdown;
+    }
+
+    function get_listing_information($user_id, $listing_id)
+    {
+        $conn = db_connect();
+        $result = pg_prepare($conn, "my_query_get_listing", 'SELECT * FROM listings WHERE user_id = $1 AND listing_id = $2');
+        $result = pg_execute($conn, "my_query_get_listing", array($user_id, $listing_id));
+
+        return $result;
+
     }
 
 ?>
