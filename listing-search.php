@@ -16,6 +16,8 @@ $minPrice = "";
 $maxPrice = "";
 $bedroomCount = "";
 $bathroomCount = "";
+$row = "";
+$listings = array();
 
 
 $error = "";
@@ -97,9 +99,12 @@ if(isPost())
             if(pg_num_rows($result) == '0')
                 $output .= "listing not found";
             else
-                $output .= pg_num_rows($result);
-            //header("Location:Dashboard.php");
-            //ob_flush();
+            while($row = pg_fetch_assoc($result)){
+                array_push($listings,$row['listing_id']);
+            }
+            $_SESSION['listingList'] = $listings;
+            header("Location:listing-display.php");
+            ob_flush();
         }
     }
 
@@ -109,9 +114,9 @@ if(isPost())
 ?>
   <!-- start of main page content -->
   <div class="container">
+  <div class="row" style="margin-top:75px">
       <?php echo $error; ?>
       <?php echo $output;?>
-  <div class="row" style="margin-top:75px">
     <div class="col"></div>
         <div class="card">
             <div class="card-body">
