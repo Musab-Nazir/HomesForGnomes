@@ -107,7 +107,7 @@ require("./includes/db.php");
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="listing-display.php">Display Listings</a>
-                <a class="dropdown-item" href="listing-city-select.php">Search Listings</a>
+                <a class="dropdown-item" href="listing-search.php">Search Listings</a>
                 <?php
                 if( isset($_SESSION['userType']))
                 {

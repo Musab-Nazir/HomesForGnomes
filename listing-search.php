@@ -29,13 +29,17 @@ if(isset($_GET["city"]))
     setcookie('city',$city,COOKIE_LIFESPAN);
     $_SESSION['city'] = $city;
 }
+
 else if (isset($_COOKIE['city']))
 {
     $city = $_COOKIE['city'];
     $_SESSION['city'] = $city;
 }
 
-if(!isset($city))
+
+
+//if(!isset($city))
+else
 {
     $_SESSION['RedirectError'] = "Please select a city<br/>";
     header("Location:listing-city-select.php");
