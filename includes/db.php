@@ -10,8 +10,8 @@
 
     function db_connect()
     {
-        return pg_connect("host=127.0.0.1 dbname=astillak_db user=astillak password=100396393" );
-        //return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
+        //return pg_connect("host=127.0.0.1 dbname=astillak_db user=astillak password=100396393" );
+        return pg_connect("host=127.0.0.1 dbname=group24_db user=group24_admin password=buffetboys48" );
         //return pg_connect("host=127.0.0.1 dbname=nazirm_db user=nazirm password=Iamaboy1" );
     }
 
@@ -56,14 +56,6 @@
             return False;
         }
     }
-    function GetProperty($value, $table)
-    {
-        $conn = db_connect();
-        $sql = "SELECT value, property FROM $table WHERE value = '".$value."'";
-        $results = pg_query($conn, $sql);
-
-        return pg_fetch_result($results, "property");
-    }
 
     function build_dropdown($table, $selected)
     {
@@ -83,6 +75,14 @@
         }
         $dropdown  .= '\n\t</select>';
         return $dropdown;
+    }
+    function GetProperty($value, $table)
+    {
+        $conn = db_connect();
+        $sql = "SELECT value, property FROM $table WHERE value = '".$value."'";
+        $results = pg_query($conn, $sql);
+
+        return pg_fetch_result($results, "property");
     }
     function build_simple_dropdown($table, $selected)
     {
@@ -226,13 +226,13 @@
 
     function build_listing_card(&$listing)
     {
-
-                $output = '<h5 class="card-title">'.$listing["headline"].'</h5>';
-                $output .= '<img src="./images/Hobbiton-Matamata-SaraOrme-800x600.jpg" width="300px">';//change this into the file path
-                $output .= '<br/><p>'.$listing["bathrooms"].'</p>';
-                $output .= '<br/><p>'.$listing["bedrooms"].'</p>';
-                $output .= '<br/><p>'.$listing["price"].'</p>';
-                return $output;
+        $output = '<h5 class="card-title">'.$listing["headline"].'</h5>';
+        $output .= '<img src="./images/Hobbiton-Waikato-IanBrodie-800x600.jpg" width="300px">';   //change this into the file path
+        $output .= '<br/><p>Bathrooms: '.$listing["bathrooms"].'</p>';
+        $output .= '<br/><p>Bedrooms: '.$listing["bedrooms"].'</p>';
+        $output .= '<br/><p>Price: $'.$listing["price"].'</p>';
+        $output .= '<a href="login.php" class="btn btn-outline-success">View Listing</a>';
+        return $output;
     }
 
 ?>
