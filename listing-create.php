@@ -149,13 +149,13 @@ if($_SESSION['userType'] != a)
 
             $conn = db_connect();
             $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_option, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
-            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."','".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
+            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','0','".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
                  '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
-
             $result = pg_query($conn, $sql);
+
             $output .= "Listing successfully created";
-            header("Location:admin.php");
-            ob_flush();
+            // header("Location:admin.php");
+            // ob_flush();
         }
     }
 ?>
