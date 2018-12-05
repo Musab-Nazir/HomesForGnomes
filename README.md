@@ -11,8 +11,7 @@
 * **Musab Nazir** - (https://github.com/Musab-Nazir)
 * **Kevin Astilla** - (https://github.com/kevinAstilla)
 * **Ramandeep Rathor** - (https://github.com/Rathor597)
-Consultant
-* **Soban Farhan** - (https://github.com/Soban-Farhan)
+* **Soban Farhan** - (https://github.com/Soban-Farhan) - Consultant
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
