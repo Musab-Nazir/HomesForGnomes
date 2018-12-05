@@ -21,7 +21,7 @@
     define("DB_USER","rathorr");
     define("COOKIE_LIFESPAN",time() + 60*60*24*7);
 
-    //All constants for the ppassword and username
+    //All constants for the password and username
     define("MINIMUM_ID_LENGTH", 5);
     define("MAXIMUM_ID_LENGTH", 20);
     define("MINIMUM_PASSWORD_LENGTH", 6);
@@ -48,5 +48,5 @@
     define("PRICE_FILTER", "/^(?:0|[1-9]\d*)(?:\.\d{2})?$/");
     define("PREVIEW_LINE_LIMIT",3);
 
-
+    define("IMAGE_LIMIT", 9);
 ?>

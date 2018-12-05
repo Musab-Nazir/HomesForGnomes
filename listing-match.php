@@ -14,10 +14,9 @@ if(isset($_SESSION['listingList']))
 {
     $listings = $_SESSION['listingList'];
 }
-$limit = 9;
 if (isset($_GET["page"])) {
     $page  = $_GET["page"];
-    $listingCount = ($page -1) * $limit;
+    $listingCount = ($page -1) * IMAGE_LIMIT;
 }
 else {
     $page=1;
@@ -36,7 +35,7 @@ for ($listingCount; $listingCount < count($listings); $listingCount++) {
         echo (build_listing_card($arrayRow));
         echo '</div></div></div>';
     }
-    if($listingCount !=0 && ($listingCount +1) % $limit ==0){
+    if($listingCount !=0 && ($listingCount +1) % IMAGE_LIMIT ==0){
         break;
     }
 }
@@ -49,7 +48,7 @@ for ($listingCount; $listingCount < count($listings); $listingCount++) {
     <br/>
     <div class="row justify-content-md-center">
     <?php
-    $total_pages = ceil(count($listings) / $limit);
+    $total_pages = ceil(count($listings) / IMAGE_LIMIT);
     $pagLink = "<div class='pagination'>";
     for ($i=1; $i<=$total_pages; $i++) {
                  if($i == $page)
