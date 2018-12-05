@@ -1,16 +1,10 @@
-# Project Title
-
-Homes for Gnomes - A Real Estate Website
-
-### Prerequisites
-
-Since the site is pure HTML and PHP, all you should need is Apache 2.0 and PHP 5 installed
+# Homes for Gnomes - A Real Estate Website
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [PHP](http://www.php.net/) - Version 5.6 used
+* [HTML]
+* [PostgreSQL](https://www.postgresql.org/) - Version 10
 
 ## Authors
 
