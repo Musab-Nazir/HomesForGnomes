@@ -94,8 +94,8 @@ if(isPost())
 
             $conn = db_connect();
 
-            $sql = "SELECT * FROM listings WHERE bedrooms = '".$bedroomCount."' AND bathrooms = '".$bathroomCount."' AND city = '".$city."' AND status = 'o'
-            AND price BETWEEN '".$minPrice."' AND '".$maxPrice."' ORDER BY listing_id DESC LIMIT 200";
+            $sql = "SELECT * FROM listings ORDER BY listing_id DESC LIMIT 200";/* WHERE bedrooms = '".$bedroomCount."' AND bathrooms = '".$bathroomCount."' AND city = '".$city."' AND status = 'o'
+            AND price BETWEEN '".$minPrice."' AND '".$maxPrice."' ORDER BY listing_id DESC LIMIT 200";*/
 
             $result = pg_query($conn, $sql);
 
@@ -155,9 +155,14 @@ if(isPost())
                             </div>
                         </div>
                         <br/>
-
-                        <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Search</button>
-                        <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <button type="submit" class="btn btn-outline-success" style="width:100px; margin-right: 33%;">Search</button>
+                            </div>
+                            <div>
+                                <button type="reset" class="btn btn-outline-success" style="width:100px;">Clear</button>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

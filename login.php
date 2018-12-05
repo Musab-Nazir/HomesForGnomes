@@ -139,9 +139,13 @@ if(isPost()){
                     <input type="checkbox" class="form-check-input" name="remember">
                     <label class="form-check-label">Remember Me</label>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Login</button>
-                    <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <button type="submit" class="btn btn-outline-success" style="width:80px;">Login</button>
+                    </div>
+                    <div>
+                        <button type="reset" class="btn btn-outline-success" style="width:80px;">Clear</button>
+                    </div>
                 </div>
             </form>
         </div>

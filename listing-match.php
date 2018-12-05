@@ -30,7 +30,7 @@ for ($listingCount; $listingCount < count($listings); $listingCount++) {
     $result = pg_query($conn, $sql);
     for($index = 0; $index < pg_num_rows($result); $index++)
     {
-        echo '<div class="col-4"style="margin-top:1em"><div class="card"><div class="card-body">';
+        echo '<div class="col-md-4"style="margin-top:1em"><div class="card"><div class="card-body">';
          $arrayRow = pg_fetch_array($result,$index);
         echo (build_listing_card($arrayRow));
         echo '</div></div></div>';

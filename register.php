@@ -2,14 +2,14 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			Kevin Astilla
-Name:			Nathan Morris
+Name:			      Kevin Astilla
+Name:			      Nathan Morris
 Description:  	Register File For Homes For Gnomes
-Date:         	09 November 2018
+Date:         	28 September 2018
 */
-  $title = "WEBD3201 - Web Development - Intermediate";
-  $date = "09 November 2018";
-  $file = "Register.php";
+  $title = "WEBD2201 - Web Development - Fundamentals";
+  $date = "12 April 2018";
+  $file = "template.php";
   $banner = "Registration Page";
   $description = "This page will be a log in page for the website and a new functions.php file will contain some shared functions for use throughout the website.";
 
@@ -218,9 +218,13 @@ $output = "";
                         <label class="form-check-label">Make an Agent account?</label>
                         <hr/>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Register</button>
-                        <button type="reset" class="btn btn-outline-success" style="width:33%;">Clear</button>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <button type="submit" class="btn btn-outline-success" style="width:80px; margin-right: 33%;">Register</button>
+                        </div>
+                        <div>
+                            <button type="reset" class="btn btn-outline-success" style="width:80px;">Clear</button>
+                        </div>
                     </div>
                 </form>
             </div>
