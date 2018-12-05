@@ -102,14 +102,19 @@ if(isPost())
             if(pg_num_rows($result) == '0')
                 $output .= "listing not found";
             else
-            while($row = pg_fetch_assoc($result)){
-                array_push($listings,$row['listing_id']);
+            {
+                while($row = pg_fetch_assoc($result))
+                {
+                    array_push($listings,$row['listing_id']);
+
+                }
+                $_SESSION['listingList'] = $listings;
+                header("Location:listing-display.php");
+                ob_flush();
             }
-            $_SESSION['listingList'] = $listings;
-            header("Location:listing-display.php");
-            ob_flush();
-        }
+
     }
+}
 
 
 
