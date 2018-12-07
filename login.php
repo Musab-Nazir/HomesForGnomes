@@ -2,8 +2,8 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			Kevin Astilla
-Name:			Nathan Morris
+Name:			      Kevin Astilla
+Name:		       	Nathan Morris
 Description:  	Login File For Homes For Gnomes
 Date:         	28 September 2018
 */
@@ -73,7 +73,7 @@ if(isPost()){
                 //updateLastAccess($conn);
                 $sql = "UPDATE users SET last_access = '". date("Y-m-d", time()) . "' WHERE user_id = '".$login."'";
 
-				$update = pg_query($conn, $sql);
+				        $update = pg_query($conn, $sql);
                 //load the session
                 LoadSession($userInfo);
 
@@ -84,7 +84,8 @@ if(isPost()){
                     setcookie('password',$pass,COOKIE_LIFESPAN);
                 }
                 //redirect to appropriate page
-                if($_SESSION['userType'] == 's'){header("Location:admin.php");}
+                if($_SESSION['userType'] == 'd'){header("Location:admin.php");}
+                else if($_SESSION['userType'] == 's'){header("Location:admin.php");}
                 else if($_SESSION['userType'] == 'a'){header("Location:dashboard.php");}
                 else if($_SESSION['userType'] == 'c'){header("Location:welcome.php");}
                 ob_flush();

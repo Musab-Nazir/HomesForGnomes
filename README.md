@@ -6,7 +6,7 @@ The site also uses cookies for some of the search functionality and for remember
 
 * [PHP](http://www.php.net/) - Version 5.6 used
 * [HTML]
-* [PostgreSQL](https://www.postgresql.org/) - Version 10
+* [PostgreSQL](https://www.postgresql.org/) - Version 9.5.5
 
 ## Authors
 
