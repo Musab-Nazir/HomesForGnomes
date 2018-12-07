@@ -21,7 +21,7 @@ if (isset($_GET["page"])) {
 else {
     $page=1;
     $listingCount = 0;
- };
+ }
 
 $conn = db_connect();
 echo '<div class="container"><div class="row" style="margin-top:75px">';

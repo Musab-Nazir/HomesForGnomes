@@ -9,17 +9,27 @@ Date:           28 September 2018
 */
 
 require "header.php";
-
+$error = "";
+$output = "";
     //declare all variables
 	if(isset($_GET["listingID"]))
 	{
 		$listing_id = $_GET["listingID"]; 		//listing_id
 	}
-	
-	else{
-		$_SESSION['RedirectError'] = "No listing was selected<br/>";
-		header("Location:listing-match.php");
-		ob_flush;
+
+	// else{
+	// 	$_SESSION['RedirectError'] = "No listing was selected<br/>";
+	// 	header("Location:listing-match.php");
+	// 	ob_flush();
+	// }
+
+	if(isset($_GET["favorite"]))
+	{
+	    $listing_id = $_GET["favorite"]; 		//listing_id
+	    $sql = "INSERT INTO favourites(user_id, listing_id)
+	    VALUES ('".$_SESSION['userID']."','".$listing_id."')";
+	    $result = pg_query(db_connect(), $sql);
+	    $output .= "Listing added to favorites";
 	}
 
     //end of the function
@@ -43,191 +53,97 @@ require "header.php";
     $interiorType = $listingInformation['interior_type'];
 
     //$images = $listingInformation['images'];
-
-
-    $error = "";
-    $output = "";
-
-
-    // if(isPost())
-    // {
-    //     $headline = trim($_POST["headline"]);
-    //     $description = trim($_POST["description"]);
-    //     $postalCode = trim($_POST["postal_code"]);
-    //     $price = trim($_POST["price"]);
-    //     $bedroom = trim($_POST["bedroom"]);
-    //     $bathroom = trim($_POST["bathroom"]);
-    //     $city = trim($_POST["city"]);
-    //
-    //     (isset($_POST["listing_status"]))? $listingStatus = trim($_POST["listing_status"]):"";
-    //     $propertyOptions = trim($_POST["property_options"]);
-    //
-    //     $propertyType = trim($_POST["property_type"]);
-    //     $flooring = trim(sum_check_box($_POST["property_flooring"]));
-    //     $parking = trim($_POST["property_parking"]);
-    //     $buildingType = trim($_POST["property_building_type"]);
-    //     $basementType = trim($_POST["property_basement_type"]);
-    //     $interiorType = trim(sum_check_box($_POST["property_interior_type"]));
-    //
-    //     $images = "";
-    //
-    //     $error = "";
-    //     $output = "";
-    //     //trim the user input
-    //
-    //     //validate headline
-    //     if ($headline == "") $error .= "<br/>No headline was entered";
-    //     elseif (is_numeric($headline))
-    //     {
-    //         $error .= "<br/>headline cannot be a number";
-    //         $headline = "";
-    //     }
-    //     //validate description
-    //     if ($description == "") $error .= "<br/>No description was entered";
-    //     elseif (is_numeric($headline))
-    //     {
-    //         $error .= "<br/>headline cannot be a number";
-    //         $headline = "";
-    //     }
-    //     //validate postal code
-    //     if ($postalCode == "") $error .= "<br/>You did not enter a postal code";
-    //     else if (!isValidPostalCode($postalCode)) $error .= "<br/>your postal code format is invalid";
-    //
-    //     //in case the user adds the dollar sign or commas
-    //     if (preg_match(PRICE_FILTER, $price) == '0') $error .= "<br/>No price was entered";
-    //
-    //     if(!isset($bedroom) || $bedroom == ""){
-    //     //means the user did not enter
-    //     $error .= "<br/>You did not enter bedroom count."; //set error
-    //     $login = "";
-    //     }
-    //     else if($bedroom == '0') $error .= "<br\>Please specify number of bedrooms";
-    //
-    //
-    //     if(!isset($bathroom) || $bathroom == ""){
-    //     //means the user did not enter
-    //     $error .= "<br/>You did not enter bathroom count."; //set error
-    //     $login = "";
-    //     }
-    //     else if($bathroom== '0') $error .= "<br/>Please specify number of bedrooms";
-    //
-    //     if($city == '0') $error .= "<br/> Please select a city ";
-    //     if($propertyType == '0') $error .= "<br/> Please select a property type";
-    //     if($flooring == '0') $error .= "<br/> Please select the type of flooring";
-    //     if($parking == '0') $error .= "<br/> Please select a please indicate type of parking";
-    //     if($buildingType == '0') $error .= "<br/> Please select the type oif building";
-    //     if($basementType == '0') $error .= "<br/> Please select the basement\'s current state";
-    //     if($interiorType == '0') $error .= "<br/> Please select the interior design type ";
-    //
-    //
-    //     //work on the image!!
-    //     // if($_FILES['uploadfile']['error'] != 0)
-    //     // {
-    //     //     $error .= "<br/>Problem uploading your file";
-    //     // }
-    //     // else if($_FILES['uploadfile']['size'] > MAXIMUM_IMAGE_SIZE) //size in bytes
-    //     // {
-    //     //     $error .= "<br/>File selected is too big";
-    //     // }
-    //     // else if($_FILES['uploadfile']['type'] != "image/jpeg" && $_FILES['uploadfile']['type'] != "image/pjpeg")
-    //     // {
-    //     //     $error .= "<br/>Your profile pictures must be of type JPEG";
-    //     // }
-    //     // else//no problem happened
-    //     // {
-    //     //     //this is where i stoped
-    //     //     //$image = //make it a small int??
-    //     // }
-    //     //if no errors
-    //     if($error === "")
-    //     {
-    //
-    //         $conn = db_connect();
-    //
-    //         $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
-    //         VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."', '".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
-    //              '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
-    //
-    //         $result = pg_query($conn, $sql);
-    //         $output .= "Listing successfully created";
-    //         //header("Location:Dashboard.php");
-    //         ob_flush();
-    //     }
-    // }
 ?>
 
   <div class="container">
   <div class="row" style="margin-top:75px">
     <div class="col"></div>
-    <div class="col-6">
+    <div class="col-8">
         <br/>
         <?php echo $error; ?>
+		<?php echo $output; ?>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Please fill out the details about the Listing</h5>
                 <form method="post" action="<?php sticky();?>" >
                     <div class="form-group">
-                        <label>Headline</label>
-                        <input type="text" class="form-control" name="headline" value="<?php echo $headline ?>">
+                        <h3 style="text-decoration:underline;"><?php echo $headline ?></h3>
                         <br/>
-                        <label>Description</label>
-                        <textarea class="form-control" name="description" maxlength="1000" rows="5" id="description"><?php echo $description ?></textarea>
-                        <br/>
-                        <label>City</label>
-                        <?php echo (build_dropdown("city","$city"));?>
-                        <input type="text" id="halfBoxR" class="form-control" name="postal_code" value="<?php echo $postalCode ?>" style="width:8em; margin-left:150px;">
-                        <br/>
-                        <label>Bedroom Count</label>
-                        <input type="text" id="halfBoxL" class="form-control" name="bedroom" value="<?php echo $bedroom ?>" style="width:3em;">
-                        <label style="margin-left:100px;">Bathroom Count</label>
-                        <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bathroom ?>" style="width:3em;">
-                        <br/>
-                        <table style="width:100%">
+                        <h6>Description</h6>
+                        <p><?php echo $description ?></p>
+
+						<table style="width:100%;">
+							<tr>
+								<td><h6>Postal Code</h6></td>
+								<td><p><?php echo $postalCode ?></p></td>
+							</tr>
+							<tr>
+								<td><h6>City</h6></td>
+								<td><p><?php echo GetProperty($city,"city");?></p></td>
+							</tr>
+							<tr>
+								<td><h6>Bedroom Count</h6></td>
+								<td><p><?php echo $bedroom ?></p></td>
+							</tr>
+							<tr>
+								<td><h6>Bathroom Count</h6></td>
+								<td><p><?php echo $bathroom ?></p></td>
+							</tr>
+							<tr>
+								<td><h6>Property Options</h6></td>
+								<td><p><?php echo GetProperty($propertyOptions,"property_options");?></p></td>
+							</tr>
+							<tr>
+								<td><h6>Property Type</h6></td>
+								<td><p><?php echo GetProperty($propertyType,"property_type");?></p></td>
+							</tr>
                             <tr>
-                                <td><label>Property Options</label></td>
-                                <td><?php echo (build_dropdown("property_options","$propertyOptions"));?></td>
+                                <td><h6>Property Parking</h6></td>
+								<td><p><?php echo GetProperty($parking,"property_parking");?></p></td>
                             </tr>
                             <tr>
-                                <td><label>Property Type</label></td>
-                                <td><?php echo (build_dropdown("property_type","$propertyType"));?></td>
+                                <td><h6>Property Building Type</h6></td>
+								<td><p><?php echo GetProperty($buildingType,"property_building_type");?></p></td>
                             </tr>
                             <tr>
-                                <td><label>Property Flooring</label></td>
+                                <td><h6>Property Basement Type</h6></td>
+								<td><p><?php echo GetProperty($basementType,"property_basement_type");?></p></td>
+                            </tr>
+							<tr>
+                                <td><h6>Property Flooring</h6></td>
                                 <td><?php echo (build_multiselect_dropdown("property_flooring","$flooring"));?></td>
                             </tr>
                             <tr>
-                                <td><label>Property Parking</label></td>
-                                <td><?php echo (build_dropdown("property_parking","$parking"));?></td>
-                            </tr>
-                            <tr>
-                                <td><label>Property Building Type</label></td>
-                                <td><?php echo (build_dropdown("property_building_type","$buildingType"));?></td>
-                            </tr>
-                            <tr>
-                                <td><label>Property Basement Type</label></td>
-                                <td><?php echo (build_dropdown("property_basement_type","$basementType"));?></td>
-                            </tr>
-                            <tr>
-                                <td><label>Property Interior Type</label></td>
+                                <td><h6>Property Interior Type</h6></td>
                                 <td><?php echo (build_multiselect_dropdown("property_interior_type","$interiorType"));?></td>
                             </tr>
-                        </table>
-
-                        <label>Price
-                        <input type="text" id="halfBoxR" class="form-control" name="price" value="<?php echo $price ?>" placeholder=""></label>
-                        <br>
-                        <input type="file" name="myFile"><br><br>
+							<tr>
+								<td colspan="2"><hr/></td>
+							</tr>
+							<tr>
+								<td><h5 style="color:green;">Price</h5></td>
+								<td><h6><?php echo "$".$price ?></h6></td>
+							</tr>
+							<tr>
+								<td colspan="2"><hr/></td>
+							</tr>
+						</table>
+                        <h6>Images<h6/>
                         <br/>
-                        <?php echo (build_radio("listing_status","$listingStatus"));?>
-                        <br/>
-
+                        <?php //echo (build_radio("listing_status","$listingStatus"));?>
                     </div>
-                    <!--personal information section-->
+					<div class="d-flex justify-content-between">
+	                    <div>
+							<?php if( isset($_SESSION['userType'])){
+								echo "<a href=\"listing-display.php?favorite=$listing_id\" class=\"btn btn-outline-success\">Favourite</a>";
+							}?>
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-outline-success" style="width:33%; margin-right: 33%;">Book a Viewing</button>
-                        <button type="reset" class="btn btn-outline-success" style="width:33%;">Add to Favourites</button>
-                    </div>
+	                    </div>
+	                    <div>
+							<?php if( isset($_SESSION['userType'])){
+								echo "<button type=\"submit\" name=\"rm-favorites\" class=\"btn btn-outline-success\" style=\"width:200px;\">Remove from Favorites</button>";
+							}?>
+	                    </div>
+	                </div>
                 </form>
             </div>
         </div>

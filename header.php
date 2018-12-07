@@ -102,7 +102,7 @@ require("./includes/db.php");
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
 				<?php if(isset($_SESSION['listingList']))
 				{
-					echo "<a class=\"dropdown-item\" href=\"listing-display.php\">Display Listings</a>";
+					echo "<a class=\"dropdown-item\" href=\"listing-match.php\">Display Listings</a>";
                 }?>
                 <a class="dropdown-item" href="listing-search.php">Search Listings</a>
                 <?php
