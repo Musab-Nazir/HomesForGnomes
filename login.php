@@ -137,8 +137,17 @@ if(isPost()){
                     placeholder="Password">
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="remember">
+                    <table width="100%">
+                      <tr>
+                        <td>
+                          <input type="checkbox" class="form-check-input" name="remember">
                     <label class="form-check-label">Remember Me</label>
+                  </td>
+                  <td align="right">
+                    <a href="password-request.php">Forgot Password<a/>
+                  </td>
+                </tr>
+              </table>
                 </div>
                 <div class="d-flex justify-content-between">
                     <div>
@@ -147,6 +156,9 @@ if(isPost()){
                     <div>
                         <button type="reset" class="btn btn-outline-success" style="width:80px;">Clear</button>
                     </div>
+                    <!-- <div> -->
+                        <!-- <button type="button" class="btn btn-outline-success" style="width:160px;"></button> -->
+                    <!-- </div> -->
                 </div>
             </form>
         </div>
