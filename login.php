@@ -84,7 +84,7 @@ if(isPost()){
                     setcookie('password',$pass,COOKIE_LIFESPAN);
                 }
                 //redirect to appropriate page
-                if($_SESSION['userType'] == 'd'){header("Location:admin.php");}
+                if($_SESSION['userType'] == 'd'){header("Location:aup.php");}
                 else if($_SESSION['userType'] == 's'){header("Location:admin.php");}
                 else if($_SESSION['userType'] == 'a'){header("Location:dashboard.php");}
                 else if($_SESSION['userType'] == 'c'){header("Location:welcome.php");}

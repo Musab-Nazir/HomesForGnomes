@@ -17,10 +17,16 @@ require("header.php");
 ?>
 <!-- Start of Main Page Content -->
 
-<div>
-  <p>
-    You messed up....
-  </p>
+<div class="container">
+    <div class="row">
+          <div class="col"></div>
+          <div class="col-6">
+              <br/>
+              <h2>Acceptable User Policy</h2>
+              <!-- <p>Welcome back <?php echo $_SESSION['userID']; ?> you last logged in on <?php echo $_SESSION['last_access']; ?></p> -->
+          </div>
+          <div class="col"></div>
+      </div>
 </div>
 
 <!-- end of main page content -->
