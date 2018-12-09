@@ -25,13 +25,31 @@ $output = "";
 
 	if(isset($_GET["favorite"]))
 	{
-	    $listing_id = $_GET["favorite"]; 		//listing_id
+	    $listing_id = $_GET["favorite"];
 	    $sql = "INSERT INTO favourites(user_id, listing_id)
 	    VALUES ('".$_SESSION['userID']."','".$listing_id."')";
 	    $result = pg_query(db_connect(), $sql);
 	    $output .= "Listing added to favorites";
 	}
+	if(isset($_GET["remove"]))
+	{
+	    $listing_id = $_GET["remove"];
+	    $sql = "DELETE FROM favourites WHERE user_id = '".$_SESSION['userID']."' AND listing_id = '".$listing_id."'";
+	    $result = pg_query(db_connect(), $sql);
+	    $output .= "Listing removed from your favorites";
+	}
 
+	if(isset($_GET["report"]))
+	{
+	    $listing_id = $_GET["report"];
+		$sqlListing = "SELECT * FROM listings WHERE listing_id = '".$listing_id."'";
+		$resultListing = pg_query(db_connect(), $sqlListing);
+		$ListingDetails = pg_fetch_assoc($resultListing);
+	    $sql = "INSERT INTO offensives(user_id, listing_id, reported_on, status)
+	    VALUES ('".$_SESSION['userID']."','".$listing_id."', '". date("Y-m-d", time()) . "', '".$ListingDetails['status']."')";
+	    $result = pg_query(db_connect(), $sql);
+	    $output .= "Listing reported";
+	}
     //end of the function
     $listingInformation = pg_fetch_assoc(get_listing_information_only($listing_id));
 
@@ -136,11 +154,15 @@ $output = "";
 							<?php if( isset($_SESSION['userType'])){
 								echo "<a href=\"listing-display.php?favorite=$listing_id\" class=\"btn btn-outline-success\">Favourite</a>";
 							}?>
-
 	                    </div>
 	                    <div>
 							<?php if( isset($_SESSION['userType'])){
-								echo "<button type=\"submit\" name=\"rm-favorites\" class=\"btn btn-outline-success\" style=\"width:200px;\">Remove from Favorites</button>";
+								echo "<a href=\"listing-display.php?remove=$listing_id\" class=\"btn btn-outline-success\">Un-Favourite</a>";
+							}?>
+	                    </div>
+						<div>
+							<?php if( isset($_SESSION['userType'])){
+								echo "<a href=\"listing-display.php?report=$listing_id\" class=\"btn btn-outline-danger\">Report Listing</a>";
 							}?>
 	                    </div>
 	                </div>
