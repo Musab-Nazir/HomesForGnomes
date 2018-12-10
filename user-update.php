@@ -4,14 +4,9 @@ Name:         	Ramandeep Rathor
 Name:           Musab Nazir
 Name:			Kevin Astilla
 Name:			Nathan Morris
-Description:  	Register File For Homes For Gnomes
-Date:         	28 September 2018
+Description:  	User-Update File For Homes For Gnomes
+Date:         	10th December 2018
 */
-  $title = "WEBD2201 - Web Development - Fundamentals";
-  $date = "12 April 2018";
-  $file = "template.php";
-  $banner = "Update Page";
-  $description = "This page will update user info";
 
 require "header.php";
 if(!isset($_SESSION['userType']))

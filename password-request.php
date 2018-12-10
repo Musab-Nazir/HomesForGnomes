@@ -2,17 +2,11 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			      Kevin Astilla
-Name:		       	Nathan Morris
+Name:			Kevin Astilla
+Name:		    Nathan Morris
 Description:  	Request Password For Homes For Gnomes
 Date:         	07 December 2018
 */
-  $title = "WEBD3201 - Web Development - Intermediate";
-  $date = "07 December 2018";
-  $file = "password-request.php";
-  $banner = "Request Password Page";
-  $description = "This page will generate a new password and email it to the user if user exists.";
-
 require("header.php");
 
 //empty out error and result regardless of method that got you here
@@ -23,7 +17,7 @@ $login = "";
 // $userMessage = "";
 
 if(isPost()){
-  unset($_SESSION['RedirectError'];
+  $_SESSION['RedirectError'] = "";
 
   $login = trim($_POST["user_id"]);
 

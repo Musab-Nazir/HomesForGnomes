@@ -5,7 +5,7 @@ Name:           Musab Nizar
 Name:			Kevin Astilla
 Name:			Nathan Morris
 Description:  	Dashboard File For Homes For Gnomes
-Date:         	28 September 2018
+Date:         	10th December 2018
 */
 
 require "header.php";
@@ -19,9 +19,11 @@ if($_SESSION['userType'] != "a")
 }
 if (isset($_GET["page"])) {
     $page  = $_GET["page"];
+    $index = ($page -1) * IMAGE_LIMIT;
 }
 else {
     $page=1;
+    $index = 0;
  }
 
 
@@ -38,10 +40,10 @@ else {
       <h4>Your Listings</h4>
       <?php
           echo '<div class="row">';
-          $sql = "SELECT listing_id FROM listings WHERE user_id = '".$_SESSION['userID']."'";
+          $sql = "SELECT listing_id FROM listings WHERE user_id = '".$_SESSION['userID']."' AND status = 'o' ORDER BY listing_id";
           $result = pg_query($conn, $sql);
           $listings = pg_fetch_all($result);
-          for($index = 0; $index < pg_num_rows($result); $index++)
+          for($index; $index < pg_num_rows($result); $index++)
           {
               $sql = "SELECT * FROM listings WHERE listing_id = '".$listings[$index]['listing_id']."'";
               $listing_result = pg_query($conn, $sql);
@@ -49,6 +51,9 @@ else {
               $arrayRow = pg_fetch_assoc($listing_result);
               echo (build_listing_card($arrayRow));
               echo '</div></div></div>';
+              if($index !=0 && ($index +1) % IMAGE_LIMIT ==0){
+                  break;
+              }
           }
       ?>
           </div>

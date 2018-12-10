@@ -94,7 +94,7 @@ if(isPost())
 
             $conn = db_connect();
 
-            $sql = "SELECT * FROM listings ORDER BY listing_id DESC LIMIT 200";/* WHERE bedrooms = '".$bedroomCount."' AND bathrooms = '".$bathroomCount."' AND city = '".$city."' AND status = 'o'
+            $sql = "SELECT * FROM listings WHERE status = 'o' ORDER BY listing_id DESC LIMIT 200"; /*bedrooms = '".$bedroomCount."' AND bathrooms = '".$bathroomCount."' AND city = '".$city."' AND status = 'o'
             AND price BETWEEN '".$minPrice."' AND '".$maxPrice."' ORDER BY listing_id DESC LIMIT 200";*/
 
             $result = pg_query($conn, $sql);
@@ -109,7 +109,7 @@ if(isPost())
 
                 }
                 $_SESSION['listingList'] = $listings;
-                header("Location:listing-display.php");
+                header("Location:listing-match.php");
                 ob_flush();
             }
 

@@ -4,8 +4,8 @@ Name:           Ramandeep Rathor
 Name:           Musab Nazir
 Name:           Kevin Astilla
 Name:           Nathan Morris
-Description:    Create Listing File For Homes For Gnomes
-Date:           28 September 2018
+Description:    Listing-Display File For Homes For Gnomes
+Date:           10th December 2018
 */
 
 require "header.php";
@@ -14,9 +14,20 @@ $output = "";
     //declare all variables
 	if(isset($_GET["listingID"]))
 	{
-		$listing_id = $_GET["listingID"]; 		//listing_id
+		$listing_id = $_GET["listingID"];
+		$_SESSION['listingID'] = $_GET["listingID"];
 	}
 
+	if($_SESSION['userType'] == "a"){
+		$sql = "SELECT * FROM listings WHERE listing_id = '".$listing_id."'";
+		$result = pg_query(db_connect(), $sql);
+		$listingDetails = pg_fetch_assoc($result);
+		if($_SESSION['userID'] == $listingDetails['user_id'])
+		{
+			header("Location:listing-update.php");
+			ob_flush();
+		}
+	}
 	// else{
 	// 	$_SESSION['RedirectError'] = "No listing was selected<br/>";
 	// 	header("Location:listing-match.php");

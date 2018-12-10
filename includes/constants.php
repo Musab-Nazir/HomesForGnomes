@@ -34,6 +34,7 @@
     define("MINIMUM_PHONE_RANGE", 200);
     define("MAXIMUM_PHONE_RANGE", 999);
     define("MAXIMUM_IMAGE_SIZE",3000000);
+    define("IMAGE_LIMIT",9);
 
     //constants for listing status
 

@@ -2,17 +2,11 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			      Kevin Astilla
-Name:			      Nathan Morris
+Name:			Kevin Astilla
+Name:			Nathan Morris
 Description:  	Register File For Homes For Gnomes
 Date:         	28 September 2018
 */
-  $title = "WEBD2201 - Web Development - Fundamentals";
-  $date = "12 April 2018";
-  $file = "template.php";
-  $banner = "Registration Page";
-  $description = "This page will be a log in page for the website and a new functions.php file will contain some shared functions for use throughout the website.";
-
 require "header.php";
 
 if(isset($_SESSION['userType']))

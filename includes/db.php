@@ -274,4 +274,12 @@
         return $dropdown;
     }
 
+    function userEmail($userId)
+    {
+      $conn = db_connect();
+      $result = pg_prepare($conn, "my_query_email", 'SELECT email_address FROM users WHERE user_id = $1');
+      $result = pg_execute($conn, "my_query_p", array($userId));
+
+      return $result;
+    }
 ?>

@@ -7,7 +7,6 @@ Name:			      Nathan Morris
 Description:  	Header File For Homes For Gnomes webd3201
 Date:         	28 September 2018
 */
-ob_flush();
 session_start();
 require("./includes/functions.php");
 require("./includes/constants.php");
@@ -86,15 +85,6 @@ require("./includes/db.php");
                       <a class=\"dropdown-item\" href=\"update.php\">Update</a>
                     </div>";
               }?>
-            <!-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Profile
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                <a class="dropdown-item" href="change-password.php">Change Password</a>
-                <a class="dropdown-item" href="portfolio-2-col.html">Update</a>
-              </div>
-            </li>-->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Listings

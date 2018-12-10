@@ -2,10 +2,10 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nizar
-Name:			      Kevin Astilla
-Name:			      Nathan Morris
+Name:			Kevin Astilla
+Name:			Nathan Morris
 Description:  	Admin File For Homes For Gnomes
-Date:         	28 September 2018
+Date:         	10th December 2018
 */
 
 require "header.php";
@@ -19,9 +19,11 @@ if($_SESSION['userType'] != 's')
 }
 if (isset($_GET["page"])) {
     $page  = $_GET["page"];
+    $index = ($page -1) * IMAGE_LIMIT;
 }
 else {
     $page=1;
+    $index = 0;
  }
 ?>
   <!-- start of main page content -->
@@ -48,6 +50,9 @@ else {
               $arrayRow = pg_fetch_assoc($listing_result);
               echo (build_listing_card($arrayRow));
               echo '</div></div></div>';
+              if($index !=0 && ($index +1) % IMAGE_LIMIT ==0){
+                  break;
+              }
           }
       ?>
           </div>
