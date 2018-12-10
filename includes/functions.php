@@ -214,4 +214,13 @@ function showCheckboxes(section) {
     expanded = false;
   }
 }
+var myWindow;
+
+function openWin() {
+    myWindow = window.open("listing-images.php");
+}
+
+function closeWin() {
+    myWindow.close();
+}
 </script>
