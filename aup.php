@@ -2,11 +2,11 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			      Kevin Astilla
-Name:			      Nathan Morris
-Description:  	Search Listings File For Homes For Gnomes
-Date:         	10th December 2018
-*/
+Name:		    Kevin Astilla
+Name:		    Nathan Morris
+Description:  	Request Password For Homes For Gnomes
+Date:         	07 December 2018
+*/ 
 require "header.php"; ?>
 <div class="container" style="margin-top:2em;">
     <div class="row">

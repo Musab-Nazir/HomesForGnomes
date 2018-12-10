@@ -2,8 +2,6 @@
 <div class="container" style="margin-top:2em;">
     <div class="row">
         <center><h2>Privacy Policy</h2></center><br />
-        <br />
-        <b>PRIVACY POLICY</b><br />
         <p>
           Effective December 7th 2018
           The Privacy Policy provided by HomesforKnomes.ca provides information on properties in the province of Ontario located in the cities of Ajax, Pickering, Whitby, Oshawa, Brooklin and Peterborough. Homesforknomes.ca values your privacy. homesforKnomes is responsible for personal information that is collected through the sutes database such as your name, gender, postal and email address or telephone number. The reason for this policy is to ensure HomesforKnomes maintains this privacy policy for customers and explains the purpose of how HomesforKnomes collects, uses and discloses information including information from social media, websites, or mobile applications.
