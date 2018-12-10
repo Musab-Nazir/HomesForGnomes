@@ -58,7 +58,7 @@ include("header.php"); ?>
   <!-- Marketing Icons Section -->
   <div class="row">
     <div class="col-lg-8">
-      <div class="card h-100">
+      <div class="card">
         <h4 class="card-header">Connect Closer to Nature</h4>
         <div class="card-body">
           <p class="card-text">Gnomes are wonderful creatures attach to nature. Free spirited, joyful, detached to stressful realities in life.
@@ -72,7 +72,7 @@ include("header.php"); ?>
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="card h-100">
+      <div class="card">
         <h4 class="card-header">Already a Fellow Gnome?</h4>
         <div class="card-body">
           <p class="card-text">If you already signed up, then you can login her. Lets get you that home!</p>
