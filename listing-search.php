@@ -5,7 +5,7 @@ Name:           Musab Nazir
 Name:			Kevin Astilla
 Name:			Nathan Morris
 Description:  	Search Listings File For Homes For Gnomes
-Date:         	28 September 2018
+Date:         	10th December 2018
 */
 
 
@@ -95,7 +95,7 @@ if(isPost())
             $conn = db_connect();
 
             $sql = "SELECT * FROM listings WHERE bedrooms = '".$bedroomCount."' AND bathrooms = '".$bathroomCount."' AND city = '".$city."' AND status = 'o'
-            AND price BETWEEN '".$minPrice."' AND '".$maxPrice."' ORDER BY listing_id DESC LIMIT 200";*/
+            AND price BETWEEN '".$minPrice."' AND '".$maxPrice."' ORDER BY listing_id DESC LIMIT 200";
 
             $result = pg_query($conn, $sql);
 
@@ -106,7 +106,6 @@ if(isPost())
                 while($row = pg_fetch_assoc($result))
                 {
                     array_push($listings,$row['listing_id']);
-
                 }
                 $_SESSION['listingList'] = $listings;
                 header("Location:listing-match.php");

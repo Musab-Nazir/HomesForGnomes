@@ -18,7 +18,7 @@ $output = "";
 		$_SESSION['listingID'] = $_GET["listingID"];
 	}
 
-	if($_SESSION['userType'] == "a"){
+	if(isset($_SESSION['userType']) && $_SESSION['userType'] == "a"){
 		$sql = "SELECT * FROM listings WHERE listing_id = '".$listing_id."'";
 		$result = pg_query(db_connect(), $sql);
 		$listingDetails = pg_fetch_assoc($result);
