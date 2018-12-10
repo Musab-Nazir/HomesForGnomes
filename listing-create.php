@@ -1,7 +1,7 @@
 <?php
 /*
 Name:           Ramandeep Rathor
-Name:           Musab Nizar
+Name:           Musab Nazir
 Name:                 Kevin Astilla
 Name:                 Nathan Morris
 Description:    Create Listing File For Homes For Gnomes
@@ -54,24 +54,18 @@ if($_SESSION['userType'] != a)
         $bedroom = trim($_POST["bedroom"]);
         $bathroom = trim($_POST["bathroom"]);
         $city = trim($_POST["city"]);
-        $imageCount = 1;
-        $imagePath = "images/";
+        (!empty($_FILES["listing_image"]))? $imageCount = "1":"0";
+        $imagePath = "images/upload/";
         $tempName = "";
         $fileName = "";
-        //$province = trim($_POST["provinces"]);
         (isset($_POST["listing_status"]))? $listingStatus = trim($_POST["listing_status"]):"";
-
-        //image stuff is in here
-        
-
         $propertyOptions = strval(sum_check_box($_POST["property_options"]));
-        echo $propertyOptions;
-        $propertyType = trim($_POST["property_type"]);
-        $flooring = trim($_POST["property_flooring"]);
+        $propertyType = trim($_POST["property_type"]);       
+        (isset($_POST["property_flooring"]))? $flooring = sum_check_box($_POST["property_flooring"]):"";
         $parking = trim($_POST["property_parking"]);
         $buildingType = trim($_POST["property_building_type"]);
         $basementType = trim($_POST["property_basement_type"]);
-        $interiorType = trim($_POST["property_interior_type"]);
+        (isset($_POST["property_interior_type"]))? $interiorType = sum_check_box($_POST["property_interior_type"]):"";
 
         $error = "";
         $output = "";
@@ -121,23 +115,11 @@ if($_SESSION['userType'] != a)
         if($basementType == '0') $error .= "<br/> Please select the basement\'s current state";
         if($interiorType == '0') $error .= "<br/> Please select the interior design type ";
 
-
-        
-        //if no errors
-        if($error == "")
-        {
-            $conn = db_connect();
-            $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
-            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".strval($imageCount)."','".$city."','".strval($propertyOptions)."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
-                 '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
-            $result = pg_query($conn, $sql);
-
-            $output .= "Listing successfully created";
-
-            //validating the image
-            if($_FILES["listing_image"]["error"] != 0)
+        //image validation
+        if($_FILES["listing_image"]["error"] != 0)
             {
-                $error .= "<br/>Problem uploading your file";
+                $error .= $phpFileUploadErrors[$_FILES["listing_image"]["error"]];
+
             }
             else if($_FILES["listing_image"]["size"] > MAXIMUM_IMAGE_SIZE) //size in bytes
             {
@@ -147,8 +129,21 @@ if($_SESSION['userType'] != a)
             {
                 $error .= "<br/>image type is not supported";
             }
-            else{
-                $tempName = $_FILES["listing_image"]["tmp_name"];
+
+        
+        //if no errors
+        if($error == "")
+        {
+            $conn = db_connect();
+            $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
+            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$imageCount."','".$city."','".strval($propertyOptions)."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
+                 '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
+            $result = pg_query($conn, $sql);
+
+            $output .= "Listing successfully created";
+
+            //uploading image
+            $tempName = $_FILES["listing_image"]["tmp_name"];
                 $fileName = $_FILES["listing_image"]["name"];
 
                 
@@ -159,10 +154,10 @@ if($_SESSION['userType'] != a)
                 $imagePathAndFile = $imagePath.$fileName;
                 move_uploaded_file($tempName, $imagePathAndFile);
                 $ext = ".".pathinfo($fileName, PATHINFO_EXTENSION);
-                $newName = $imagePath.$listingId.strval($imageCount).$ext;
+                $newName = $imagePath.$listingId.$imageCount.$ext;
 
-                rename($imagePathAndFile, $newName);    
-                }
+                rename($imagePathAndFile, $newName);
+            
              header("Location:admin.php");
              ob_flush();
         }
@@ -176,7 +171,7 @@ if($_SESSION['userType'] != a)
         <br/>
         <?php
           $error.=$output;
-          echo $error;
+        echo $error;
         ?>
         <div class="card">
             <div class="card-body">
@@ -187,7 +182,7 @@ if($_SESSION['userType'] != a)
                         <input type="text" class="form-control" name="headline" value="<?php echo $headline ?>">
                         <br/>
                         <label>Description</label>
-                        <textarea class="form-control" name="description" maxlength="1000" rows="5" id="description" value="<?php echo $description ?>"></textarea>
+                        <textarea class="form-control" name="description" maxlength="1000" rows="5" id="description"><?php echo $description ?></textarea>
                         <br/>
                         <div class="row">
                           <div class="col">
@@ -196,27 +191,19 @@ if($_SESSION['userType'] != a)
                           </div>
                           <div class="col">
                           <label>Postal Code</label>
-                          <input type="text" id="halfBoxR" class="form-control" name="postal_code" placeholder="A1B 2C3" style="width:8em;">
+                          <input type="text" id="halfBoxR" class="form-control" name="postal_code" placeholder="A1B2C3" value="<?php echo $postalCode ?>" style="width:8em;">
                           </div>
                         </div>
                         <br/>
                         <label>Bedroom Count</label>
-                        <input type="text" id="halfBoxL" class="form-control" name="bedroom" value="" style="width:3em;">
+                        <input type="text" id="halfBoxL" class="form-control" name="bedroom" value="<?php echo $bedroom ?>" style="width:3em;">
                         <label style="margin-left:100px;">Bathroom Count</label>
-                        <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="" style="width:3em;">
+                        <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bathroom ?>" style="width:3em;">
                         <br/>
-                        <table style="width:100%">
-                            <tr>
-                                <td><label>Property Options</label></td>
-                                <td class="row" ><?php echo (build_checkbox("property_options","$propertyOptions"));?></td>
-                            </tr>
+                        <table style="width:100%">     
                             <tr>
                                 <td><label>Property Type</label></td>
                                 <td><?php echo (build_dropdown("property_type","$propertyType"));?></td>
-                            </tr>
-                            <tr>
-                                <td><label>Property Flooring</label></td>
-                                <td><?php echo (build_dropdown("property_flooring","$flooring"));?></td>
                             </tr>
                             <tr>
                                 <td><label>Property Parking</label></td>
@@ -231,14 +218,25 @@ if($_SESSION['userType'] != a)
                                 <td><?php echo (build_dropdown("property_basement_type","$basementType"));?></td>
                             </tr>
                             <tr>
+                                <td><label>Property Options</label></td>
+                                <td><?php echo (build_multiselect_dropdown_checkbox("property_options","$propertyOptions"));?></td>
+
+                            </tr>
+                            <tr>
+                                <br/>
+                            </tr>
+                            <tr>
+                                <td><label>Property Flooring</label></td>
+                                <td><?php echo (build_multiselect_dropdown_checkbox("property_flooring","$flooring"));?></td>
+                            </tr>
+                            <tr>
                                 <td><label>Property Interior Type</label></td>
-                                <td><?php echo (build_dropdown("property_interior_type","$interiorType"));?></td>
+                                <td><?php echo (build_multiselect_dropdown_checkbox("property_interior_type","$interiorType"));?></td>
                             </tr>
                         </table>
 
                         <label>Price
                         <input type="text" id="halfBoxR" class="form-control" name="price" value="<?php echo $price ?>" placeholder=""></label>
-                        <br>
                         <br/>
                         <label>Status</label>
                         <div class="row">

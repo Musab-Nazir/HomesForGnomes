@@ -178,28 +178,32 @@
 
         return $binaryArray;
     }
-
+    
     function sum_check_box($array)
     {
-        $num_checks = count($array);
+        $num_checks = count($array); 
         $sum = 0;
         for ($i = 0; $i < $num_checks; $i++)
         {
-          $sum += $array[$i];
+          $sum += $array[$i]; 
         }
         return $sum;
     }
 
-		// Function to generate random strings
-		function RandomString()
-		{
-	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	    $randstring = '';
-	    for ($i = 0; $i < 10; $i++) {
-	        $randstring = $characters[rand(0, strlen($characters))];
-	    }
-	    return $randstring;
-		}
-
 
 ?>
+<script type="text/javascript">
+var expanded = false;
+
+function showCheckboxes(section) {
+  var checkboxes = section.parentNode.getElementsByClassName("dropdownContent")[0];
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+</script>
+

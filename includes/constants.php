@@ -21,7 +21,7 @@
     define("DB_USER","rathorr");
     define("COOKIE_LIFESPAN",time() + 60*60*24*7);
 
-    //All constants for the password and username
+    //All constants for the ppassword and username
     define("MINIMUM_ID_LENGTH", 5);
     define("MAXIMUM_ID_LENGTH", 20);
     define("MINIMUM_PASSWORD_LENGTH", 6);
@@ -48,5 +48,16 @@
     define("PRICE_FILTER", "/^(?:0|[1-9]\d*)(?:\.\d{2})?$/");
     define("PREVIEW_LINE_LIMIT",3);
 
-    define("IMAGE_LIMIT", 9);
+$phpFileUploadErrors = array(
+    0 => 'There is no error, the file uploaded with success',
+    1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+    2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+    3 => 'The uploaded file was only partially uploaded',
+    4 => 'No file was uploaded',
+    6 => 'Missing a temporary folder',
+    7 => 'Failed to write file to disk.',
+    8 => 'A PHP extension stopped the file upload.',
+);
+
+
 ?>

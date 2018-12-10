@@ -57,15 +57,6 @@
         }
     }
 
-    function userEmail($userId)
-    {
-      $conn = db_connect();
-      $result = pg_prepare($conn, "my_query_email", 'SELECT email_address FROM users WHERE user_id = $1');
-      $result = pg_execute($conn, "my_query_p", array($userId));
-
-      return $result;
-    }
-
     function build_dropdown($table, $selected)
     {
         $conn = db_connect();
@@ -251,6 +242,36 @@
         $output .= '<br/><p>Price: $'.$listing["price"].'</p>';
         $output .= '<a href="listing-display.php?listingID='.$listing["listing_id"].'" class="btn btn-outline-success">View Listing</a>';
         return $output;
+    }
+
+    function build_multiselect_dropdown_checkbox($table, $selected)
+    {
+        //gather information here
+        $conn = db_connect();
+        $sql = "SELECT value, property FROM ".$table;
+        $results = pg_query($conn, $sql);
+        //process information here
+        $dropdown = '</div></div>';
+
+        For($rows = pg_num_rows($results) -1; $rows >= 0 ; $rows--)
+        {
+            $value = pg_fetch_result($results,$rows, "value");
+            $property = pg_fetch_result($results,$rows, "property");
+
+            if(($selected - $value) >= 0)
+            {
+                $select = 'checked';
+                $selected -= $value;
+            }
+            else
+            {
+                $select = '';
+            }
+            $dropdown = '<label for="'.$property.'"><input type="checkbox" name="'.$table.'[]" id="'.$property.'" value="'.$value.'" '.$select.'>'.$property.'</label>' .$dropdown;
+        }
+        $dropdown ='<div class="multiselect"><div class="selectBox" onclick="showCheckboxes(this)"><select><option>Select all that applies</option></select><div class="overSelect"></div></div><div id="checkboxes" class="dropdownContent">' .$dropdown;
+
+        return $dropdown;
     }
 
 ?>

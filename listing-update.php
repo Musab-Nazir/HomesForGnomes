@@ -1,7 +1,8 @@
+
 <?php
 /*
 Name:           Ramandeep Rathor
-Name:           Musab Nizar
+Name:           Musab Nazir
 Name:                 Kevin Astilla
 Name:                 Nathan Morris
 Description:    Create Listing File For Homes For Gnomes
@@ -15,16 +16,16 @@ Date:           28 September 2018
 
 require "header.php";
 
-if($_SESSION['userType'] != a)
-{
-    $_SESSION['RedirectError'] = "You were not logged in as an Agent<br/>";
-    header("Location:login.php");
-}
+// if($_SESSION['userType'] != a)
+// {
+//     $_SESSION['RedirectError'] = "You were not logged in as an Agent<br/>";
+//     header("Location:login.php");
+// }
 
     //declare all variables
 
-    $login = $_SESSION["userID"];
-    $listing_id = $_SESSION["listingID"]; //listing_id
+    $login = "kforryanq6"; //$_SESSION["userID"];
+    $listing_id = "10021";//$_SESSION["listingID"]; //listing_id
     
 
     //end of the function
@@ -37,18 +38,16 @@ if($_SESSION['userType'] != a)
     $postalCode = $listingInformation['postal_code'];
     $images = $listingInformation['images'];
     $city = $listingInformation['city'];
-    $propertyOptions = $listingInformation['property_type'];
+    $propertyOptions = $listingInformation['property_options'];
     $bedroom = $listingInformation['bedrooms'];
     $bathroom = $listingInformation['bathrooms'];
-    //$userType = "";
     $propertyType = $listingInformation['property_type'];
     $flooring = $listingInformation['flooring'];
     $parking = $listingInformation['parking'];
     $buildingType = $listingInformation['building_type'];
     $basementType = $listingInformation['basement_type'];
     $interiorType = $listingInformation['interior_type'];
-    
-    //$images = $listingInformation['images'];
+
 
 
     $error = "";
@@ -64,18 +63,18 @@ if($_SESSION['userType'] != a)
         $bedroom = trim($_POST["bedroom"]);
         $bathroom = trim($_POST["bathroom"]);
         $city = trim($_POST["city"]);
-
+        (!empty($_FILES["listing_image"]))? $imageCount = "1":"0";
+        $imagePath = "images/upload/";
+        $tempName = "";
+        $fileName = "";
         (isset($_POST["listing_status"]))? $listingStatus = trim($_POST["listing_status"]):"";
-        $propertyOptions = trim($_POST["property_options"]);
-
+        $propertyOptions = strval(sum_check_box($_POST["property_options"]));
         $propertyType = trim($_POST["property_type"]);
-        $flooring = trim(sum_check_box($_POST["property_flooring"]));
+        (isset($_POST["property_flooring"]))? $flooring = sum_check_box($_POST["property_flooring"]):"";
         $parking = trim($_POST["property_parking"]);
         $buildingType = trim($_POST["property_building_type"]);
         $basementType = trim($_POST["property_basement_type"]);
-        $interiorType = trim(sum_check_box($_POST["property_interior_type"]));
-
-        $images = "";
+        (isset($_POST["property_interior_type"]))? $interiorType = sum_check_box($_POST["property_interior_type"]):"";
 
         $error = "";
         $output = "";
@@ -125,37 +124,50 @@ if($_SESSION['userType'] != a)
         if($basementType == '0') $error .= "<br/> Please select the basement\'s current state";
         if($interiorType == '0') $error .= "<br/> Please select the interior design type ";
 
+        //image validation
+        if($_FILES["listing_image"]["error"] != 0)
+            {
+                $error .= $phpFileUploadErrors[$_FILES["listing_image"]["error"]];
 
-        //work on the image!!
-        // if($_FILES['uploadfile']['error'] != 0)
-        // {
-        //     $error .= "<br/>Problem uploading your file";
-        // }
-        // else if($_FILES['uploadfile']['size'] > MAXIMUM_IMAGE_SIZE) //size in bytes
-        // {
-        //     $error .= "<br/>File selected is too big";
-        // }
-        // else if($_FILES['uploadfile']['type'] != "image/jpeg" && $_FILES['uploadfile']['type'] != "image/pjpeg")
-        // {
-        //     $error .= "<br/>Your profile pictures must be of type JPEG";
-        // }
-        // else//no problem happened
-        // {
-        //     //this is where i stoped
-        //     //$image = //make it a small int??
-        // }
+            }
+            else if($_FILES["listing_image"]["size"] > MAXIMUM_IMAGE_SIZE) //size in bytes
+            {
+                $error .= "<br/>File selected is too big";
+            }
+            else if($_FILES["listing_image"]["type"] != "image/jpeg" && $_FILES["listing_image"]["type"] != "image/bmp" && $_FILES["listing_image"]["type"] != "image/png" && $_FILES["listing_image"]["type"] != "image/jpg" )
+            {
+                $error .= "<br/>image type is not supported";
+            }
+
         //if no errors
         if($error === "")
         {
 
             $conn = db_connect();
 
-            $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
-            VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$images."', '".$city."','".$propertyOptions."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
-                 '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
+            $updateSql = "UPDATE listings SET status ='".$listingStatus."', price ='".$price."', headline ='".$headline."', description ='".$description."', postal_code ='".$postalCode."', images='".$imageCount."', city='".$city."', property_options='".$propertyOptions."', bedrooms ='".$bedroom."', bathrooms='".$bathroom."', property_type='".$propertyType."', flooring='".$flooring."', parking='".$parking."', building_type='".$buildingType."', basement_type='".$basementType."', interior_type='".$interiorType."' WHERE listing_id='".$listing_id."' AND user_id='".$login."'";
 
-            $result = pg_query($conn, $sql);
-            $output .= "Listing successfully created";
+            $result = pg_query($conn, $updateSql);
+            $output .= "Listing updated created";
+            //image upload section
+
+            
+            $tempName = $_FILES["listing_image"]["tmp_name"];
+            $fileName = $_FILES["listing_image"]["name"];
+            $imagePathAndFile = $imagePath.$fileName;
+            move_uploaded_file($tempName, $imagePathAndFile);
+            $ext = ".".pathinfo($fileName, PATHINFO_EXTENSION);
+
+            $newName = $imagePath.$listing_id.$imageCount.$ext;
+
+            if(file_exists($newName))
+            {
+                //delete it
+                unlink($newName);
+            }
+
+            rename($imagePathAndFile, $newName);
+
             //header("Location:Dashboard.php");
             ob_flush();
         }
@@ -167,11 +179,14 @@ if($_SESSION['userType'] != a)
     <div class="col"></div>
     <div class="col-6">
         <br/>
-        <?php echo $error; ?>
+        <?php
+          $error.=$output;
+        echo $error;
+        ?>
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Please fill out the details about the Listing</h5>
-                <form method="post" action="<?php sticky();?>" >
+                <form method="post" enctype="multipart/form-data" action="<?php sticky();?>" >
                     <div class="form-group">
                         <label>Headline</label>
                         <input type="text" class="form-control" name="headline" value="<?php echo $headline ?>">
@@ -188,18 +203,10 @@ if($_SESSION['userType'] != a)
                         <label style="margin-left:100px;">Bathroom Count</label>
                         <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bathroom ?>" style="width:3em;">
                         <br/>
-                        <table style="width:100%">
-                            <tr>
-                                <td><label>Property Options</label></td>
-                                <td><?php echo (build_dropdown("property_options","$propertyOptions"));?></td>
-                            </tr>
+                        <table style="width:100%">     
                             <tr>
                                 <td><label>Property Type</label></td>
                                 <td><?php echo (build_dropdown("property_type","$propertyType"));?></td>
-                            </tr>
-                            <tr>
-                                <td><label>Property Flooring</label></td>
-                                <td><?php echo (build_multiselect_dropdown("property_flooring","$flooring"));?></td>
                             </tr>
                             <tr>
                                 <td><label>Property Parking</label></td>
@@ -214,18 +221,32 @@ if($_SESSION['userType'] != a)
                                 <td><?php echo (build_dropdown("property_basement_type","$basementType"));?></td>
                             </tr>
                             <tr>
+                                <td><label>Property Options</label></td>
+                                <td><?php echo (build_multiselect_dropdown_checkbox("property_options","$propertyOptions"));?></td>
+
+                            </tr>
+                            <tr>
+                                <br/>
+                            </tr>
+                            <tr>
+                                <td><label>Property Flooring</label></td>
+                                <td><?php echo (build_multiselect_dropdown_checkbox("property_flooring","$flooring"));?></td>
+                            </tr>
+                            <tr>
                                 <td><label>Property Interior Type</label></td>
-                                <td><?php echo (build_multiselect_dropdown("property_interior_type","$interiorType"));?></td>
+                                <td><?php echo (build_multiselect_dropdown_checkbox("property_interior_type","$interiorType"));?></td>
                             </tr>
                         </table>
 
                         <label>Price
                         <input type="text" id="halfBoxR" class="form-control" name="price" value="<?php echo $price ?>" placeholder=""></label>
-                        <br>
-                        <input type="file" name="myFile"><br><br>
                         <br/>
-                        <?php echo (build_radio("listing_status","$listingStatus"));?>
+                        <label>Status</label>
+                        <div class="row">
+                          <?php echo (build_radio("listing_status","$listingStatus"));?>
+                        </div>
                         <br/>
+                            <input name="listing_image" type="file" id="listing_image" />
 
                     </div>
                     <!--personal information section-->
