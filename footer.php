@@ -2,7 +2,7 @@
 <footer class="py-5 bg-dark" id="myFooter">
       <div class="container">
         <a href="privacy_policy.php" style="color:#F5ECEC; padding-right:2em;">Privacy Policy</a>
-        <a href="acceptable_use_policy.php" style="color:#F5ECEC">Acceptable Use Policy</a>
+        <a href="aup.php" style="color:#F5ECEC">Acceptable Use Policy</a>
         <a href="http://validator.w3.org/check?uri=referer">
     			<img 	class="rightAligned"
                         style="width:88px; height:31px;"
