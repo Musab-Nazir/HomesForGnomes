@@ -99,6 +99,10 @@ Date:         	10th December 2018
               $sql = "SELECT * FROM listings WHERE bedrooms = '".$bedroomCount."' AND bathrooms = '".$bathroomCount."' AND city = '".$city."' AND status = 'o'
               AND price BETWEEN '".$minPrice."' AND '".$maxPrice."' ORDER BY listing_id DESC LIMIT 200";
 
+              SELECT status, price, city, bedrooms, bathrooms
+              FROM public.listings
+              WHERE city = 32 AND status = 'o';
+
               $result = pg_query($conn, $sql);
 
               if(pg_num_rows($result) == '0')
