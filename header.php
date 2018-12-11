@@ -27,7 +27,7 @@ require("./includes/db.php");
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Font  -->
     <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' />
-    <!-- Custom styles for this template -->
+    <!-- Custom css file -->
     <link href="css/webd3201.css" rel="stylesheet" />
 
     <!--  JQuery import-->

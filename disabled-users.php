@@ -9,6 +9,11 @@ Date:         	28 September 2018
 */
 
 require("header.php");
+if($_SESSION['userType'] != 's')
+{
+    $_SESSION['RedirectError'] = "You were not logged in as an Admin<br/>";
+    header("Location:login.php");
+}
 ?>
 <!-- Start of Main Page Content -->
 <div class="container" style="margin-top: 2em;">
@@ -16,7 +21,7 @@ require("header.php");
         <h2>Disabled Users</h2>
     </div>
     <?php
-        echo '<div class="row">';
+        echo '<table style="width:100%"><tr><th>User ID</th><th colspan="2">Email</th><th colspan="2">Date Registered</th></tr>';
         $sql = "SELECT user_id FROM users WHERE user_type ='d' ";
         $result = pg_query(db_connect(), $sql);
         $total = pg_fetch_all($result);
@@ -25,30 +30,19 @@ require("header.php");
             $sql = "SELECT * FROM users WHERE user_id = '".$total[$index]['user_id']."'";
             $user_result = pg_query(db_connect(), $sql);
             $arrayRow = pg_fetch_assoc($user_result);
-            echo $arrayRow['user_id'];
-            echo "<br/>";
+            echo "<tr>";
+            echo '<td>'.$arrayRow['user_id'].'<td/>';
+            echo '<td>'.$arrayRow['email_address'].'<td/>';
+            echo '<td>'.$arrayRow['enrol_date'].'<td/>';
+            echo '<form method= "post">';
+            echo '<button type="submit" class="btn btn-link" name=\'approve\' value='.$arrayRow['user_id'].'>Approve</button>';
+            echo '<button type="submit" class="btn btn-link" name=\'reject\' value='.$arrayRow['user_id'].'>Reject</button>';
+            echo '</form><tr/>';
         }
     ?>
-        </div>
-        <br/>
-        <div class="row justify-content-md-center">
-        <?php /*
-        $total_pages = ceil(count($listings) / IMAGE_LIMIT);
-        $pagLink = "<div class='pagination'>";
-        for ($i=1; $i<=$total_pages; $i++) {
-                     if($i == $page)
-                     {
-                        $pagLink .= "<a class='active' href='dashboard.php?page=".$i."'>".$i."</a>";
-                     }
-                     else {
-                         $pagLink .= "<a href='dashboard.php?page=".$i."'>".$i."</a>";
-                     }
-        };
-        echo $pagLink . "</div>";
-         */?>
-     </div>
-     <br/>
+</table>
 </div>
+<br/>
 
 <!-- end of main page content -->
 

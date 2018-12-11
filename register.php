@@ -129,7 +129,7 @@ $output = "";
             $conn = db_connect();
             if(isset($_POST["IsAgent"]) == true)
             {
-                $userType = "a";
+                $userType = "p";        // pending. An admin needs to permit agents
             }
             else
             {
