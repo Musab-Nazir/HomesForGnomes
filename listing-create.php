@@ -2,19 +2,14 @@
 /*
 Name:           Ramandeep Rathor
 Name:           Musab Nazir
-Name:                 Kevin Astilla
-Name:                 Nathan Morris
+Name:           Kevin Astilla
+Name:           Nathan Morris
 Description:    Create Listing File For Homes For Gnomes
-Date:           28 September 2018
+Date:           11th December 2018
 */
-  $title = "WEBD2201 - Web Development - Fundamentals";
-  $date = "12 April 2018";
-  $file = "listing-create.php";
-  $banner = "";
-  $description = "";
 
- require "header.php";
-if($_SESSION['userType'] != a)
+require "header.php";
+if($_SESSION['userType'] != 'a')
 {
     $_SESSION['RedirectError'] = "You were not logged in as an Agent<br/>";
     header("Location:login.php");
@@ -60,7 +55,7 @@ if($_SESSION['userType'] != a)
         $fileName = "";
         (isset($_POST["listing_status"]))? $listingStatus = trim($_POST["listing_status"]):"";
         $propertyOptions = strval(sum_check_box($_POST["property_options"]));
-        $propertyType = trim($_POST["property_type"]);       
+        $propertyType = trim($_POST["property_type"]);
         (isset($_POST["property_flooring"]))? $flooring = sum_check_box($_POST["property_flooring"]):"";
         $parking = trim($_POST["property_parking"]);
         $buildingType = trim($_POST["property_building_type"]);
@@ -131,12 +126,12 @@ if($_SESSION['userType'] != a)
         //         $error .= "<br/>image type is not supported";
         //     }
 
-        
+
         //if no errors
         if($error == "")
         {
             $conn = db_connect();
-            $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
+            $sql = "INSERT INTO listings(user_id, status, price, headline, description, postal_code, images, city, property_option, bedrooms, bathrooms, property_type, flooring, parking, building_type, basement_type, interior_type)
             VALUES ('".$login."', '".$listingStatus."','".$price."','".$headline."', '".$description."','".$postalCode."','".$uploadedFiles."','".$city."','".strval($propertyOptions)."','".$bedroom."', '".$bathroom."', '".$propertyType."', '".$flooring."',
                  '".$parking."', '".$buildingType."', '".$basementType."', '".$interiorType."')";
             $result = pg_query($conn, $sql);
@@ -144,13 +139,13 @@ if($_SESSION['userType'] != a)
             $output .= "Listing successfully created";
 
             //uploading image
-            
+
             //getting the id of the newly created listing
             $listingSql = "SELECT MAX(listing_id) FROM listings WHERE user_id ='".$login."'";
             $listingResult = pg_query($conn,$listingSql);
             $listingId = pg_fetch_result($listingResult, 0);
             if(($_SESSION['imageCount'])> 0){
-            For($imageNumber = 1; $imageNumber <= $uploadedFiles; $imageNumber++){               
+            For($imageNumber = 1; $imageNumber <= $uploadedFiles; $imageNumber++){
                 //$ext = ".".pathinfo($fileName, PATHINFO_EXTENSION);
                 $ext = ".jpg";
                 $newName = $imagePath.$listingId."_".strval($imageNumber).$ext;
@@ -158,7 +153,7 @@ if($_SESSION['userType'] != a)
                 rename($oldName, $newName);
             }
             }
-             header("Location:admin.php");
+             header("Location:dashboard.php");
              ob_flush();
         }
     }
@@ -200,7 +195,7 @@ if($_SESSION['userType'] != a)
                         <label style="margin-left:100px;">Bathroom Count</label>
                         <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bathroom ?>" style="width:3em;">
                         <br/>
-                        <table style="width:100%">     
+                        <table style="width:100%">
                             <tr>
                                 <td><label>Property Type</label></td>
                                 <td><?php echo (build_dropdown("property_type","$propertyType"));?></td>
@@ -243,10 +238,10 @@ if($_SESSION['userType'] != a)
                           <?php echo (build_radio("listing_status","$listingStatus"));?>
                         </div>
                         <br/>
-                        
+
                     </div>
                     <br/>
-                        
+
                     <!--personal information section-->
 
                     <div class="form-group">
