@@ -11,11 +11,45 @@ Date:           10th December 2018
 require "header.php";
 $error = "";
 $output = "";
-    //declare all variables
+
+if(isPost())
+{
+	if(isset($_POST["favourite"]))
+	{
+		$listing_id = $_POST["favourite"];
+	    $sql = "INSERT INTO favourites(user_id, listing_id)
+	    VALUES ('".$_SESSION['userID']."','".$listing_id."')";
+	    $result = pg_query(db_connect(), $sql);
+	    $output .= "Listing added to favourites";
+	}
+	else if (isset($_POST["unfavourite"])) {
+		$listing_id = $_POST["unfavourite"];
+	    $sql = "DELETE FROM favourites WHERE user_id = '".$_SESSION['userID']."' AND listing_id = '".$listing_id."'";
+	    $result = pg_query(db_connect(), $sql);
+	    $output .= "Listing removed from your favorites";
+	}
+	if(isset($_POST["report"]))
+	{
+		$listing_id = $_POST["report"];
+		$sqlListing = "SELECT * FROM listings WHERE listing_id = '".$listing_id."'";
+		$resultListing = pg_query(db_connect(), $sqlListing);
+		$ListingDetails = pg_fetch_assoc($resultListing);
+	    $sql = "INSERT INTO offensives(user_id, listing_id, reported_on, status)
+	    VALUES ('".$_SESSION['userID']."','".$listing_id."', '". date("Y-m-d", time()) . "', '".$ListingDetails['status']."')";
+	    $result = pg_query(db_connect(), $sql);
+	    $output .= "Listing reported";
+	}
+}
+
 	if(isset($_GET["listingID"]))
 	{
 		$listing_id = $_GET["listingID"];
 		$_SESSION['listingID'] = $_GET["listingID"];
+	}
+	else{
+		$_SESSION['RedirectError'] = "No listing was selected<br/>";
+		header("Location:listing-match.php");
+		ob_flush();
 	}
 
 	if(isset($_SESSION['userType']) && $_SESSION['userType'] == "a"){
@@ -28,41 +62,9 @@ $output = "";
 			ob_flush();
 		}
 	}
-	// else{
-	// 	$_SESSION['RedirectError'] = "No listing was selected<br/>";
-	// 	header("Location:listing-match.php");
-	// 	ob_flush();
-	// }
 
-	if(isset($_GET["favorite"]))
-	{
-	    $listing_id = $_GET["favorite"];
-	    $sql = "INSERT INTO favourites(user_id, listing_id)
-	    VALUES ('".$_SESSION['userID']."','".$listing_id."')";
-	    $result = pg_query(db_connect(), $sql);
-	    $output .= "Listing added to favorites";
-	}
-	if(isset($_GET["remove"]))
-	{
-	    $listing_id = $_GET["remove"];
-	    $sql = "DELETE FROM favourites WHERE user_id = '".$_SESSION['userID']."' AND listing_id = '".$listing_id."'";
-	    $result = pg_query(db_connect(), $sql);
-	    $output .= "Listing removed from your favorites";
-	}
-
-	if(isset($_GET["report"]))
-	{
-	    $listing_id = $_GET["report"];
-		$sqlListing = "SELECT * FROM listings WHERE listing_id = '".$listing_id."'";
-		$resultListing = pg_query(db_connect(), $sqlListing);
-		$ListingDetails = pg_fetch_assoc($resultListing);
-	    $sql = "INSERT INTO offensives(user_id, listing_id, reported_on, status)
-	    VALUES ('".$_SESSION['userID']."','".$listing_id."', '". date("Y-m-d", time()) . "', '".$ListingDetails['status']."')";
-	    $result = pg_query(db_connect(), $sql);
-	    $output .= "Listing reported";
-	}
     //end of the function
-    $listingInformation = pg_fetch_assoc(get_listing_information_only($listing_id));
+    $listingInformation = pg_fetch_assoc(get_listing_information_only($_SESSION['listingID']));
 
     $listingStatus =  $listingInformation['status'];
     $price = $listingInformation['price'];
@@ -163,17 +165,20 @@ $output = "";
 					<div class="d-flex justify-content-between">
 	                    <div>
 							<?php if( isset($_SESSION['userType'])){
-								echo "<a href=\"listing-display.php?favorite=$listing_id\" class=\"btn btn-outline-success\">Favourite</a>";
+								// echo "<a href=\"listing-display.php?favorite=$listing_id\" class=\"btn btn-outline-success\">Favourite</a>";
+								echo '<button type="submit" class="btn btn-outline-success" name=\'favourite\' value='.$_SESSION['listingID'].'>Favourite</button>';
 							}?>
 	                    </div>
 	                    <div>
 							<?php if( isset($_SESSION['userType'])){
-								echo "<a href=\"listing-display.php?remove=$listing_id\" class=\"btn btn-outline-success\">Un-Favourite</a>";
+								// echo "<a href=\"listing-display.php?remove=$listing_id\" class=\"btn btn-outline-success\">Un-Favourite</a>";
+								echo '<button type="submit" class="btn btn-outline-success" name=\'unfavourite\' value='.$_SESSION['listingID'].'>Un-Favourite</button>';
 							}?>
 	                    </div>
 						<div>
 							<?php if( isset($_SESSION['userType'])){
-								echo "<a href=\"listing-display.php?report=$listing_id\" class=\"btn btn-outline-danger\">Report Listing</a>";
+								// echo "<a href=\"listing-display.php?report=$listing_id\" class=\"btn btn-outline-danger\">Report Listing</a>";
+								echo '<button type="submit" class="btn btn-outline-danger" name=\'report\' value='.$_SESSION['listingID'].'>Report Listing</button>';
 							}?>
 	                    </div>
 	                </div>

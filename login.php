@@ -2,8 +2,8 @@
 /*
 Name:         	Ramandeep Rathor
 Name:           Musab Nazir
-Name:			      Kevin Astilla
-Name:		       	Nathan Morris
+Name:			Kevin Astilla
+Name:		    Nathan Morris
 Description:  	Login File For Homes For Gnomes
 Date:         	28 September 2018
 */
@@ -30,12 +30,12 @@ if(isPost()){
     }
     //else if login is too short
     else if (strlen($login) < MINIMUM_ID_LENGTH) {
-        $error .= "<br/>The username must be at least 5 characters, ".$login." is not long enough."; //set error
+        $error .= "<br/>The username must be at least 5 characters, ".$login." is not long enough."; // set error
         $login = "";
     }
     //else if login is too long
     else if (strlen($login) >= MAXIMUM_ID_LENGTH) {
-        $error .= "<br/>The username must be less than 20 characters, ".$login." is too long."; //set error
+        $error .= "<br/>The username must be less than 20 characters, ".$login." is too long."; // set error
         $login = "";
     }
 
@@ -113,6 +113,7 @@ if(isPost()){
             if(isset($_SESSION['RedirectError']))
             {
                 echo $_SESSION['RedirectError'];
+                $_SESSION['RedirectError'] = "";
             }
             if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
             {
@@ -146,7 +147,7 @@ if(isPost()){
                   </td>
                 </tr>
               </table>
-                </div>
+          </div>
                 <div class="d-flex justify-content-between">
                     <div>
                         <button type="submit" class="btn btn-outline-success" style="width:80px;">Login</button>
@@ -154,9 +155,6 @@ if(isPost()){
                     <div>
                         <button type="reset" class="btn btn-outline-success" style="width:80px;">Clear</button>
                     </div>
-                    <!-- <div> -->
-                        <!-- <button type="button" class="btn btn-outline-success" style="width:160px;"></button> -->
-                    <!-- </div> -->
                 </div>
             </form>
         </div>

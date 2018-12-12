@@ -14,6 +14,11 @@ if(isset($_SESSION['listingList']))
 {
     $listings = $_SESSION['listingList'];
 }
+else {
+    $_SESSION['RedirectError'] = "No search was made<br/>";
+    header("Location:listing-search.php");
+    ob_flush();
+}
 if (isset($_GET["page"])) {
     $page  = $_GET["page"];
     $listingCount = ($page -1) * IMAGE_LIMIT;

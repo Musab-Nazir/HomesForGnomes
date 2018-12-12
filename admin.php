@@ -12,6 +12,15 @@ require "header.php";
 // If the session was never set with a user id
 $output = '';
 $conn = db_connect();
+if(isPost())
+{
+	if (isset($_POST["hide"])) {
+		$listing_id = $_POST["hide"];
+	    $sql = "UPDATE listings SET status='h' WHERE listing_id = '".$listing_id."'";
+	    $result = pg_query(db_connect(), $sql);
+	    $output .= "Listing successfully hidden";
+	}
+}
 if($_SESSION['userType'] != 's')
 {
     $_SESSION['RedirectError'] = "You were not logged in as an Admin<br/>";
@@ -61,7 +70,7 @@ else {
         <h3>Reported Listings</h3>
         <?php
             echo '<div class="row">';
-            $sql = "SELECT listing_id FROM offensives";
+            $sql = "SELECT listing_id FROM offensives ORDER BY reported_on DESC";
             $result = pg_query($conn, $sql);
             $listings = pg_fetch_all($result);
             for($index = 0; $index < pg_num_rows($result); $index++)
@@ -70,7 +79,7 @@ else {
                 $listing_result = pg_query($conn, $sql);
                 echo '<div class="col-md-4"style="margin-top:1em"><div class="card"><div class="card-body">';
                 $arrayRow = pg_fetch_assoc($listing_result);
-                echo (build_listing_card($arrayRow));
+                echo (build_report_card($arrayRow));
                 echo '</div></div></div>';
                 if($index !=0 && ($index +1) % IMAGE_LIMIT ==0){
                     break;

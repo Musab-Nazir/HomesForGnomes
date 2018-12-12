@@ -237,10 +237,56 @@
     {
         $output = '<h5 class="card-title">'.$listing["headline"].'</h5>';
         $output .= '<img src="./images/Hobbiton-Waikato-IanBrodie-800x600.jpg" width="300px">';
-        $output .= '<br/><p>Bathrooms: '.$listing["bathrooms"].'</p>';
-        $output .= '<br/><p>Bedrooms: '.$listing["bedrooms"].'</p>';
-        $output .= '<br/><p>Price: $'.$listing["price"].'</p>';
+        $output .= '<table><tr><td>Bedrooms</td><td>'.$listing["bedrooms"].'</td><tr/>';
+        $output .= '<tr><td>Bathrooms</td><td>'.$listing["bathrooms"].'</td><tr/>';
+        if($listing["status"] == 's'){$status = 'SOLD';}
+        else if($listing["status"] == 'o'){$status = 'OPEN';}
+        else if($listing["status"] == 'c'){$status = 'CLOSED';}
+        else if($listing["status"] == 'h'){$status = 'HIDDEN';}
+        $output .= '<tr><td>Status</td><td>'.$status.'</td><tr/>';
+        $output .= '<tr><th>Price</th><th>$'.$listing["price"].'</th><tr/>';
+        $output .= '</table><br/>';
         $output .= '<a href="listing-display.php?listingID='.$listing["listing_id"].'" class="btn btn-outline-success">View Listing</a>';
+        return $output;
+    }
+    function build_favourites_card(&$listing)
+    {
+        $output = '<h5 class="card-title">'.$listing["headline"].'</h5>';
+        $output .= '<img src="./images/Hobbiton-Waikato-IanBrodie-800x600.jpg" width="300px">';
+        $output .= '<form method="post">';
+        $output .= '<table><tr><td>Bedrooms</td><td>'.$listing["bedrooms"].'</td><tr/>';
+        $output .= '<tr><td>Bathrooms</td><td>'.$listing["bathrooms"].'</td><tr/>';
+        if($listing["status"] == 's'){$status = 'SOLD';}
+        else if($listing["status"] == 'o'){$status = 'OPEN';}
+        else if($listing["status"] == 'c'){$status = 'CLOSED';}
+        else if($listing["status"] == 'h'){$status = 'HIDDEN';}
+        $output .= '<tr><td>Status</td><td>'.$status.'</td><tr/>';
+        $output .= '<tr><th>Price</th><th>$'.$listing["price"].'</th><tr/>';
+        $output .= '</table><br/>';
+        $output .= '<button type="submit" class="btn btn-outline-success" name=\'unfavourite\' value='.$listing["listing_id"].'>Un-Favourite</button>';
+        $output .= '<a href="listing-display.php?listingID='.$listing["listing_id"].'" class="btn btn-outline-success" style="margin-left:2em;">View Listing</a>';
+        $output .= '</form>';
+        return $output;
+    }
+
+    function build_report_card(&$listing)
+    {
+        $status='';
+        $output = '<h5 class="card-title">'.$listing["headline"].'</h5>';
+        $output .= '<img src="./images/Hobbiton-Waikato-IanBrodie-800x600.jpg" width="300px">';
+        $output .= '<form method="post">';
+        $output .= '<table><tr><td>Bedrooms</td><td>'.$listing["bedrooms"].'</td><tr/>';
+        $output .= '<tr><td>Bathrooms</td><td>'.$listing["bathrooms"].'</td><tr/>';
+        if($listing["status"] == 's'){$status = 'SOLD';}
+        else if($listing["status"] == 'o'){$status = 'OPEN';}
+        else if($listing["status"] == 'c'){$status = 'CLOSED';}
+        else if($listing["status"] == 'h'){$status = 'HIDDEN';}
+        $output .= '<tr><td>Status</td><td>'.$status.'</td><tr/>';
+        $output .= '<tr><th>Price</th><th>$'.$listing["price"].'</th><tr/>';
+        $output .= '</table><br/>';
+        $output .= '<button type="submit" class="btn btn-outline-success" name=\'hide\' value='.$listing["listing_id"].'>Hide Listing</button>';
+        $output .= '<a href="listing-display.php?listingID='.$listing["listing_id"].'" class="btn btn-outline-success" style="margin-left:2em;">View Listing</a>';
+        $output .= '</form>';
         return $output;
     }
 

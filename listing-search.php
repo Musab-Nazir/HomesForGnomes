@@ -8,11 +8,6 @@ Description:  	Search Listings File For Homes For Gnomes
 Date:         	10th December 2018
 */
 
-  $title = "Homes for Gnomes - Listing Search";
-  $date = "10 Dec 2018";
-  $file = "listing-search.php";
-  $banner = "Listing Search";
-
   require "header.php";
 
   $city = "";
@@ -127,7 +122,14 @@ Date:         	10th December 2018
     <div class="container">
     <div class="row" style="margin-top:75px">
         <?php echo $error; ?>
-        <?php echo $output;?>
+        <?php echo $output;
+        if(isset($_SESSION['RedirectError']))
+        {
+            echo $_SESSION['RedirectError'];
+            $_SESSION['RedirectError'] = "";
+        }
+        ?>
+    </div>
       <div class="col"></div>
           <div class="card">
               <div class="card-body">
@@ -173,7 +175,6 @@ Date:         	10th December 2018
       <div class="col"></div>
     </div>
     <br/>
-  </div>
 
 
     <!-- end of main page content -->

@@ -12,6 +12,15 @@ require "header.php";
 // If the session was never set with a user id
 $output = '';
 $conn = db_connect();
+if(isPost())
+{
+	if (isset($_POST["unfavourite"])) {
+		$listing_id = $_POST["unfavourite"];
+	    $sql = "DELETE FROM favourites WHERE user_id = '".$_SESSION['userID']."' AND listing_id = '".$listing_id."'";
+	    $result = pg_query(db_connect(), $sql);
+	    $output .= "Listing removed from your favorites";
+	}
+}
 if($_SESSION['userType'] != "c")
 {
     $_SESSION['RedirectError'] = "You were not logged in as a Client<br/>";
@@ -25,8 +34,6 @@ else {
     $page=1;
     $index = 0;
  }
-
-
 ?>
   <!-- start of main page content -->
 
@@ -50,7 +57,7 @@ else {
             $listing_result = pg_query($conn, $sql);
             echo '<div class="col-md-4"style="margin-top:1em"><div class="card"><div class="card-body">';
             $arrayRow = pg_fetch_assoc($listing_result);
-            echo (build_listing_card($arrayRow));
+            echo (build_favourites_card($arrayRow));
             echo '</div></div></div>';
 
             if($index !=0 && ($index +1) % IMAGE_LIMIT ==0){
