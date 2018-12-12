@@ -7,11 +7,6 @@ Name:		       	Nathan Morris
 Description:  	Login File For Homes For Gnomes
 Date:         	28 September 2018
 */
-  $title = "WEBD3201 - Web Development - Intermediate";
-  $date = "02 October 2018";
-  $file = "login.php";
-  $banner = "Login Page";
-  $description = "This page will be a log in page for the website.";
 
 require("header.php");
 
@@ -85,6 +80,9 @@ if(isPost()){
                 }
                 //redirect to appropriate page
                 if($_SESSION['userType'] == 'd'){header("Location:aup.php");}
+                else if($_SESSION['userType'] == 'p'){
+                    header("Location:login.php"); $_SESSION['RedirectError'] = 'Your account has to be approved by an Admin';
+                }
                 else if($_SESSION['userType'] == 's'){header("Location:admin.php");}
                 else if($_SESSION['userType'] == 'a'){header("Location:dashboard.php");}
                 else if($_SESSION['userType'] == 'c'){header("Location:welcome.php");}
