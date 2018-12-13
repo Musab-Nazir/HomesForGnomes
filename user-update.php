@@ -133,7 +133,8 @@ if(!isset($_SESSION['userType']))
       <div class="col-8">
           <br/>
           <?php echo $error;
-                echo $_SESSION['RedirectError'];?>
+                echo $_SESSION['RedirectError'];
+                $_SESSION['RedirectError'] = '';?>
           <div class="card">
               <div class="card-body">
                   <h5 class="card-title">User information for <?php echo $login ?></h5>

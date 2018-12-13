@@ -12,7 +12,7 @@ require "header.php";
 if(isset($_SESSION['userType']))
 {
     $_SESSION['RedirectError'] = "You are currently logged in. Cannot create new user<br/><br/>";
-    header("Location:update.php");
+    header("Location:user-update.php");
 }
 $login = "";
 $password = "";

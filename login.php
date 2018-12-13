@@ -81,12 +81,15 @@ if(isPost()){
                 //redirect to appropriate page
                 if($_SESSION['userType'] == 'd'){header("Location:aup.php");}
                 else if($_SESSION['userType'] == 'p'){
-                    header("Location:login.php"); $_SESSION['RedirectError'] = 'Your account has to be approved by an Admin';
+                    $_SESSION['RedirectError'] = 'Your account has to be approved by an Admin';
+                    //$error = 'Your account has to be approved by an Admin';
+                    header("Location:user-update.php");
+                    ob_flush();
                 }
-                else if($_SESSION['userType'] == 's'){header("Location:admin.php");}
-                else if($_SESSION['userType'] == 'a'){header("Location:dashboard.php");}
-                else if($_SESSION['userType'] == 'c'){header("Location:welcome.php");}
-                ob_flush();
+                else if($_SESSION['userType'] == 's'){header("Location:admin.php"); ob_flush();}
+                else if($_SESSION['userType'] == 'a'){header("Location:dashboard.php"); ob_flush();}
+                else if($_SESSION['userType'] == 'c'){header("Location:welcome.php"); ob_flush();}
+
             }
             else {
                 $error .= "<br/>Password does not match any records";
