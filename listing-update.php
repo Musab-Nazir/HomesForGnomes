@@ -3,20 +3,15 @@
 /*
 Name:           Ramandeep Rathor
 Name:           Musab Nazir
-Name:                 Kevin Astilla
-Name:                 Nathan Morris
-Description:    Create Listing File For Homes For Gnomes
-Date:           28 September 2018
+Name:           Kevin Astilla
+Name:           Nathan Morris
+Description:    Listing-Update File For Homes For Gnomes
+Date:           13th December 2018
 */
-  $title = "WEBD2201 - Web Development - Fundamentals";
-  $date = "12 April 2018";
-  $file = "listing-create.php";
-  $banner = "";
-  $description = "";
 
 require "header.php";
 
-if($_SESSION['userType'] != a)
+if($_SESSION['userType'] != "a")
 {
     $_SESSION['RedirectError'] = "You were not logged in as an Agent<br/>";
     header("Location:login.php");
@@ -26,7 +21,7 @@ if($_SESSION['userType'] != a)
 
     $login = $_SESSION["userID"];
     $listing_id = $_SESSION["listingID"]; //listing_id
-    
+
 
     //end of the function
     $listingInformation = pg_fetch_assoc(get_listing_information($login,$listing_id));
@@ -38,7 +33,7 @@ if($_SESSION['userType'] != a)
     $postalCode = $listingInformation['postal_code'];
     $images = $listingInformation['images'];
     $city = $listingInformation['city'];
-    $propertyOptions = $listingInformation['property_options'];
+    $propertyOptions = $listingInformation['property_option'];
     $bedroom = $listingInformation['bedrooms'];
     $bathroom = $listingInformation['bathrooms'];
     $propertyType = $listingInformation['property_type'];
@@ -151,7 +146,7 @@ if($_SESSION['userType'] != a)
             $result = pg_query($conn, $updateSql);
             $output .= "Listing updated created";
             //image upload section
-            For($imageNumber = 1; $imageNumber <= $imageCount; $imageNumber++){               
+            For($imageNumber = 1; $imageNumber <= $imageCount; $imageNumber++){
                 //$ext = ".".pathinfo($fileName, PATHINFO_EXTENSION);
                 $ext = ".jpg";
                 $newName = $imagePath.$listingId."_".strval($imageNumber).$ext;
@@ -163,7 +158,7 @@ if($_SESSION['userType'] != a)
                 }
                 rename($oldName, $newName);
             }
-            
+
 
             //header("Location:Dashboard.php");
             ob_flush();
@@ -200,7 +195,7 @@ if($_SESSION['userType'] != a)
                         <label style="margin-left:100px;">Bathroom Count</label>
                         <input type="text" id="halfBoxR" class="form-control" name="bathroom" value="<?php echo $bathroom ?>" style="width:3em;">
                         <br/>
-                        <table style="width:100%">     
+                        <table style="width:100%">
                             <tr>
                                 <td><label>Property Type</label></td>
                                 <td><?php echo (build_dropdown("property_type","$propertyType"));?></td>
