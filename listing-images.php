@@ -19,8 +19,9 @@ if($_SESSION['userType'] != "a")
     $_SESSION['RedirectError'] = "You were not logged in as an Agent<br/>";
     header("Location:login.php");
 }
+
 $login = $_SESSION["userID"];
-$imagePath = "images/upload/";
+$imagePath = "images/upload/temp";
 $error = "";
 $tempName = "";
 if(isPost()){
@@ -50,6 +51,9 @@ if(isPost()){
 		{
 			//display the uploaded files name for confirmation
 			//
+			if(!is_dir($imagePath))
+			{mkdir($imagePath, 0775,true);}
+		
 			$imageNames[$rows] = $_FILES["listing_image"]["name"][$rows];
 			$imageCount = $rows + 1;
 			$tempName = $_FILES["listing_image"]["tmp_name"][$rows];
