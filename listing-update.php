@@ -71,7 +71,13 @@ if($_SESSION['userType'] != "a")
         $buildingType = trim($_POST["property_building_type"]);
         $basementType = trim($_POST["property_basement_type"]);
         (isset($_POST["property_interior_type"]))? $interiorType = strval(sum_check_box($_POST["property_interior_type"])):"";
-        $imageCount = $_SESSION["imageCount"];
+        if(isset($_SESSION["imageCount"]))
+        {
+            $imageCount = $_SESSION["imageCount"];
+        }
+        else {
+            $imageCount = 0;
+        }
         $error = "";
         $output = "";
         //trim the user input
@@ -141,7 +147,7 @@ if($_SESSION['userType'] != "a")
 
             $conn = db_connect();
 
-            $updateSql = "UPDATE listings SET status ='".$listingStatus."', price ='".$price."', headline ='".$headline."', description ='".$description."', postal_code ='".$postalCode."', images='".$imageCount."', city='".$city."', property_options='".strval($propertyOptions)."', bedrooms ='".$bedroom."', bathrooms='".$bathroom."', property_type='".$propertyType."', flooring='".$flooring."', parking='".$parking."', building_type='".$buildingType."', basement_type='".$basementType."', interior_type='".$interiorType."' WHERE listing_id='".$listing_id."' AND user_id='".$login."'";
+            $updateSql = "UPDATE listings SET status ='".$listingStatus."', price ='".$price."', headline ='".$headline."', description ='".$description."', postal_code ='".$postalCode."', images='".$imageCount."', city='".$city."', property_option='".strval($propertyOptions)."', bedrooms ='".$bedroom."', bathrooms='".$bathroom."', property_type='".$propertyType."', flooring='".$flooring."', parking='".$parking."', building_type='".$buildingType."', basement_type='".$basementType."', interior_type='".$interiorType."' WHERE listing_id='".$listing_id."' AND user_id='".$login."'";
 
             $result = pg_query($conn, $updateSql);
             $output .= "Listing updated created";
