@@ -37,7 +37,7 @@ if(isPost())
 	    $sql = "INSERT INTO offensives(user_id, listing_id, reported_on, status)
 	    VALUES ('".$_SESSION['userID']."','".$listing_id."', '". date("Y-m-d", time()) . "', '".$ListingDetails['status']."')";
 	    $result = pg_query(db_connect(), $sql);
-		$sql2 = "UPDATE users SET user_type='d' WHERE user_id='".$ListingDetails['userID']."'";
+		$sql2 = "UPDATE users SET user_type='d' WHERE user_id='".$ListingDetails['user_id']."'";
 		$result = pg_query(db_connect(), $sql2);
 	    $output .= "Listing reported";
 	}
