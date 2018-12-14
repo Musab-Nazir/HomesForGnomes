@@ -14,13 +14,17 @@ Date
 */
 
 require "header.php";
-
-$login = "kforryanq6";//$_SESSION["userID"];
+if($_SESSION['userType'] != "a")
+{
+    $_SESSION['RedirectError'] = "You were not logged in as an Agent<br/>";
+    header("Location:login.php");
+}
+$login = $_SESSION["userID"];
 $imagePath = "images/upload/";
 $error = "";
 $tempName = "";
 if(isPost()){
-	
+
 	$uploadedFiles = count($_FILES["listing_image"]["name"]);
 	$imageNames = array_fill(0, $uploadedFiles, null);
 
@@ -60,14 +64,14 @@ if(isPost()){
 		if($error == ""){
 			$_SESSION['imageCount'] = $imageCount;
 		}
-		
+
 	}
 }
 
 ?>
 
 <div class="container">
-	
+
   <div class="row" style="margin-top:75px">
 <?php echo $error; ?>
 <form action="<?php sticky();?>" method="post" enctype="multipart/form-data">
