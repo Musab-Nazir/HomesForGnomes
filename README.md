@@ -1,12 +1,13 @@
 # Homes for Gnomes
 A real estate website made for a Web Development class using a postgresql backend. The site uses Bootstrap for the front end with a bit of JQuery.
 Features of the site include login and registration for Agents and Clients. Listing creation and search functionality is also included depending on the account type.
-The site also uses cookies for some of the search functionality and for remembering login information if the user wishes to do so.
+The site also uses cookies for some of the search functionality and for remembering login information if the user wishes to do so. Basic admin control like hiding reported listings and approving agent or disabled accounts also exist.
 ## Built With
 
 * [PHP](http://www.php.net/) - Version 5.6 used
 * [HTML]
 * [PostgreSQL](https://www.postgresql.org/) - Version 9.5.5
+* [Apache](https://httpd.apache.org/download.cgi) - Version 2 onward
 
 ## Authors
 
