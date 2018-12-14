@@ -7,14 +7,18 @@ Name:			      Nathan Morris
 Description:  	Header File For Homes For Gnomes webd3201
 Date:         	28 September 2018
 */
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<?php
 session_start();
 require("./includes/functions.php");
 require("./includes/constants.php");
 require("./includes/db.php");
 ?>
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
 <!--The nav bar and the layout of the site is based on a premade bootstrap template -->
 <!--https://startbootstrap.com/template-overviews/modern-business/-->
   <head>

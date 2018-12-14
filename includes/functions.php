@@ -201,7 +201,7 @@
 }
 
 ?>
-<script type="text/javascript">
+<script>
 var expanded = false;
 
 function showCheckboxes(section) {
