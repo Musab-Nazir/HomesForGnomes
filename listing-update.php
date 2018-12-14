@@ -171,7 +171,7 @@ if($_SESSION['userType'] != "a")
                 rmdir($temp_path);
             }
 
-            header("Location:Dashboard.php");
+            header("Location:dashboard.php");
             ob_flush();
         }
     }
