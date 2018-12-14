@@ -146,21 +146,26 @@ if($_SESSION['userType'] != "a")
             $result = pg_query($conn, $updateSql);
             $output .= "Listing updated created";
             //image upload section
-            For($imageNumber = 1; $imageNumber <= $imageCount; $imageNumber++){
-                //$ext = ".".pathinfo($fileName, PATHINFO_EXTENSION);
-                $ext = ".jpg";
-                $newName = $imagePath.$listingId."_".strval($imageNumber).$ext;
-                $oldName = $imagePath.$login.strval($imageNumber).$ext;
-                if(file_exists($newName))
-                {
-                //delete it
-                unlink($newName);
+            $temp_path = $imagePath."/temp";
+            if(is_dir($temp_path))
+            {
+
+                For($imageNumber = 1; $imageNumber <= $imageCount; $imageNumber++){
+                    //$ext = ".".pathinfo($fileName, PATHINFO_EXTENSION);
+                    $ext = ".jpg";
+                    $newName = $imagePath.$listing_Id."_".strval($imageNumber).$ext;
+                    $oldName = $temp_path.$login.strval($imageNumber).$ext;
+                    if(file_exists($newName))
+                    {
+                    //delete it
+                    unlink($newName);
+                    }
+                    rename($oldName, $newName);
                 }
-                rename($oldName, $newName);
+                rmdir($temp_path);
             }
 
-
-            //header("Location:Dashboard.php");
+            header("Location:Dashboard.php");
             ob_flush();
         }
     }
