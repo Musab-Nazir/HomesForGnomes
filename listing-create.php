@@ -61,7 +61,16 @@ if($_SESSION['userType'] != 'a')
         $buildingType = trim($_POST["property_building_type"]);
         $basementType = trim($_POST["property_basement_type"]);
         (isset($_POST["property_interior_type"]))? $interiorType = sum_check_box($_POST["property_interior_type"]):"";
-        $uploadedFiles = $_SESSION['imageCount'];
+        if(isset($_SESSION["imageCount"]))
+        {
+            $imageCount = $_SESSION["imageCount"];
+            $uploadedFiles = $_SESSION['imageCount'];
+        }
+        else {
+            $imageCount = 0;
+            $uploadedFiles = 0;
+        }
+
 
         $error = "";
         $output = "";
